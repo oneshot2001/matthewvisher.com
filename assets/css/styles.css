@@ -120,9 +120,12 @@ a { color: inherit; }
   display: flex; align-items: center; gap: var(--lg);
 }
 .sub-nav__name {
-  font-size: 21px; font-weight: 600; line-height: 1.19; letter-spacing: 0.231px;
+  display: flex; align-items: center; gap: 10px;
+  font-family: "Saira", var(--font-display); font-style: italic;
+  font-size: 21px; font-weight: 700; line-height: 1.19; letter-spacing: 0;
   text-decoration: none; color: var(--ink);
 }
+.sub-nav__name .mark { flex: none; }
 .sub-nav__links { margin-left: auto; display: flex; align-items: center; gap: var(--lg); }
 .sub-nav__links a {
   font-size: 14px; font-weight: 400; line-height: 1.29; letter-spacing: -0.224px;
