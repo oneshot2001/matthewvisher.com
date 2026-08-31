@@ -10,6 +10,10 @@
   <meta property="og:title" content="Matthew Visher — Physical Security Tools" />
   <meta property="og:description" content="Verification and commissioning tools for physical security, built by a 21-year law enforcement veteran." />
   <meta property="og:url" content="https://matthewvisher.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" />
   <link rel="stylesheet" href="/assets/css/styles.css" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
   <script type="application/ld+json">
@@ -18,90 +22,139 @@
     "@type": "Person",
     "name": "Matthew Visher",
     "url": "https://matthewvisher.com",
-    "sameAs": ["https://x.com/MatthewVisher", "https://github.com/oneshot2001"],
-    "knowsAbout": ["Physical Security", "Law Enforcement", "Video Analytics", "ONVIF", "AI Agents"]
+    "jobTitle": "Director of Law Enforcement Business Development",
+    "sameAs": [
+      "https://www.linkedin.com/in/matthew-visher-6b4692a8/",
+      "https://x.com/MatthewVisher",
+      "https://github.com/oneshot2001"
+    ],
+    "knowsAbout": ["Physical Security", "Law Enforcement", "Video Analytics", "ONVIF", "AI Agents", "Video Evidence Provenance"]
   }
   </script>
 </head>
 <body>
-  <header class="header">
-    <div class="wrap">
-      <a class="brand" href="/">Matthew Visher</a>
-      <nav class="nav" aria-label="Main">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="global-nav" aria-label="Global">
+    <div class="global-nav__inner">
+      <a class="global-nav__brand" href="/">Matthew Visher</a>
+      <a href="/lab/">Lab</a>
+      <a href="/notes/">Notes</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a class="global-nav__spacer" href="https://github.com/oneshot2001">GitHub</a>
+      <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+    </div>
+  </nav>
+
+  <div class="sub-nav">
+    <div class="sub-nav__inner">
+      <a class="sub-nav__name" href="/">Matthew Visher</a>
+      <div class="sub-nav__links">
         <a href="/" aria-current="page">Home</a>
         <a href="/lab/">Lab</a>
         <a href="/notes/">Notes from the Field</a>
         <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-      </nav>
+        <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      </div>
     </div>
-  </header>
+  </div>
 
-  <main>
-    <section class="hero">
-      <div class="wrap hero__grid">
-        <div>
-        <h1>21 years behind the badge. Now I build the tools I wished it had.</h1>
-        <p class="lede">Verification and commissioning tools for physical security: signed video evidence, camera infrastructure that proves it works, and receipts for what AI agents actually did.</p>
+  <main id="main">
+
+    <section class="tile tile--parchment">
+      <div class="tile__inner">
+        <h1 class="t-hero">21 years behind the badge.<br />Now I build the tools I wished it had.</h1>
+        <p class="t-lead stack-lead">Verification and commissioning tools for physical security.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="/lab/">Explore the Lab</a>
+          <a class="btn btn--secondary" href="/about/">About me</a>
+        </div>
         <ul class="proof">
-          <li>21 yrs law enforcement</li>
+          <li>21 years law enforcement</li>
           <li>Director of LE BD, AI video analytics</li>
-          <li>Builder: onvif-mcp · AAR · EdgeProof</li>
+          <li>Builder: onvif-mcp, AAR, EdgeProof</li>
           <li>Author, Notes from the Field</li>
         </ul>
-        <div class="actions">
-          <a class="btn btn--solid" href="/lab/">Explore the Lab</a>
-          <a class="btn btn--ghost" href="/about/">About me</a>
-        </div>
-        </div>
-        <figure class="hero__portrait">
+        <figure class="portrait">
           <img src="/assets/img/portrait-full.jpg" alt="Portrait of Matthew Visher" width="1600" height="1280" fetchpriority="high" decoding="async" />
         </figure>
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap">
-        <p class="kicker">Featured work</p>
-        <ul class="cards">
-          <li class="card">
-            <div class="meta"><span>Open-source tool</span><span class="status">Active</span></div>
-            <h3><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></h3>
-            <p>AI agents can't talk to security cameras. This gives them a working ONVIF interface so they can.</p>
-          </li>
-          <li class="card">
-            <div class="meta"><span>Open-source spec + tool</span><span class="status">Active</span></div>
-            <h3><a href="https://github.com/oneshot2001/aar">AAR — Agent Action Receipts</a></h3>
-            <p>Agents take actions with no evidence trail. AAR produces signed receipts for what an agent did and when.</p>
-          </li>
-          <li class="card">
-            <div class="meta"><span>Product</span><span class="status">In development</span></div>
-            <h3><a href="/lab/">EdgeProof</a></h3>
-            <p>Signed video from the camera outward, so footage can prove it hasn't been altered.</p>
-          </li>
-        </ul>
+    <section class="tile tile--dark">
+      <div class="tile__inner">
+        <h2 class="t-display">onvif-mcp</h2>
+        <p class="t-lead stack-lead">AI agents can't talk to security cameras. Now they can.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="https://github.com/oneshot2001/onvif-mcp">View on GitHub</a>
+          <a class="btn btn--secondary-on-dark" href="/lab/">Learn more</a>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap">
-        <p class="kicker">Recent writing</p>
-        <ul class="cards">
-          <li class="card">
-            <div class="meta"><span>Notes from the Field</span></div>
-            <h3><a href="/notes/">The series</a></h3>
-            <p>Working notes on physical security, AI deployment, and what actually holds up in the field. Published on LinkedIn; landing pages here.</p>
-            <p class="ev"><a href="/notes/">Read the notes →</a></p>
-          </li>
-        </ul>
+    <section class="tile tile--light">
+      <div class="tile__inner">
+        <h2 class="t-display">Agent Action Receipts</h2>
+        <p class="t-lead stack-lead">Signed, replayable proof of what an AI agent actually did.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="https://github.com/oneshot2001/aar">View on GitHub</a>
+          <a class="btn btn--secondary" href="/lab/">Learn more</a>
+        </div>
       </div>
     </section>
+
+    <section class="tile tile--dark-2">
+      <div class="tile__inner">
+        <h2 class="t-display">EdgeProof</h2>
+        <p class="t-lead stack-lead">Video that can prove it hasn't been altered, from the lens to the courtroom.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="/lab/">Learn more</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tile tile--light">
+      <div class="tile__inner">
+        <h2 class="t-display">Notes from the Field</h2>
+        <p class="t-lead stack-lead">What AI in physical security looks like from someone who spent 21 years as the end user.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="/notes/">Read the notes</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
-    <div class="wrap">
-      <span>© 2026 Matthew Visher. Views and projects are my own.</span>
-      <span><a href="https://github.com/oneshot2001">GitHub</a> · <a href="https://x.com/MatthewVisher">X</a> · <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></span>
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <h4>Work</h4>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Writing</h4>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Elsewhere</h4>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
     </div>
   </footer>
 </body>

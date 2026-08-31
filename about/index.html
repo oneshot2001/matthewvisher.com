@@ -4,76 +4,142 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About — Matthew Visher</title>
-  <meta name="description" content="21 years in law enforcement, now building AI and verification tools for physical security." />
+  <meta name="description" content="21 years in law enforcement, major investigations and covert surveillance. Now building verification tools for physical security." />
   <link rel="canonical" href="https://matthewvisher.com/about/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="About — Matthew Visher" />
+  <meta property="og:description" content="21 years in law enforcement, major investigations and covert surveillance. Now building verification tools for physical security." />
+  <meta property="og:url" content="https://matthewvisher.com/about/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" />
   <link rel="stylesheet" href="/assets/css/styles.css" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Matthew Visher",
+    "url": "https://matthewvisher.com",
+    "jobTitle": "Director of Law Enforcement Business Development",
+    "sameAs": [
+      "https://www.linkedin.com/in/matthew-visher-6b4692a8/",
+      "https://x.com/MatthewVisher",
+      "https://github.com/oneshot2001"
+    ],
+    "knowsAbout": ["Physical Security", "Law Enforcement", "Video Analytics", "ONVIF", "AI Agents", "Video Evidence Provenance"]
+  }
+  </script>
 </head>
 <body>
-  <header class="header">
-    <div class="wrap">
-      <a class="brand" href="/">Matthew Visher</a>
-      <nav class="nav" aria-label="Main">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="global-nav" aria-label="Global">
+    <div class="global-nav__inner">
+      <a class="global-nav__brand" href="/">Matthew Visher</a>
+      <a href="/lab/">Lab</a>
+      <a href="/notes/">Notes</a>
+      <a href="/about/" aria-current="page">About</a>
+      <a href="/contact/">Contact</a>
+      <a class="global-nav__spacer" href="https://github.com/oneshot2001">GitHub</a>
+      <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+    </div>
+  </nav>
+
+  <div class="sub-nav">
+    <div class="sub-nav__inner">
+      <a class="sub-nav__name" href="/">Matthew Visher</a>
+      <div class="sub-nav__links">
         <a href="/">Home</a>
         <a href="/lab/">Lab</a>
         <a href="/notes/">Notes from the Field</a>
         <a href="/about/" aria-current="page">About</a>
-        <a href="/contact/">Contact</a>
-      </nav>
+        <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      </div>
     </div>
-  </header>
+  </div>
 
-  <main>
-    <section class="page-head">
-      <div class="wrap">
-        <h1>About</h1>
-        <p class="lede">One career, told in order.</p>
+  <main id="main">
+
+    <section class="tile tile--light">
+      <div class="tile__inner">
+        <h1 class="t-hero">About</h1>
+        <p class="t-lead stack-lead">One career, told in order.</p>
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap prose">
-        <figure class="about__portrait">
+    <section class="tile tile--parchment">
+      <div class="tile__inner tile__inner--prose">
+        <figure class="portrait portrait--inline">
           <img src="/assets/img/portrait-head.jpg" alt="Matthew Visher" width="1200" height="960" decoding="async" />
         </figure>
-        <p>I spent 21 years as a sworn law enforcement officer, retiring as a sergeant. That means two decades of using the tools this industry sells: the cameras, the plate readers, the records systems, the video that did or didn't hold up when it mattered.</p>
-        <p>Much of that career was spent on major investigations and covert surveillance: building covert hides, running video surveillance, and standing up quick, hasty deployments of covert and overt camera platforms to capture intelligence or evidence on long-running, sensitive, high-value cases. When a platform failed on one of those, you didn't lose a data point. You lost weeks of work, and sometimes the case.</p>
-        <p>Most of that technology was built by people who never had to depend on it at 2 a.m. You can tell.</p>
-        <p>Today I work on the other side of the counter. My day job is leading law enforcement business development for an AI video analytics company. On my own time I build independent tools that attack the gaps I kept running into: cameras that can't prove they were installed right, video that can't prove it's untampered, AI agents that can't prove what they did.</p>
+        <div class="prose">
+          <p>I spent 21 years as a sworn law enforcement officer, retiring as a sergeant. That means two decades of using the tools this industry sells: the cameras, the plate readers, the records systems, the video that did or didn't hold up when it mattered.</p>
+          <p>Much of that career was spent on major investigations and covert surveillance: building covert hides, running video surveillance, and standing up quick, hasty deployments of covert and overt camera platforms to capture intelligence or evidence on long-running, sensitive, high-value cases. When a platform failed on one of those, you didn't lose a data point. You lost weeks of work, and sometimes the case.</p>
+          <p>Most of that technology was built by people who never had to depend on it at 2 a.m. You can tell.</p>
+          <p>Today I work on the other side of the counter. My day job is leading law enforcement business development for an AI video analytics company. On my own time I build independent tools that attack the gaps I kept running into: cameras that can't prove they were installed right, video that can't prove it's untampered, AI agents that can't prove what they did.</p>
 
-        <h2>What I work on</h2>
-        <ul>
-          <li><strong>Verification.</strong> Signed video evidence and provenance (EdgeProof), and signed receipts for AI agent actions (AAR). If it can't survive a challenge, it isn't evidence.</li>
-          <li><strong>Commissioning.</strong> Tools that turn "the camera shows a picture" into a measurable pass/fail (camspec, the Commissioning Walk).</li>
-          <li><strong>Agent infrastructure.</strong> Making cameras and physical security systems something AI agents can actually operate (onvif-mcp).</li>
-          <li><strong>Writing.</strong> Notes from the Field, a series on what AI in physical security looks like when you've stood on both sides of it.</li>
-        </ul>
+          <h2>What I work on</h2>
+          <ul>
+            <li><strong>Verification.</strong> Signed video evidence and provenance (EdgeProof), and signed receipts for AI agent actions (AAR). If it can't survive a challenge, it isn't evidence.</li>
+            <li><strong>Commissioning.</strong> Tools that turn "the camera shows a picture" into a measurable pass or fail (camspec, the Commissioning Walk).</li>
+            <li><strong>Agent infrastructure.</strong> Making cameras and physical security systems something AI agents can actually operate (onvif-mcp).</li>
+            <li><strong>Writing.</strong> Notes from the Field, a series on what AI in physical security looks like when you've stood on both sides of it.</li>
+          </ul>
 
-        <h2>The progression</h2>
+          <h2>The progression</h2>
+        </div>
         <dl class="rows">
           <div><dt>Practitioner</dt><dd>21 years sworn law enforcement, retired sergeant. Major investigations, covert surveillance, covert hides, rapid deployment of covert and overt video platforms on sensitive high-value cases.</dd></div>
           <div><dt>Translator</dt><dd>Moved to the vendor side to explain agencies to technologists and technology to agencies.</dd></div>
           <div><dt>Product leader</dt><dd>Director of law enforcement business development at an AI video analytics company.</dd></div>
           <div><dt>Builder</dt><dd>Independent open-source tools and products for verification and commissioning.</dd></div>
         </dl>
+        <div class="prose">
+          <h2>Operating principles</h2>
+          <ul>
+            <li>Measure before claiming. Frozen thresholds beat vibes.</li>
+            <li>Evidence over demos. A signed record beats a screenshot.</li>
+            <li>Build for the person who inherits the install.</li>
+          </ul>
 
-        <h2>Operating principles</h2>
-        <ul>
-          <li>Measure before claiming. Frozen thresholds beat vibes.</li>
-          <li>Evidence over demos. A signed record beats a screenshot.</li>
-          <li>Build for the person who inherits the install.</li>
-        </ul>
-
-        <h2>Disclosure</h2>
-        <p class="small">Everything on this site is my own independent work and my own views. Nothing here draws on my employer's proprietary technology, customers, or data, and nothing here should be read as speaking for them.</p>
+          <h2>Disclosure</h2>
+          <p class="fine">Everything on this site is my own independent work and my own views. Nothing here draws on my employer's proprietary technology, customers, or data, and nothing here should be read as speaking for them.</p>
+        </div>
       </div>
     </section>
+
   </main>
 
   <footer class="footer">
-    <div class="wrap">
-      <span>© 2026 Matthew Visher. Views and projects are my own.</span>
-      <span><a href="https://github.com/oneshot2001">GitHub</a> · <a href="https://x.com/MatthewVisher">X</a> · <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></span>
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <h4>Work</h4>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Writing</h4>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Elsewhere</h4>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
     </div>
   </footer>
 </body>
