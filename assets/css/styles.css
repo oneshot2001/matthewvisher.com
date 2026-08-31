@@ -21,7 +21,7 @@ body {
 }
 
 a { color: inherit; }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 
 .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
@@ -56,6 +56,13 @@ img { max-width: 100%; display: block; }
 }
 .btn--solid { background: var(--ink); color: var(--paper); }
 .btn--ghost:hover, .btn--solid:hover { border-color: var(--accent); }
+
+.hero__grid { display: grid; gap: 48px; align-items: center; }
+@media (min-width: 820px) { .hero__grid { grid-template-columns: 1.15fr 0.85fr; } }
+.hero__portrait { margin: 0; }
+.hero__portrait img { border-radius: 4px; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.about__portrait { margin: 0 0 28px; }
+.about__portrait img { border-radius: 4px; }
 
 /* Sections */
 .section { padding: 48px 0; border-top: 1px solid var(--line); }
