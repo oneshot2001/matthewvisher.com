@@ -208,6 +208,39 @@ a { color: inherit; }
 .portrait--inline { margin: 0 0 var(--xl); max-width: 560px; }
 .portrait--inline img { border-radius: var(--r-lg); }
 
+
+/* ---------- Photo band — large centered portrait dissolving into the tiles ---------- */
+.photo-band {
+  margin: 0;
+  width: 100%;
+  display: flex; justify-content: center;
+  /* ground matches the white tile above and the parchment tile below,
+     so the masked portrait dissolves into both */
+  background: linear-gradient(to bottom,
+    var(--canvas) 0%,
+    var(--canvas) 22%,
+    var(--canvas-parchment) 80%,
+    var(--canvas-parchment) 100%);
+}
+.photo-band img {
+  width: 100%;
+  max-width: 1120px;
+  height: auto;
+  border-radius: var(--r-none);
+  box-shadow: none;
+  /* dissolve on every edge — top and bottom into the tiles, sides into the page */
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 26%, #000 62%, transparent 99%),
+    linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 26%, #000 62%, transparent 99%),
+    linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+/* the mask already supplies the air — don't double it with tile padding */
+.photo-band + .tile { padding-top: var(--xs); }
+
 /* ---------- Proof row — quiet caption band ---------- */
 .proof {
   list-style: none; padding: 0;
