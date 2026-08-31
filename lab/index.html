@@ -16,6 +16,7 @@
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
   <link rel="stylesheet" href="/assets/css/styles.css" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -69,13 +70,13 @@
       </div>
     </section>
 
-    <section class="tile tile--parchment">
+    <section class="tile reveal tile--parchment">
       <div class="tile__inner">
         <ul class="grid">
 
-          <li class="card">
+          <li class="card reveal" style="--i:0">
             <div class="card__meta">
-              <span>Open-source tool</span><span class="status">Active</span><span>Updated Aug 2026</span>
+              <span>Open-source tool</span><span class="status"><span class="tick" aria-hidden="true"></span>Active</span><span>Updated Aug 2026</span>
             </div>
             <h3><a class="link" href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></h3>
             <p>AI agents can't talk to security cameras. ONVIF is the industry standard, and it's a swamp of SOAP, profiles, and vendor quirks. onvif-mcp is an MCP server that gives an agent a working camera interface: discovery, streams, PTZ, events.</p>
@@ -83,9 +84,9 @@
             <p class="ev"><a class="link" href="https://github.com/oneshot2001/onvif-mcp">GitHub</a> &middot; Launched on Show HN, Aug 2026</p>
           </li>
 
-          <li class="card">
+          <li class="card reveal" style="--i:1">
             <div class="card__meta">
-              <span>Open-source spec + tool</span><span class="status">Active</span><span>Updated Aug 2026</span>
+              <span>Open-source spec + tool</span><span class="status"><span class="tick" aria-hidden="true"></span>Active</span><span>Updated Aug 2026</span>
             </div>
             <h3><a class="link" href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></h3>
             <p>When an AI agent acts on your systems, there's no evidence trail you could hand to an auditor. AAR is a spec and tooling for signed, replayable receipts of agent actions. Chain-of-custody thinking, applied to agents.</p>
@@ -93,9 +94,9 @@
             <p class="ev"><a class="link" href="https://github.com/oneshot2001/aar">GitHub</a></p>
           </li>
 
-          <li class="card">
+          <li class="card reveal" style="--i:2">
             <div class="card__meta">
-              <span>Product</span><span class="status">In development</span><span>Updated Aug 2026</span>
+              <span>Product</span><span class="status"><span class="tick" aria-hidden="true"></span>In development</span><span>Updated Aug 2026</span>
             </div>
             <h3>EdgeProof</h3>
             <p>Video evidence is only as good as its provenance. EdgeProof signs video at the camera edge using public PKI, so footage can prove it hasn't been altered between the lens and the courtroom.</p>
@@ -103,9 +104,9 @@
             <p class="ev">Built on the MIT-licensed signed video framework.</p>
           </li>
 
-          <li class="card">
+          <li class="card reveal" style="--i:3">
             <div class="card__meta">
-              <span>Prototype</span><span class="status">Beta</span><span>Updated Aug 2026</span>
+              <span>Prototype</span><span class="status"><span class="tick" aria-hidden="true"></span>Beta</span><span>Updated Aug 2026</span>
             </div>
             <h3>camspec</h3>
             <p>Camera installs get signed off on "it shows a picture." camspec generates pass/fail commissioning reports from what the camera actually delivers: resolution, frame rate, stream health, measured against spec.</p>
@@ -113,9 +114,9 @@
             <p class="ev">Ships inside onvif-mcp. PDF report renderer live.</p>
           </li>
 
-          <li class="card">
+          <li class="card reveal" style="--i:4">
             <div class="card__meta">
-              <span>Experiment</span><span class="status">Measuring</span><span>Updated Aug 2026</span>
+              <span>Experiment</span><span class="status"><span class="tick" aria-hidden="true"></span>Measuring</span><span>Updated Aug 2026</span>
             </div>
             <h3>Commissioning Walk</h3>
             <p>Wireless camera links fail in ways a laptop speed test doesn't catch. This experiment measures what a camera actually needs to hold a stream, day and night, and turns it into installer pass/fail thresholds.</p>
@@ -127,7 +128,7 @@
       </div>
     </section>
 
-    <section class="tile tile--dark-3">
+    <section class="tile reveal tile--dark-3">
       <div class="tile__inner">
         <h2 class="t-display">Building something adjacent?</h2>
         <p class="t-lead stack-lead">Open-source collaboration and standards work are the reasons this page exists.</p>

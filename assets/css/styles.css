@@ -367,3 +367,41 @@ a { color: inherit; }
 @media (max-width: 419px) {
   .t-hero { font-size: 28px; }
 }
+
+/* ---------- Motion: Single Frame hero + Receipt Reveal (reduced-motion off = static) ---------- */
+.hero { position: relative; overflow: hidden; }
+.hero-shutter { display: none; }
+.hero-frame {
+  position: absolute; inset: 28px; border: 1.5px solid rgba(29, 29, 31, 0.3);
+  border-radius: 14px; pointer-events: none;
+}
+.hero-frame i {
+  position: absolute; top: 14px; right: 16px; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--primary);
+}
+.card .status .tick {
+  display: inline-block; width: 13px; height: 13px; border-radius: 50%;
+  background: var(--primary); position: relative; vertical-align: -2px; margin-right: 5px;
+}
+.card .status .tick::after {
+  content: ""; position: absolute; left: 4px; top: 2.5px; width: 3.5px; height: 6.5px;
+  border: solid var(--ink); border-width: 0 1.6px 1.6px 0; transform: rotate(40deg);
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js .hero-shutter {
+    display: block; position: absolute; inset: 0; z-index: 5;
+    background: var(--ink); transform-origin: top;
+    animation: mv-shutter 0.7s cubic-bezier(0.7, 0, 0.2, 1) forwards 0.15s;
+  }
+  html.js .hero-frame { animation: mv-framedrift 9s ease-in-out infinite alternate; }
+  html.js .hero-frame i { animation: mv-recpulse 2.4s ease-in-out infinite; }
+  html.js .reveal { opacity: 0; transform: translateY(36px); }
+  html.js .reveal.in { animation: mv-rise 0.65s cubic-bezier(0.2, 0.7, 0.3, 1) forwards; animation-delay: calc(var(--i, 0) * 0.12s); }
+  html.js .card .status .tick { transform: scale(0); }
+  html.js .reveal.in .status .tick { animation: mv-tickpop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; animation-delay: calc(0.6s + var(--i, 0) * 0.12s); }
+}
+@keyframes mv-shutter { to { transform: scaleY(0); visibility: hidden; } }
+@keyframes mv-framedrift { from { transform: scale(1); } to { transform: scale(1.02) translateY(-4px); } }
+@keyframes mv-recpulse { 0%, 100% { opacity: 0.9; } 50% { opacity: 0.25; } }
+@keyframes mv-rise { to { opacity: 1; transform: none; } }
+@keyframes mv-tickpop { 60% { transform: scale(1.3); } 100% { transform: scale(1); } }
