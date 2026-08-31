@@ -2,10 +2,14 @@
 
 /* ---------- Tokens ---------- */
 :root {
-  /* Brand & accent — one accent, no second color */
-  --primary: #0066cc;
-  --primary-focus: #0071e3;
-  --primary-on-dark: #2997ff;
+  /* Brand & accent — one accent, no second color. Lemon (Apple systemYellow);
+     yellow can't carry white text, so filled pills use ink and links use the dark variant */
+  --primary: #FFD60A;
+  --primary-focus: #B89A00;
+  --primary-on-dark: #FFD60A;
+  --on-primary: #1d1d1f;
+  --primary-deep: #756200;
+  --primary-border: #B89A00;
 
   /* Surface */
   --canvas: #ffffff;
@@ -65,7 +69,7 @@ a { color: inherit; }
 
 .skip-link {
   position: absolute; left: -9999px; top: 0; z-index: 100;
-  background: var(--canvas); color: var(--primary); padding: var(--sm) var(--lg);
+  background: var(--canvas); color: var(--primary-deep); padding: var(--sm) var(--lg);
 }
 .skip-link:focus { left: 0; }
 
@@ -137,12 +141,12 @@ a { color: inherit; }
 .btn:focus-visible { outline: 2px solid var(--primary-focus); outline-offset: 2px; }
 
 .btn--primary {
-  background: var(--primary); color: #fff;
+  background: var(--primary); color: var(--on-primary);
   font-size: 17px; font-weight: 400; line-height: 1.47; letter-spacing: -0.374px;
   border-radius: var(--r-pill); padding: 11px 22px;
 }
 .btn--secondary {
-  background: transparent; color: var(--primary); border-color: var(--primary);
+  background: transparent; color: var(--primary-deep); border-color: var(--primary-border);
   font-size: 17px; font-weight: 400; line-height: 1.47; letter-spacing: -0.374px;
   border-radius: var(--r-pill); padding: 11px 22px;
 }
@@ -152,7 +156,7 @@ a { color: inherit; }
   border-radius: var(--r-pill); padding: 11px 22px;
 }
 .btn--large {
-  background: var(--primary); color: #fff;
+  background: var(--primary); color: var(--on-primary);
   font-size: 18px; font-weight: 300; line-height: 1; letter-spacing: 0;
   border-radius: var(--r-pill); padding: 14px 28px;
 }
@@ -168,13 +172,13 @@ a { color: inherit; }
   border-radius: var(--r-md); padding: 8px 14px;
 }
 .btn--nav {
-  background: var(--primary); color: #fff;
+  background: var(--primary); color: var(--on-primary);
   font-size: 14px; font-weight: 400; line-height: 1.29; letter-spacing: -0.224px;
   border-radius: var(--r-pill); padding: 6px 16px;
 }
 
 /* Links */
-.link { color: var(--primary); text-decoration: none; }
+.link { color: var(--primary-deep); text-decoration: none; }
 .link:hover { text-decoration: underline; }
 .link-on-dark { color: var(--primary-on-dark); text-decoration: none; }
 .link-on-dark:hover { text-decoration: underline; }
@@ -275,10 +279,10 @@ a { color: inherit; }
   color: var(--ink-muted-48);
   margin-bottom: var(--sm);
 }
-.card__meta .status { color: var(--primary); font-weight: 600; }
+.card__meta .status { color: var(--primary-deep); font-weight: 600; }
 .card h3 { font-size: 21px; font-weight: 600; line-height: 1.19; letter-spacing: 0.231px; margin-bottom: var(--xs); }
 .card h3 a { text-decoration: none; }
-.card h3 a:hover { color: var(--primary); }
+.card h3 a:hover { color: var(--primary-deep); }
 .card p { margin-top: var(--xs); }
 .card .aud { color: var(--ink-muted-48); font-size: 14px; line-height: 1.43; letter-spacing: -0.224px; }
 .card .ev { margin-top: var(--md); font-size: 14px; line-height: 1.43; letter-spacing: -0.224px; }
@@ -333,7 +337,7 @@ a { color: inherit; }
   font-size: 17px; font-weight: 400; line-height: 2.41; letter-spacing: 0;
   text-decoration: none; color: var(--ink-muted-80);
 }
-.footer li a:hover { color: var(--primary); }
+.footer li a:hover { color: var(--primary-deep); }
 .footer__legal {
   margin-top: var(--xl); padding-top: var(--lg);
   border-top: 1px solid var(--hairline);
