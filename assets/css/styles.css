@@ -408,6 +408,8 @@ a { color: inherit; }
 
 /* ---------- Split hero — engraved portrait as the tile ground, copy in its negative space ---------- */
 .hero--split {
+  background-image: url("/assets/img/portrait-engraved.jpg");
+  background-image: -webkit-image-set(url("/assets/img/portrait-engraved.webp") 1x);
   background-image: image-set(url("/assets/img/portrait-engraved.webp") type("image/webp"), url("/assets/img/portrait-engraved.jpg") type("image/jpeg"));
   background-size: cover;
   background-position: right center;
@@ -425,6 +427,7 @@ a { color: inherit; }
 }
 @media (max-width: 833px) {
   .hero--split {
+    background-image: linear-gradient(to bottom, rgba(199,176,138,0.86), rgba(199,176,138,0.86)), url("/assets/img/portrait-engraved.jpg");
     background-image: linear-gradient(to bottom, rgba(199,176,138,0.86), rgba(199,176,138,0.86)), image-set(url("/assets/img/portrait-engraved-sm.webp") type("image/webp"), url("/assets/img/portrait-engraved.jpg") type("image/jpeg"));
     background-position: center;
   }
