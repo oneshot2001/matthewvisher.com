@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>We taught agents to act. We didn&#x27;t teach them to leave a receipt. · Notes from the Field No. 02</title>
+  <meta name="description" content="When an AI agent takes an action inside a physical security system, what record does it leave behind? I went looking. I don&#x27;t think I can finish this alone." />
+  <link rel="canonical" href="https://matthewvisher.com/notes/no-02/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="We taught agents to act. We didn&#x27;t teach them to leave a receipt." />
+  <meta property="og:description" content="When an AI agent takes an action inside a physical security system, what record does it leave behind? I went looking. I don&#x27;t think I can finish this alone." />
+  <meta property="og:url" content="https://matthewvisher.com/notes/no-02/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Saira:ital,wght@1,700&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/article.css" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="global-nav" aria-label="Global">
+    <div class="global-nav__inner">
+      <a class="global-nav__brand" href="/">Matthew Visher</a>
+      <a href="/lab/">Lab</a>
+      <a href="/notes/">Notes</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a class="global-nav__spacer" href="https://github.com/oneshot2001">GitHub</a>
+      <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+    </div>
+  </nav>
+
+  <div class="sub-nav">
+    <div class="sub-nav__inner">
+      <a class="sub-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="#1d1d1f"/><circle cx="13" cy="16.6" r="4.6" fill="#FFD60A"/></svg><span>Matthew Visher</span></a>
+      <div class="sub-nav__links">
+        <a href="/">Home</a>
+        <a href="/lab/">Lab</a>
+        <a href="/notes/" aria-current="page">Notes from the Field</a>
+        <a href="/about/">About</a>
+        <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>NOTES FROM THE FIELD</span><span class="am-no">NO. 02</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+
+    <header class="article-head">
+      <p class="article-kicker">Agents · Accountability</p>
+      <h1 class="article-title">We taught agents to act. We didn&#x27;t teach them to leave a receipt.</h1>
+      <p class="article-dek">When an AI agent takes an action inside a physical security system, what record does it leave behind? I went looking. I don&#x27;t think I can finish this alone.</p>
+      <div class="article-byline"><span>By <strong>Matthew Visher</strong></span><span>·</span><span>August 11, 2026</span><span>·</span><span>5 min read</span></div>
+    </header>
+
+    <article class="article-body">
+      <p class="first">Last week I wrote about a camera company that shipped tooling for an AI agent instead of a person. That post ended on a question I couldn&#x27;t answer, and I&#x27;ve spent the days since chasing it. Here&#x27;s where I&#x27;ve gotten to. I&#x27;m posting it because I don&#x27;t think I can finish it alone.</p>
+      <p>The question is easy to ask and apparently hard to answer. When an agent takes an action inside a physical security system, what record does it leave behind?</p>
+      <h2>What&#x27;s actually shipping</h2>
+      <p>This isn&#x27;t hypothetical anymore. Rhombus published a workflow in July where an agent checks camera occupancy after hours, then calls a building management API to drop empty floors into energy-saving mode. Wowza launched a framework that fires downstream workflows off live video, model-agnostic, which is the sensible way to build it. Ambient put its agentic work around response and triage rather than detection. That&#x27;s the honest place to put it.</p>
+      <p>Gartner&#x27;s read at their risk summit was that agents move from alert triage toward autonomous investigation over the next 18 to 24 months, with high-risk actions staying human. Fine. In our world, high-risk means a lockdown and a dispatch.</p>
+      <h2>The part we documented, and the part we didn&#x27;t</h2>
+      <p>Look at how we set an agent up. Context files describing the site. A tool manifest. Credentials, scopes, a list of what it may touch. It&#x27;s the same package you hand a new employee on their first morning, and the industry got good at assembling it fast.</p>
+      <p>The Model Context Protocol shipped a major revision on July 28 that made this properly enterprise-grade. Stateless core, a governed extension system, authorization pulled into line with OAuth 2.0 and OpenID Connect. Real plumbing, built by serious people.</p>
+      <p>So authorization matured in under two years. Accountability didn&#x27;t move at all.</p>
+      <h2>The exhibit</h2>
+      <p>In July, Genetec disclosed CVE-2026-55727: a flaw in the authentication mechanism for video stream requests in Security Center 5.14.0.0, which let an unauthenticated attacker reach live video before build 5.14.178.18. CVSS 7.5. They found it, fixed it, and published it, and I&#x27;d rather work with a vendor that does that than one that doesn&#x27;t.</p>
+      <p>What sticks with me isn&#x27;t the bug. It&#x27;s that we are still getting authentication wrong for human clients, in mature products, in 2026. Now add a few hundred non-human clients holding API keys and working at 3 a.m. while nobody&#x27;s watching.</p>
+      <h2>What the guidance already says</h2>
+      <p>On May 1, CISA and NSA published joint guidance with agencies from Australia, Canada, New Zealand, and the UK, called Careful Adoption of Agentic AI Services. It&#x27;s the first coordinated multi-government guidance on agentic systems and it&#x27;s short enough to read in one sitting.</p>
+      <p>It sorts the risk into five categories: privilege, design and configuration, behavioral, structural, and accountability. Accountability made the list on the first pass, which tells you the people writing it had already run into this. The guidance says to start with low-risk uses, expand autonomy as confidence grows, and design for reversibility and containment.</p>
+      <p>What it doesn&#x27;t do is tell you what goes in the record. That&#x27;s not a criticism. It isn&#x27;t that kind of document.</p>
+      <h2>What I couldn&#x27;t find</h2>
+      <p>I went and checked the standards bodies directly instead of trusting a search summary, because proving a negative from search results is exactly the move that makes you wrong in public.</p>
+      <p>ONVIF&#x27;s published profiles are S, T, G, M, A, C, D, and V, and the newest one is about cloud video. PSIA publishes PLAI and PKOC. Neither has put out anything I can find on what record an autonomous action has to leave. NIST&#x27;s agent work is a requirements backlog, not a control catalog. There&#x27;s academic work, including a paper that proposes canonical action objects, approval binding, and receipt integrity. A paper isn&#x27;t a profile.</p>
+      <p>If there&#x27;s a working group on this that I&#x27;ve missed, say so and I&#x27;ll go read it. I&#x27;d rather be wrong here than right.</p>
+      <p>The harder problem, which I only learned about because of license plate readers</p>
+      <p>In January, unredacted audit exports from a plate reader system exposed millions of queries along with details of active investigations. The vendor responded by masking the sensitive fields and making search reason and case number configurable in public exports. Oversight groups then reported that as reducing public accountability under the banner of transparency.</p>
+      <p>Both readings are fair. An audit record safe enough to publish is weaker for oversight, and one complete enough for oversight can&#x27;t safely be published. As far as I can tell nobody has built one that does both jobs.</p>
+      <p>Agent receipts inherit that problem on day one. We are about to write audit logs for systems that make decisions, and the design question underneath them is still open. I don&#x27;t think our industry has noticed.</p>
+      <h2>What I&#x27;m doing about it, which isn&#x27;t much yet</h2>
+      <p>I&#x27;ve been working on a spec for agent action receipts. It&#x27;s public, and it&#x27;s independent of my day job. The goal is the smallest record that&#x27;s actually useful: what was asked, what authority it ran under, what it touched, what it decided, what it declined to do, and a signature that survives being copied into somebody else&#x27;s case file.</p>
+      <p>I don&#x27;t know how to build the whole thing. I know what it has to survive, which is a different kind of knowledge and probably the less useful one.</p>
+      <p>It&#x27;s wrong in places. That&#x27;s why it&#x27;s public.</p>
+      <p>So here&#x27;s my question, and I mean it as a question rather than a setup. When an agent unlocks a door at 2 a.m., what is the smallest record that would satisfy three audiences at once: a judge, an insurer, and your own incident review the next morning?</p>
+      <p>I spent 21 years in law enforcement before this, and I sat through enough hearings to know the record of how evidence was handled decides cases about as often as the evidence does. I don&#x27;t have a framework to sell anybody. I&#x27;d rather we work this out before a case works it out for us.</p>
+      <p>Teach me something in the comments.</p>
+      <p>I work in law enforcement business development at Alpha Vision. The receipts spec and this research are my own, independent of that work, and views here are mine.</p>
+    </article>
+
+    <div class="article-sources">
+      <p>Sources, so you can check my numbers: CISA, Careful Adoption of Agentic AI Services, May 1 2026. CVE-2026-55727, Genetec Security Center. Model Context Protocol specification revision 2026-07-28. Rhombus engineering blog, July 2026. Wowza Video Intelligence Framework, July 20 2026.</p>
+    </div>
+
+    <div class="article-signoff">Matthew Visher · <a href="mailto:matt@agi7.ai">matt@agi7.ai</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <h4>Work</h4>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Writing</h4>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Elsewhere</h4>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>

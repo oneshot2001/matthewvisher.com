@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>We taught agents to act. We didn&#x27;t teach them to leave a receipt. · Notes from the Field No. 01</title>
-  <meta name="description" content="When an AI agent takes an action inside a physical security system, what record does it leave behind? I went looking. I don&#x27;t think I can finish this alone." />
+  <title>A camera company just treated an AI agent as its user. · Notes from the Field No. 01</title>
+  <meta name="description" content="Rhombus gave Claude Code the keys to its camera platform: a site map, tool docs, credentials, and permission to work. The first vendor to design for an agent as the user." />
   <link rel="canonical" href="https://matthewvisher.com/notes/no-01/" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="We taught agents to act. We didn&#x27;t teach them to leave a receipt." />
-  <meta property="og:description" content="When an AI agent takes an action inside a physical security system, what record does it leave behind? I went looking. I don&#x27;t think I can finish this alone." />
+  <meta property="og:title" content="A camera company just treated an AI agent as its user." />
+  <meta property="og:description" content="Rhombus gave Claude Code the keys to its camera platform: a site map, tool docs, credentials, and permission to work. The first vendor to design for an agent as the user." />
   <meta property="og:url" content="https://matthewvisher.com/notes/no-01/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -53,49 +53,26 @@
     </div>
 
     <header class="article-head">
-      <p class="article-kicker">Agents · Accountability</p>
-      <h1 class="article-title">We taught agents to act. We didn&#x27;t teach them to leave a receipt.</h1>
-      <p class="article-dek">When an AI agent takes an action inside a physical security system, what record does it leave behind? I went looking. I don&#x27;t think I can finish this alone.</p>
-      <div class="article-byline"><span>By <strong>Matthew Visher</strong></span><span>·</span><span>August 11, 2026</span><span>·</span><span>5 min read</span></div>
+      <p class="article-kicker">Agents · Platforms</p>
+      <h1 class="article-title">A camera company just treated an AI agent as its user.</h1>
+      <p class="article-dek">Rhombus gave Claude Code the keys to its camera platform: a site map, tool docs, credentials, and permission to work. The first vendor to design for an agent as the user.</p>
+      <div class="article-byline"><span>By <strong>Matthew Visher</strong></span><span>·</span><span>August 7, 2026</span><span>·</span><span>3 min read</span></div>
     </header>
 
     <article class="article-body">
-      <p class="first">Last week I wrote about a camera company that shipped tooling for an AI agent instead of a person. That post ended on a question I couldn&#x27;t answer, and I&#x27;ve spent the days since chasing it. Here&#x27;s where I&#x27;ve gotten to. I&#x27;m posting it because I don&#x27;t think I can finish it alone.</p>
-      <p>The question is easy to ask and apparently hard to answer. When an agent takes an action inside a physical security system, what record does it leave behind?</p>
-      <h2>What&#x27;s actually shipping</h2>
-      <p>This isn&#x27;t hypothetical anymore. Rhombus published a workflow in July where an agent checks camera occupancy after hours, then calls a building management API to drop empty floors into energy-saving mode. Wowza launched a framework that fires downstream workflows off live video, model-agnostic, which is the sensible way to build it. Ambient put its agentic work around response and triage rather than detection. That&#x27;s the honest place to put it.</p>
-      <p>Gartner&#x27;s read at their risk summit was that agents move from alert triage toward autonomous investigation over the next 18 to 24 months, with high-risk actions staying human. Fine. In our world, high-risk means a lockdown and a dispatch.</p>
-      <h2>The part we documented, and the part we didn&#x27;t</h2>
-      <p>Look at how we set an agent up. Context files describing the site. A tool manifest. Credentials, scopes, a list of what it may touch. It&#x27;s the same package you hand a new employee on their first morning, and the industry got good at assembling it fast.</p>
-      <p>The Model Context Protocol shipped a major revision on July 28 that made this properly enterprise-grade. Stateless core, a governed extension system, authorization pulled into line with OAuth 2.0 and OpenID Connect. Real plumbing, built by serious people.</p>
-      <p>So authorization matured in under two years. Accountability didn&#x27;t move at all.</p>
-      <h2>The exhibit</h2>
-      <p>In July, Genetec disclosed CVE-2026-55727: a flaw in the authentication mechanism for video stream requests in Security Center 5.14.0.0, which let an unauthenticated attacker reach live video before build 5.14.178.18. CVSS 7.5. They found it, fixed it, and published it, and I&#x27;d rather work with a vendor that does that than one that doesn&#x27;t.</p>
-      <p>What sticks with me isn&#x27;t the bug. It&#x27;s that we are still getting authentication wrong for human clients, in mature products, in 2026. Now add a few hundred non-human clients holding API keys and working at 3 a.m. while nobody&#x27;s watching.</p>
-      <h2>What the guidance already says</h2>
-      <p>On May 1, CISA and NSA published joint guidance with agencies from Australia, Canada, New Zealand, and the UK, called Careful Adoption of Agentic AI Services. It&#x27;s the first coordinated multi-government guidance on agentic systems and it&#x27;s short enough to read in one sitting.</p>
-      <p>It sorts the risk into five categories: privilege, design and configuration, behavioral, structural, and accountability. Accountability made the list on the first pass, which tells you the people writing it had already run into this. The guidance says to start with low-risk uses, expand autonomy as confidence grows, and design for reversibility and containment.</p>
-      <p>What it doesn&#x27;t do is tell you what goes in the record. That&#x27;s not a criticism. It isn&#x27;t that kind of document.</p>
-      <h2>What I couldn&#x27;t find</h2>
-      <p>I went and checked the standards bodies directly instead of trusting a search summary, because proving a negative from search results is exactly the move that makes you wrong in public.</p>
-      <p>ONVIF&#x27;s published profiles are S, T, G, M, A, C, D, and V, and the newest one is about cloud video. PSIA publishes PLAI and PKOC. Neither has put out anything I can find on what record an autonomous action has to leave. NIST&#x27;s agent work is a requirements backlog, not a control catalog. There&#x27;s academic work, including a paper that proposes canonical action objects, approval binding, and receipt integrity. A paper isn&#x27;t a profile.</p>
-      <p>If there&#x27;s a working group on this that I&#x27;ve missed, say so and I&#x27;ll go read it. I&#x27;d rather be wrong here than right.</p>
-      <p>The harder problem, which I only learned about because of license plate readers</p>
-      <p>In January, unredacted audit exports from a plate reader system exposed millions of queries along with details of active investigations. The vendor responded by masking the sensitive fields and making search reason and case number configurable in public exports. Oversight groups then reported that as reducing public accountability under the banner of transparency.</p>
-      <p>Both readings are fair. An audit record safe enough to publish is weaker for oversight, and one complete enough for oversight can&#x27;t safely be published. As far as I can tell nobody has built one that does both jobs.</p>
-      <p>Agent receipts inherit that problem on day one. We are about to write audit logs for systems that make decisions, and the design question underneath them is still open. I don&#x27;t think our industry has noticed.</p>
-      <h2>What I&#x27;m doing about it, which isn&#x27;t much yet</h2>
-      <p>I&#x27;ve been working on a spec for agent action receipts. It&#x27;s public, and it&#x27;s independent of my day job. The goal is the smallest record that&#x27;s actually useful: what was asked, what authority it ran under, what it touched, what it decided, what it declined to do, and a signature that survives being copied into somebody else&#x27;s case file.</p>
-      <p>I don&#x27;t know how to build the whole thing. I know what it has to survive, which is a different kind of knowledge and probably the less useful one.</p>
-      <p>It&#x27;s wrong in places. That&#x27;s why it&#x27;s public.</p>
-      <p>So here&#x27;s my question, and I mean it as a question rather than a setup. When an agent unlocks a door at 2 a.m., what is the smallest record that would satisfy three audiences at once: a judge, an insurer, and your own incident review the next morning?</p>
-      <p>I spent 21 years in law enforcement before this, and I sat through enough hearings to know the record of how evidence was handled decides cases about as often as the evidence does. I don&#x27;t have a framework to sell anybody. I&#x27;d rather we work this out before a case works it out for us.</p>
-      <p>Teach me something in the comments.</p>
-      <p>I work in law enforcement business development at Alpha Vision. The receipts spec and this research are my own, independent of that work, and views here are mine.</p>
+      <p class="first">In April, Rhombus quietly shipped something I didn&#x27;t expect to see this soon: a plugin that teaches Claude Code, Anthropic&#x27;s terminal agent, how to operate their camera platform. One CLI command snapshots your entire deployment, every site, every camera, a still image from each, into files the agent reads before it answers anything. In July they published the workflow that made me sit up: the agent checks occupancy from cameras after 5 PM, and for any floor empty more than an hour, it calls the building management API and drops the HVAC into energy-saving mode.</p>
+      <p>I spent this week reading their GitHub repos and the actual skill files, not the press release, and here&#x27;s what I understand so far. They didn&#x27;t bolt a chatbot onto a dashboard. They gave the agent what you&#x27;d give a new employee: a map of the site, documentation for the tools, credentials, and permission to work. For twenty years the user of a security platform was a human at a console. This is the first vendor I&#x27;ve seen design for a different user, an agent with a terminal. &quot;List every offline camera across my deployment and group them by location&quot; is now a complete query. No console, no filters, no CSV export. That&#x27;s genuinely impressive work, and the pattern is public, so others will follow.</p>
+      <p>And the more I studied it, the more questions I ended up with. I don&#x27;t have answers to these. I&#x27;m sharing them because I suspect the rest of the industry will hit them too, and I&#x27;d rather we start talking about them now.</p>
+      <p>The first one comes from my old life. I spent 21 years in law enforcement, and I sat through enough evidence hearings to know that the record of how evidence was handled matters as much as the evidence. So: when an agent pulls frames from an alert clip, describes what it saw, and stitches a multi-camera incident video, what is the record of what it did? Which footage it touched, what it was asked, what it decided, what it skipped. As far as I can tell, nothing like that exists yet, anywhere in the industry. If defense counsel asks who reviewed the footage and the answer is &quot;a language model with an API key,&quot; what happens next? I honestly don&#x27;t know. That question keeps me up.</p>
+      <p>The second one is about identity. In July, Genetec disclosed a flaw in Security Center where live video could be retrieved without proper authentication checks. Credit to them for the fast disclosure and hotfix. What struck me was something more basic: everything I know about identity in our platforms assumes the client is a person who logs in. What does scoping look like when hundreds of agents hold API keys and work around the clock? I&#x27;m still learning how the IT world handles this, and I&#x27;m not sure their answers transfer cleanly to systems that watch physical space.</p>
+      <p>Third, every real deployment I&#x27;ve ever walked is a mixed fleet. The agent tooling shipping today stops at one vendor&#x27;s boundary. How does this pattern extend past that line? Open question.</p>
+      <p>And the environment around these questions is moving. EU AI Act transparency duties for emotion-recognition and biometric-categorization systems went live August 2. LAPD let its Flock contract expire this summer over data ownership concerns, and a Colorado county switched ALPR vendors citing trust. I don&#x27;t read those as anti-AI signals. I read them as the public asking the same kind of questions I&#x27;m asking here: not &quot;does it work&quot; but &quot;how do we know what it did.&quot;</p>
+      <p>I don&#x27;t have a framework to sell you and I&#x27;m not warning anyone off. The occupancy demo is real, the efficiency is real, and I think this is the most interesting thing to happen in our industry since cameras moved to IP. I just think the industry that ends up explaining itself in court has to learn this technology more carefully than most, and I&#x27;d rather learn it together than watch us each hit these walls alone.</p>
+      <p>If you&#x27;ve thought about any of this, agree or disagree, I want to hear it. Teach me something in the comments.</p>
     </article>
 
     <div class="article-sources">
-      <p>Sources, so you can check my numbers: CISA, Careful Adoption of Agentic AI Services, May 1 2026. CVE-2026-55727, Genetec Security Center. Model Context Protocol specification revision 2026-07-28. Rhombus engineering blog, July 2026. Wowza Video Intelligence Framework, July 20 2026.</p>
+      <p>Published August 7, 2026. Sources and repository links are cited inline; the discussion thread lives on LinkedIn.</p>
     </div>
 
     <div class="article-signoff">Matthew Visher · <a href="mailto:matt@agi7.ai">matt@agi7.ai</a> · <a href="/">matthewvisher.com</a></div>
