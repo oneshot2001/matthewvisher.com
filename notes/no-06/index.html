@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The bug was old enough to rent a car. The camera on your wall is running older code than that. · Notes from the Field No. 06</title>
+  <meta name="description" content="An AI model found a 17-year-old root exploit for under two thousand dollars. The camera on your wall is running older code than that." />
+  <link rel="canonical" href="https://matthewvisher.com/notes/no-06/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The bug was old enough to rent a car. The camera on your wall is running older code than that." />
+  <meta property="og:description" content="An AI model found a 17-year-old root exploit for under two thousand dollars. The camera on your wall is running older code than that." />
+  <meta property="og:url" content="https://matthewvisher.com/notes/no-06/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Saira:ital,wght@1,700&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/article.css" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="global-nav" aria-label="Global">
+    <div class="global-nav__inner">
+      <a class="global-nav__brand" href="/">Matthew Visher</a>
+      <a href="/lab/">Lab</a>
+      <a href="/notes/">Notes</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a class="global-nav__spacer" href="https://github.com/oneshot2001">GitHub</a>
+      <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+    </div>
+  </nav>
+
+  <div class="sub-nav">
+    <div class="sub-nav__inner">
+      <a class="sub-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="#1d1d1f"/><circle cx="13" cy="16.6" r="4.6" fill="#FFD60A"/></svg><span>Matthew Visher</span></a>
+      <div class="sub-nav__links">
+        <a href="/">Home</a>
+        <a href="/lab/">Lab</a>
+        <a href="/notes/" aria-current="page">Notes from the Field</a>
+        <a href="/about/">About</a>
+        <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>NOTES FROM THE FIELD</span><span class="am-no">NO. 06</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+
+    <header class="article-head">
+      <p class="article-kicker">Vulnerabilities · AI Research</p>
+      <h1 class="article-title">The bug was old enough to rent a car. The camera on your wall is running older code than that.</h1>
+      <p class="article-dek">An AI model found a 17-year-old root exploit for under two thousand dollars. The camera on your wall is running older code than that.</p>
+      <div class="article-byline"><span>By <strong>Matthew Visher</strong></span><span>·</span><span>August 18, 2026</span><span>·</span><span>5 min read</span></div>
+    </header>
+
+    <article class="article-body">
+      <p class="first">In April, Anthropic published what its new model found when researchers pointed it at well-maintained open source software and typed, more or less, &quot;please find a security vulnerability in this program.&quot;</p>
+      <p>It found a remote code execution flaw in FreeBSD&#x27;s NFS server that had survived 17 years of human review. Unauthenticated root access, working exploit, no human help after the initial prompt. It found a denial of service bug in OpenBSD&#x27;s TCP stack that had been sitting there for 27 years. It found a 16-year-old flaw in FFmpeg&#x27;s H.264 decoder, which matters to this industry more than the other two, because H.264 decoding is what almost every video surveillance product on earth does all day.</p>
+      <p>The number that stopped me was not the age of anything. It was the price. The OpenBSD find cost under $50 of compute for that run. The full FreeBSD exploit, under $2,000. Anthropic says the model surfaced thousands of additional high and critical severity findings across about a thousand open source projects, and that when humans manually validated 198 of its reports, 89 percent matched the model&#x27;s severity rating exactly.</p>
+      <p>I want to be careful about what this does and does not prove. These are vendor-reported results about the vendor&#x27;s own model, most of the findings are still undisclosed because the patches do not exist yet, and Anthropic itself says the model could not crack everything. It ran several thousand scans against the Linux kernel and could not turn its findings into remote exploits, because the kernel has layers of defense that assume the code in front of them is hostile. Defense in depth held. That detail is the whole article, and I will come back to it.</p>
+      <p>Here is why I am writing this in a physical security context.</p>
+      <p>FreeBSD, OpenBSD, and FFmpeg are some of the most reviewed code on the planet. Security researchers have been staring at them for decades because they are prestigious targets. The bugs survived anyway, until the cost of looking dropped to fifty dollars.</p>
+      <p>Now think about what our industry runs on. Cameras, NVRs, access control panels, intercoms, badge readers. Embedded Linux builds assembled by the low bidder, busybox and an old kernel and a web server from 2014, often including that same FFmpeg lineage for decoding. Code that has never been a prestigious target. Nobody with Carlini&#x27;s resume ever spent two weeks on your parking lot camera&#x27;s firmware. The bugs in it were protected by one thing: looking for them was tedious, low-status work. Tedious is what these models eat.</p>
+      <p>And we already know what our fleet does when a patch exists, because we ran that experiment. In 2021 a command injection flaw in Hikvision cameras and NVRs was disclosed, unauthenticated, full device takeover. Hikvision shipped a fix. CISA put it in the Known Exploited Vulnerabilities catalog. It is 2026 and that five-year-old bug is still on CISA&#x27;s exploited list, and scanners still find unpatched devices, because a camera that got mounted on a pole in 2021 and has worked fine ever since is a camera nobody logs into. Before that it was Mirai, which built one of the largest botnets in history mostly out of DVRs and cameras with default credentials. The pattern is stable: our devices outlive their patches by five to ten years. I have walked plenty of sites where the recording server is the oldest computer in the building and everyone is a little afraid to touch it.</p>
+      <p>So here is the collision. Vulnerability discovery just got cheap and automatic. Vulnerability repair, in physical security, still moves at the speed of a technician with a ladder. One of those curves bent this year. The other did not. You can already see the bend in public data. Epoch AI counted roughly 1,500 high and critical severity CVEs published by major vendors in June alone, more than three and a half times the monthly record from before Mythos shipped. That wave is landing on IT teams with patch pipelines. Ours mostly do not have one.</p>
+      <p>I do not think the answer is panic, and I do not think it is a new product. Anthropic&#x27;s own recommendations to defenders are boring, which I mean as a compliment: use the same models to find your bugs first, treat dependency updates carrying CVE fixes as urgent, and reread the sentence they buried in the middle. Mitigations whose security value comes primarily from friction rather than hard barriers may become weaker. Friction was most of what protected embedded video hardware. That protection is gone.</p>
+      <p>What holds up is the stuff that assumed compromise from the start. The Linux kernel survived thousands of scans not because its code was cleaner but because its architecture treats every input as hostile. The physical security equivalent is not glamorous. It is a camera VLAN that cannot reach the finance VLAN. It is a device inventory that actually says what firmware is on the pole. It is asking a vendor, before the PO is signed, two questions that almost nobody asks: how long will this device receive security patches, and how will I know when it stops. It is treating a camera the way the kernel treats a packet.</p>
+      <p>If I were writing a procurement checklist this week, it would have one new line on it. Ask the vendor whether their own security team has pointed one of these models at their firmware yet. Anthropic is giving early access to critical infrastructure partners and open source maintainers for exactly this. Within a year or two, &quot;we ran frontier-model discovery against our own code before an attacker could&quot; will separate serious vendors from the rest, the same way signed firmware does now. The models do not care whether the person prompting them is on defense or offense. The only variable you control is who gets there first.</p>
+      <p>I keep thinking about the 27 years. That bug sat through the entire commercial history of IP video. Every camera generation, every VMS, every acquisition and rebrand, it was just there, waiting for the cost of looking to fall. The uncomfortable question for our industry is not whether there are bugs like that in the devices we install. There are. It is whether we find out from the vendor&#x27;s security advisory or from the incident report.</p>
+      <p>If you run a fleet of cameras or panels: do you know, today, how many of your devices still receive patches at all? I suspect most honest answers are no. I would genuinely like to hear from anyone who has that inventory working, because that is the unglamorous thing worth copying.</p>
+      <p>Teach me something in the comments. I will be there.</p>
+    </article>
+
+    <div class="article-sources">
+      <p>Sources</p>
+      <p>I am listing these because the numbers are the argument, and you should be able to check them without taking my word for it.</p>
+      <p>The Anthropic report on Claude Mythos Preview&#x27;s security capabilities, which is the source for the FreeBSD (CVE-2026-4747, 17 years), OpenBSD (27 years), and FFmpeg (16 years, fixed in FFmpeg 8.1) findings, the cost figures, the 198-report validation, and the defender recommendations: <a href="https://www.anthropic.com/research/mythos-preview">https://www.anthropic.com/research/mythos-preview</a></p>
+      <p>The Hikvision command injection flaw (CVE-2021-36260), disclosed 2021, patched, and still in CISA&#x27;s Known Exploited Vulnerabilities catalog: <a href="https://www.cisa.gov/news-events/alerts/2021/09/28/rce-vulnerability-hikvision-cameras-cve-2021-36260">https://www.cisa.gov/news-events/alerts/2021/09/28/rce-vulnerability-hikvision-cameras-cve-2021-36260</a></p>
+      <p>CISA&#x27;s KEV catalog entry: <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog">https://www.cisa.gov/known-exploited-vulnerabilities-catalog</a></p>
+      <p>The June CVE spike, counted across 21 major vendors by Epoch AI. Their caveat is worth reading too: the count may partly reflect more people looking, not only better tools: <a href="https://epoch.ai/data-insights/cve-severity-spike">https://epoch.ai/data-insights/cve-severity-spike</a></p>
+      <p>Checked August 18, 2026. If I have any of this wrong, tell me and I will correct it in place.</p>
+    </div>
+
+    <div class="article-signoff">Matthew Visher · <a href="mailto:matt@agi7.ai">matt@agi7.ai</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <h4>Work</h4>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Writing</h4>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Elsewhere</h4>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>
