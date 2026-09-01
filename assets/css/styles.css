@@ -211,7 +211,7 @@ a { color: inherit; }
 
 /* ---------- Portrait — the only shadow in the system ---------- */
 .portrait { margin: var(--xxl) auto 0; max-width: 720px; }
-.portrait img { box-shadow: var(--shadow-product); border-radius: var(--r-none); }
+.portrait img { box-shadow: var(--shadow-product); border-radius: var(--r-lg); }
 .portrait--inline { margin: 0 0 var(--xl); max-width: 560px; }
 .portrait--inline img { border-radius: var(--r-lg); }
 
@@ -405,3 +405,36 @@ a { color: inherit; }
 @keyframes mv-recpulse { 0%, 100% { opacity: 0.9; } 50% { opacity: 0.25; } }
 @keyframes mv-rise { to { opacity: 1; transform: none; } }
 @keyframes mv-tickpop { 60% { transform: scale(1.3); } 100% { transform: scale(1); } }
+
+/* ---------- Split hero — engraved portrait as the tile ground, copy in its negative space ---------- */
+.hero--split {
+  background-image: image-set(url("/assets/img/portrait-engraved.webp") type("image/webp"), url("/assets/img/portrait-engraved.jpg") type("image/jpeg"));
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  padding-block: clamp(72px, 9vw, 132px);
+}
+.tile__inner--split { text-align: left; }
+.hero--split .hero-copy { max-width: 46ch; }
+.hero--split .stack-lead { margin-left: 0; max-width: 34ch; }
+.hero--split .actions { justify-content: flex-start; }
+.hero--split .proof { justify-content: flex-start; margin-left: 0; color: var(--ink-muted-80); }
+@media (max-width: 1068px) {
+  .hero--split { background-position: 72% center; }
+  .hero--split .hero-copy { max-width: 34ch; }
+}
+@media (max-width: 833px) {
+  .hero--split {
+    background-image: linear-gradient(to bottom, rgba(199,176,138,0.86), rgba(199,176,138,0.86)), image-set(url("/assets/img/portrait-engraved-sm.webp") type("image/webp"), url("/assets/img/portrait-engraved.jpg") type("image/jpeg"));
+    background-position: center;
+  }
+  .tile__inner--split { text-align: center; }
+  .hero--split .hero-copy { max-width: none; }
+  .hero--split .stack-lead { margin-left: auto; margin-right: auto; }
+  .hero--split .actions, .hero--split .proof { justify-content: center; }
+}
+.hero--split .btn--secondary { background: rgba(255,255,255,0.82); border-color: rgba(29,29,31,0.22); color: var(--ink); }
+.hero--split .proof li { color: var(--ink-muted-80); }
+/* clear the inset hero frame line — copy must not touch it */
+.hero--split .hero-copy { padding-inline-start: clamp(24px, 3.5vw, 56px); }
+@media (max-width: 833px) { .hero--split .hero-copy { padding-inline-start: 0; } }
