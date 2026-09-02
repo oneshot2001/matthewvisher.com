@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903b" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
   <script src="/assets/js/motion.js" defer></script>
   <script type="application/ld+json">
@@ -71,11 +71,18 @@
   <main id="main">
 
     <section class="tile tile--parchment hero hero--split">
+      <picture class="hero-art">
+        <source type="image/avif" media="(min-width: 834px)" srcset="/assets/img/portrait-engraved.avif" />
+        <source type="image/avif" srcset="/assets/img/portrait-engraved-sm.avif" />
+        <source type="image/webp" media="(min-width: 834px)" srcset="/assets/img/portrait-engraved.webp" />
+        <source type="image/webp" srcset="/assets/img/portrait-engraved-sm.webp" />
+        <img src="/assets/img/portrait-engraved.jpg" alt="Matthew Visher, engraved portrait on kraft paper" width="1800" height="1112" fetchpriority="high" decoding="async" />
+      </picture>
       <div class="hero-shutter" aria-hidden="true"></div>
-      <div class="hero-frame" aria-hidden="true"><i></i></div>
       <div class="tile__inner tile__inner--split">
+        <div class="hero-frame" aria-hidden="true"><i></i></div>
         <div class="hero-copy">
-        <h1 class="t-hero">21 years behind the badge.<br />Now I build the tools I wished it had.</h1>
+        <h1 class="t-hero">21 years behind the badge. Now I build the tools I wished it had.</h1>
         <p class="t-lead stack-lead">Verification and commissioning tools for physical security.</p>
         <div class="actions">
           <a class="btn btn--primary" href="/lab/">Explore the Lab</a>
@@ -92,34 +99,68 @@
     </section>
 
     <section class="tile reveal tile--dark">
-      <div class="tile__inner">
-        <h2 class="t-display">onvif-mcp</h2>
-        <p class="t-lead stack-lead">AI agents can't talk to security cameras. Now they can.</p>
-        <div class="actions">
-          <a class="btn btn--primary" href="https://github.com/oneshot2001/onvif-mcp">View on GitHub</a>
-          <a class="btn btn--secondary" href="/lab/">Learn more</a>
+      <div class="tile__inner tile__inner--duo">
+        <div>
+          <h2 class="t-display">onvif-mcp</h2>
+          <p class="t-lead stack-lead">AI agents can't talk to security cameras. Now they can.</p>
+          <div class="actions">
+            <a class="btn btn--primary" href="https://github.com/oneshot2001/onvif-mcp">View on GitHub</a>
+            <a class="btn btn--secondary" href="/lab/">See onvif-mcp in the Lab</a>
+          </div>
         </div>
+<pre class="specimen" role="figure" aria-label="onvif-mcp terminal transcript">$ onvif-mcp list_cameras
+  lobby   AXIS P3285-LVE   192.168.1.19   ok
+  gate    AXIS Q6325-LE    192.168.1.32   ok  ptz
+  yard    AXIS Q6358-LE    192.168.1.33   ok  ptz
+$ onvif-mcp get_snapshot lobby
+  snapshots/lobby-1725300161.jpg   sha256 …4c1e
+$ onvif-mcp ptz_preset yard --name dock
+  yard → preset "dock"   <b>device_acknowledged</b>
+$ onvif-mcp --verify
+  <b>chain OK</b> — 3 receipts, hashes linked, sigs valid</pre>
       </div>
     </section>
 
     <section class="tile reveal tile--light">
-      <div class="tile__inner">
-        <h2 class="t-display">Agent Action Receipts</h2>
-        <p class="t-lead stack-lead">Signed, replayable proof of what an AI agent actually did.</p>
-        <div class="actions">
-          <a class="btn btn--primary" href="https://github.com/oneshot2001/aar">View on GitHub</a>
-          <a class="btn btn--secondary" href="/lab/">Learn more</a>
+      <div class="tile__inner tile__inner--duo">
+        <div>
+          <h2 class="t-display">Agent Action Receipts</h2>
+          <p class="t-lead stack-lead">Signed, replayable proof of what an AI agent actually did.</p>
+          <div class="actions">
+            <a class="btn btn--primary" href="https://github.com/oneshot2001/aar">View on GitHub</a>
+            <a class="btn btn--secondary" href="/lab/">See AAR in the Lab</a>
+          </div>
         </div>
+<pre class="specimen" role="figure" aria-label="Agent Action Receipt, JSON">{
+  "action":      "ptz_preset",
+  "target":      "yard · AXIS Q6358-LE",
+  "principal":   "agent:claude-main",
+  "ts":          "2026-09-02T14:12:41.033Z",
+  "input_hash":  "sha256:…b71d",
+  "result_hash": "sha256:…9f2a",
+  "decision":    "allow",
+  "sig":         "cose_es256:…Q3kR",
+  "verified":    <b>true</b>
+}</pre>
       </div>
     </section>
 
     <section class="tile reveal tile--dark-2">
-      <div class="tile__inner">
-        <h2 class="t-display">EdgeProof</h2>
-        <p class="t-lead stack-lead">Video that can prove it hasn't been altered, from the lens to the courtroom.</p>
-        <div class="actions">
-          <a class="btn btn--primary" href="/lab/">Learn more</a>
+      <div class="tile__inner tile__inner--duo">
+        <div>
+          <h2 class="t-display">EdgeProof</h2>
+          <p class="t-lead stack-lead">Video that can prove it hasn't been altered, from the lens to the courtroom.</p>
+          <div class="actions">
+            <a class="btn btn--primary" href="/lab/">See EdgeProof in the Lab</a>
+          </div>
         </div>
+<pre class="specimen" role="figure" aria-label="EdgeProof verify readout">$ edgeproof verify yard-20260902.mp4
+  frame     00:12:41.033
+  sha256    …9f2a
+  signer    AXIS-Q6358  (cert …3e77)
+  chain     OK  (prev …c04d)
+  segments  3/3 signed
+  status    <b>VERIFIED ✓</b></pre>
       </div>
     </section>
 

@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903b" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
   <script src="/assets/js/motion.js" defer></script>
   <script type="application/ld+json">
@@ -71,20 +71,25 @@
   <main id="main">
 
     <section class="tile tile--light">
-      <div class="tile__inner">
-        <h1 class="t-hero">About</h1>
-        <p class="t-lead stack-lead">One career, told in order.</p>
+      <div class="tile__inner tile__inner--prose about-band">
+        <div>
+          <h1 class="t-hero">About</h1>
+          <p class="t-lead stack-lead">One career, told in order.</p>
+          <div class="prose">
+            <p>I spent 21 years as a sworn law enforcement officer, retiring as a sergeant. That means two decades of using the tools this industry sells: the cameras, the plate readers, the records systems, the video that did or didn't hold up when it mattered.</p>
+          </div>
+        </div>
+        <picture class="about-band__art">
+          <source type="image/avif" srcset="/assets/img/portrait-head-wide-1120.avif 1120w, /assets/img/portrait-head-wide-2240.avif 2240w" sizes="(min-width: 834px) 466px, 100vw" />
+          <source type="image/webp" srcset="/assets/img/portrait-head-wide-1120.webp 1120w, /assets/img/portrait-head-wide-2240.webp 2240w" sizes="(min-width: 834px) 466px, 100vw" />
+          <img src="/assets/img/portrait-head-wide.jpg" alt="Matthew Visher" width="2400" height="1920" fetchpriority="high" decoding="async" />
+        </picture>
       </div>
     </section>
 
-    <figure class="photo-band">
-      <img src="/assets/img/portrait-head-wide.jpg" alt="Matthew Visher" width="2400" height="1920" fetchpriority="high" decoding="async" />
-    </figure>
-
     <section class="tile reveal tile--parchment">
       <div class="tile__inner tile__inner--prose">
-        <div class="prose prose--centered">
-          <p>I spent 21 years as a sworn law enforcement officer, retiring as a sergeant. That means two decades of using the tools this industry sells: the cameras, the plate readers, the records systems, the video that did or didn't hold up when it mattered.</p>
+        <div class="prose">
           <p>Much of that career was spent on major investigations and covert surveillance: building covert hides, running video surveillance, and standing up quick, hasty deployments of covert and overt camera platforms to capture intelligence or evidence on long-running, sensitive, high-value cases. When a platform failed on one of those, you didn't lose a data point. You lost weeks of work, and sometimes the case.</p>
           <p>Most of that technology was built by people who never had to depend on it at 2 a.m. You can tell.</p>
           <p>Today I work on the other side of the counter. My day job is leading law enforcement business development for an AI video analytics company. On my own time I build independent tools that attack the gaps I kept running into: cameras that can't prove they were installed right, video that can't prove it's untampered, AI agents that can't prove what they did.</p>

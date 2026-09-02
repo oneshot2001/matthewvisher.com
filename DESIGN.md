@@ -12,7 +12,7 @@
 | `--parchment` | #F1EDE3 | alternating tile, header (80% frosted), footer, mobile menu |
 | `--ink` | #1C1B18 | all text on light; secondary-button outline; card hover border |
 | `--charcoal` | #24221E | the one dark tile (`.tile--dark`, `-2`, `-3` all resolve here) |
-| `--kraft` | #B9A27A | hero wash ≤833 (86%) |
+| `--kraft` | #B9A27A | hero copy-block ground ≤833 (stacked hero) |
 | `--hairline` | #DAD3C4 | 1px borders: header, cards, rows, footer rule, pearl button |
 | `--muted` | #6B665C | captions, meta, legal, definition labels |
 | `--lemon` | #FFD60A | the only accent: primary fill, nav pill, link underline, mark dot, ticks |
@@ -22,11 +22,12 @@
 | `--ink-print` | #1A1917 | `.article-body` colour |
 | `--on-dark` | #F4F1EA | text on charcoal |
 | `--muted-on-dark` | #CFC9BC | leads/proof on charcoal |
+| `--shadow-photo` | `0 24px 60px -24px ink@45%` | the ONE shadow — About portrait only |
 
 Spacing `--xxs`4 `--xs`8 `--sm`12 `--md`17 `--lg`24 `--xl`32 `--xxl`48 `--section`80.
 Radius `--r-none`0 `--r-sm`8 `--r-md`11 (pearl) `--r-lg`18 (cards) `--r-pill`.
 Motion `--ease-out: cubic-bezier(.23,1,.32,1)`, `--dur-ui: 150ms`.
-No shadows, no gradients except the photo-band ground and the hero wash.
+No shadows except `--shadow-photo` on the About portrait; no gradients.
 
 ## Type
 
@@ -75,21 +76,23 @@ Deleted: `.btn--large`, `.btn--secondary-on-dark`, `.btn--dark-utility`.
 
 - `.link` (light): ink, no text-decoration; lemon 2px underline grows in via `background-size: 0% 2px → 100% 2px` at `0 100%`.
 - `.link-on-dark`: lemon. Footer links: ink, hover = 2px lemon underline. `.article-body a`: ink + lemon underline.
-- `.card`: paper, hairline, radius 18, 24px padding; hover border → ink (150ms). Meta muted 12px; `.status` gold 600 + lemon tick.
+- `.card`: paper, hairline, radius 18, 24px padding; hover border → ink (150ms). Meta mono 12 muted .02em; `.status` gold 600 + lemon tick. `.card--feature` spans the grid, serif 30 title.
+- Mono texture: `.card__meta`, `.proof`, `.am-row`, `.article-byline`, `.article-back`, `.article-nav`, `.article-signoff`, `.footer__legal` — `--font-mono` 12–13, muted, .02em.
+- `.specimen` (home tiles): `<pre role="figure">` mono 13, ≤12 lines, radius 11, hairline, no shadow; paper card on charcoal, charcoal card on paper; `<b>` = gold/lemon.
 
 ## Surfaces & layout
 
 - Tiles full-bleed, radius 0, 80px vertical padding (48 ≤640); colour change is the divider.
   `.tile--light` paper · `.tile--parchment` parchment · `.tile--dark/-2/-3` charcoal.
-- Content max-widths: 1440 grids · 980 prose tile · 1120 photo band + footer inner.
+- Content max-widths: 1440 grids · 980 prose tile (About + Contact sit on this one left axis; `.rows` 62ch) · 1120 `.tile__inner--duo` + footer inner.
 - Footer: parchment, `.footer__inner` 1120, `.footer__cols` `repeat(3, minmax(0,1fr))` gap 24 ≥735,
   headings `<p class="footer__h">` mono 12 uppercase .08em muted, links 17/2.41 ink, legal 12 muted.
   Elsewhere column = Contact · LinkedIn · GitHub · X on every page.
 
 ## Breakpoints
 
-**1068** small desktop (hero 44 / display 32; hero image 72%) · **834/833** tablet (grid 2-col ≥835;
-hero wash + centred copy ≤833) · **735** footer 3-col · **640** phone (menu disclosure, type step,
+**1068** small desktop (hero 44 / display 32; hero copy 440 / inset 40; portrait `object-position` 72%) · **834/833** tablet (grid 2-col ≥835; `.about-band` + `.tile__inner--duo` 2-col ≥834;
+≤833 hero stacks: copy on kraft with the frame, `<picture class="hero-art">` band below at natural aspect, copy inset 24) · **735** footer 3-col · **640** phone (menu disclosure, type step,
 tile 48×17) · **419** small phone (hero 30). Touch targets ≥44×44.
 
 ## Motion (Phase 0 state — Phase 3 moves this to `motion.css`)

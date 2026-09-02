@@ -1,13 +1,16 @@
 /* Notes from the Field — editorial article layout (adopted 2026-08-31, NO. 10 register) */
 .article-masthead { max-width: 1100px; margin: 0 auto; padding: 44px 24px 0; }
 .am-row { display: flex; justify-content: space-between; align-items: baseline;
-  font-family: var(--font-sans); font-size: 15px; font-weight: 600; letter-spacing: .26em;
-  color: var(--ink); padding-bottom: 12px; }
-.am-row .am-no { font-family: var(--font-mono); color: var(--muted); font-weight: 400; letter-spacing: .2em; }
+  font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: .2em;
+  color: var(--muted); padding-bottom: 12px; }
+.am-row .am-no { font-weight: 400; }
 .am-dot { display: inline-block; width: 11px; height: 11px; border-radius: var(--r-pill);
   background: var(--lemon); margin-right: 11px; }
 .am-rule-thick { border-top: 4px solid var(--ink); }
 .am-rule-hair { border-top: 1px solid var(--ink); margin-top: 3px; }
+.article-back { display: block; max-width: 1100px; margin: 0 auto; padding: 12px 24px 0;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .02em; color: var(--muted); text-decoration: none; }
+.article-back:hover { color: var(--ink); }
 
 .article-head { max-width: 720px; margin: 0 auto; padding: 64px 24px 0; text-align: center; }
 .article-kicker { font-family: var(--font-mono); font-size: 13px; font-weight: 500;
@@ -18,7 +21,7 @@
   font-style: italic; font-size: 21px; line-height: 1.5; color: var(--muted); margin-top: 22px; }
 .article-byline { margin-top: 30px; padding: 18px 0; border-top: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline); font-family: var(--font-mono); font-size: 13px;
-  letter-spacing: .04em; color: var(--muted);
+  letter-spacing: .02em; color: var(--muted);
   display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 .article-byline strong { color: var(--ink); font-weight: 500; }
 
@@ -38,8 +41,15 @@
 .article-sources p { margin: 0 0 10px; }
 .article-sources a { color: var(--ink); }
 
+.article-nav { max-width: 620px; margin: 0 auto; padding: 24px 24px 32px;
+  display: flex; justify-content: space-between; gap: 24px;
+  font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: .02em; }
+.article-nav a { flex: 1 1 0; color: var(--ink); text-decoration: none; }
+.article-nav a:hover { text-decoration: underline; text-decoration-color: var(--lemon); text-decoration-thickness: 2px; }
+.article-nav a[rel="next"] { text-align: right; }
+.article-nav small { display: block; font-size: 12px; color: var(--muted); }
 .article-signoff { max-width: 620px; margin: 0 auto; padding: 0 24px 72px;
-  font-family: var(--font-sans); font-size: 14px; color: var(--muted); }
+  font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; color: var(--muted); }
 .article-signoff a { color: var(--gold); text-decoration: none; }
 
 @media (max-width: 640px) {
@@ -49,7 +59,7 @@
 
 @media print {
   @page { margin: 18mm; }
-  .site-nav, .footer, .btn, .skip-link, .am-dot { display: none !important; }
+  .site-nav, .footer, .btn, .skip-link, .am-dot, .article-back, .article-nav { display: none !important; }
   body { color: #000; background: #fff; font-size: 11pt; }
   .article-body { color: #000; }
   .article-body a[href^="http"]::after, .article-sources a[href^="http"]::after { content: " (" attr(href) ")"; font-family: var(--font-mono); font-size: 9pt; }

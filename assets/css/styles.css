@@ -17,6 +17,7 @@
   --ink-print: #1A1917;
   --on-dark: #F4F1EA;
   --muted-on-dark: #CFC9BC;
+  --shadow-photo: 0 24px 60px -24px color-mix(in oklch, var(--ink) 45%, transparent);
 
   /* Spacing */
   --xxs: 4px; --xs: 8px; --sm: 12px; --md: 17px;
@@ -162,37 +163,30 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .actions { display: flex; gap: var(--lg); justify-content: center; flex-wrap: wrap; }
 .tile__inner--prose .actions { justify-content: flex-start; }
 
-/* ---------- Photo band — large centered portrait dissolving into the tiles ---------- */
-.photo-band {
-  margin: 0;
-  width: 100%;
-  display: flex; justify-content: center;
-  /* ground matches the paper tile above and the parchment tile below,
-     so the masked portrait dissolves into both */
-  background: linear-gradient(to bottom,
-    var(--paper) 0%,
-    var(--paper) 22%,
-    var(--parchment) 80%,
-    var(--parchment) 100%);
+/* Two-up tile: copy left, proof specimen right */
+.tile__inner--duo { max-width: 1120px; text-align: left; display: grid; gap: var(--xl); align-items: center; }
+.tile__inner--duo .stack-lead { margin-left: 0; max-width: 34ch; }
+.tile__inner--duo .actions { justify-content: flex-start; }
+@media (min-width: 834px) { .tile__inner--duo { grid-template-columns: 1fr 1fr; gap: var(--xxl); } }
+
+.specimen {
+  min-width: 0; overflow-x: auto; white-space: pre;
+  font-family: var(--font-mono); font-size: 13px; font-weight: 400; line-height: 1.6;
+  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--hairline); border-radius: var(--r-md);
+  padding: var(--lg);
 }
-.photo-band img {
-  width: 100%;
-  max-width: 1120px;
-  height: auto;
-  border-radius: var(--r-none);
-  box-shadow: none;
-  /* dissolve on every edge — top and bottom into the tiles, sides into the page */
-  -webkit-mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 26%, #000 62%, transparent 99%),
-    linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
-  mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 26%, #000 62%, transparent 99%),
-    linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
-}
-/* the mask already supplies the air — don't double it with tile padding */
-.photo-band + .tile { padding-top: var(--xs); }
+.specimen b { font-weight: 500; color: var(--gold); }
+.tile--light .specimen { background: var(--charcoal); color: var(--on-dark); border-color: color-mix(in oklch, var(--on-dark) 18%, transparent); }
+.tile--light .specimen b { color: var(--lemon); }
+
+/* ---------- About band — copy left, portrait right at natural aspect ---------- */
+.about-band { display: grid; gap: var(--xl); align-items: center; }
+.about-band > .t-hero { margin-bottom: var(--md); }
+.about-band .prose p { margin-top: var(--lg); }
+.about-band__art img { border-radius: var(--r-lg); box-shadow: var(--shadow-photo); }
+@media (max-width: 833px) { .about-band__art { order: -1; } }
+@media (min-width: 834px) { .about-band { grid-template-columns: 1fr 1fr; gap: var(--xxl); } }
 
 /* ---------- Proof row — quiet caption band ---------- */
 .proof {
@@ -200,7 +194,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   margin: var(--xl) auto 0;
   display: flex; flex-wrap: wrap; justify-content: center;
   gap: var(--xs) var(--lg);
-  font-size: 14px; font-weight: 400; line-height: 1.43;
+  font-family: var(--font-mono); font-size: 13px; font-weight: 400; line-height: 1.43; letter-spacing: 0.02em;
   color: var(--muted);
 }
 .tile--dark .proof, .tile--dark-2 .proof, .tile--dark-3 .proof { color: var(--muted-on-dark); }
@@ -214,6 +208,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 @media (min-width: 835px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1069px) { .grid--3 { grid-template-columns: repeat(3, 1fr); } }
+.card--feature { grid-column: 1 / -1; }
+.card--feature h2 { font-family: var(--font-serif); font-size: 30px; font-weight: 500; line-height: 1.2; }
+.grid-caption { margin-top: var(--lg); color: var(--muted); text-align: left; }
 
 .card {
   background: var(--paper);
@@ -226,13 +223,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .card:hover { border-color: var(--ink); }
 .card__meta {
   display: flex; flex-wrap: wrap; gap: var(--xxs) var(--sm);
-  font-size: 12px; font-weight: 400; line-height: 1.4;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 400; line-height: 1.4; letter-spacing: 0.02em;
   color: var(--muted);
   margin-bottom: var(--sm);
 }
 .card__meta .status { color: var(--gold); font-weight: 600; }
-.card h3 { font-size: 21px; font-weight: 600; line-height: 1.19; margin-bottom: var(--xs); }
-.card h3 a { text-decoration: none; }
+.card h2, .card h3 { font-size: 21px; font-weight: 600; line-height: 1.19; margin-bottom: var(--xs); }
+.card h2 a, .card h3 a { text-decoration: none; }
 .card p { margin-top: var(--xs); }
 .card .aud { color: var(--muted); font-size: 14px; line-height: 1.43; }
 .card .ev { margin-top: var(--md); font-size: 14px; line-height: 1.43; }
@@ -243,19 +240,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .prose h2 { margin-top: var(--xxl); }
 .prose ul { margin-top: var(--md); padding-left: var(--lg); }
 .prose li { margin-top: var(--xs); }
-.prose--centered {
-  margin-left: auto; margin-right: auto;
-  text-align: center;
-  max-width: 58ch;
-}
-/* markers read badly on centred text — drop them and let the spacing carry the list */
-.prose--centered ul { list-style: none; padding-left: 0; }
-.prose--centered li { margin-top: var(--md); }
 
 .fine { font-size: 12px; line-height: 1.4; color: var(--muted); }
 
 /* ---------- Definition rows ---------- */
-.rows { margin-top: var(--lg); max-width: 780px; }
+.rows { margin-top: var(--lg); max-width: 62ch; }
 .rows > div {
   display: flex; gap: var(--lg);
   padding: var(--md) 0;
@@ -292,7 +281,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .footer__legal {
   margin-top: var(--xl); padding-top: var(--lg);
   border-top: 1px solid var(--hairline);
-  font-size: 12px; font-weight: 400; line-height: 1.4;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 400; line-height: 1.4; letter-spacing: 0.02em;
   color: var(--muted);
 }
 
@@ -376,49 +365,38 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 @keyframes mv-rise { to { opacity: 1; transform: none; } }
 @keyframes mv-tickpop { 60% { transform: scale(1.3); } 100% { transform: scale(1); } }
 
-/* ---------- Split hero — engraved portrait as the tile ground, copy in its negative space ---------- */
-.hero--split {
-  background-image: url("/assets/img/portrait-engraved.jpg");
-  background-image: -webkit-image-set(url("/assets/img/portrait-engraved.webp") 1x);
-  background-image: image-set(url("/assets/img/portrait-engraved.webp") type("image/webp"), url("/assets/img/portrait-engraved.jpg") type("image/jpeg"));
-  background-size: cover;
-  background-position: right center;
-  background-repeat: no-repeat;
-  padding-block: clamp(72px, 9vw, 132px);
-}
+/* ---------- Split hero — engraved portrait fills the tile, copy in its negative space ---------- */
+.hero--split { padding-block: clamp(72px, 9vw, 132px); }
+.hero-art { position: absolute; inset: 0; }
+.hero-art img { width: 100%; height: 100%; object-fit: cover; object-position: right center; }
 .tile__inner--split { text-align: left; }
-.hero--split .hero-copy { max-width: 46ch; }
+.hero--split .hero-copy { position: relative; max-width: 760px; padding-inline-start: 56px; }
 .hero--split .stack-lead { margin-left: 0; max-width: 34ch; }
 .hero--split .actions { justify-content: flex-start; }
 .hero--split .proof { justify-content: flex-start; margin-left: 0; }
-@media (max-width: 1068px) {
-  .hero--split { background-position: 72% center; }
-  .hero--split .hero-copy { max-width: 34ch; }
-}
-@media (max-width: 833px) {
-  .hero--split {
-    background-image: linear-gradient(to bottom, color-mix(in oklch, var(--kraft) 86%, transparent), color-mix(in oklch, var(--kraft) 86%, transparent)), url("/assets/img/portrait-engraved.jpg");
-    background-image: linear-gradient(to bottom, color-mix(in oklch, var(--kraft) 86%, transparent), color-mix(in oklch, var(--kraft) 86%, transparent)), image-set(url("/assets/img/portrait-engraved-sm.webp") type("image/webp"), url("/assets/img/portrait-engraved.jpg") type("image/jpeg"));
-    background-position: center;
-  }
-  .tile__inner--split { text-align: center; }
-  .hero--split .hero-copy { max-width: none; }
-  .hero--split .stack-lead { margin-left: auto; margin-right: auto; }
-  .hero--split .actions, .hero--split .proof { justify-content: center; }
-}
 .hero--split .btn--secondary { background: color-mix(in oklch, var(--paper) 82%, transparent); }
 .hero--split .btn--secondary:hover { background: var(--paper); }
 .hero--split .proof li { color: color-mix(in oklch, var(--ink) 80%, transparent); }
-/* clear the inset hero frame line — copy must not touch it */
-.hero--split .hero-copy { padding-inline-start: clamp(24px, 3.5vw, 56px); }
-@media (max-width: 833px) { .hero--split .hero-copy { padding-inline-start: 0; } }
+@media (max-width: 1068px) {
+  .hero-art img { object-position: 72% center; }
+  .hero--split .hero-copy { max-width: 440px; padding-inline-start: 40px; }
+}
+@media (max-width: 833px) {
+  /* stacked: copy on plain kraft, portrait as a band below at natural aspect; frame wraps the copy only */
+  .hero--split { display: flex; flex-direction: column; padding: 0; background: var(--kraft); }
+  .hero-art { position: static; order: 2; }
+  .hero-art img { height: auto; object-fit: initial; }
+  .tile__inner--split { position: relative; width: 100%; padding: var(--xxl) 16px; }
+  .hero--split .hero-frame { inset: 16px; }
+  .hero--split .hero-copy { max-width: none; padding-inline: 24px; }
+}
 
 /* Print */
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 @media print {
   @page { margin: 18mm; }
-  .site-nav, .footer, .hero-shutter, .hero-frame, .btn, .skip-link, .photo-band { display: none !important; }
+  .site-nav, .footer, .hero-shutter, .hero-frame, .hero-art, .btn, .skip-link { display: none !important; }
   .reveal, html.js .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
   body { color: #000; background: #fff; font-size: 11pt; }
   .tile { padding: 0 0 12mm; background: none; color: #000; }
