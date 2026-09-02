@@ -46,3 +46,12 @@
   .article-title { font-size: 31px; }
   .article-body { font-size: 18px; }
 }
+
+@media print {
+  @page { margin: 18mm; }
+  .site-nav, .footer, .btn, .skip-link, .am-dot { display: none !important; }
+  body { color: #000; background: #fff; font-size: 11pt; }
+  .article-body { color: #000; }
+  .article-body a[href^="http"]::after, .article-sources a[href^="http"]::after { content: " (" attr(href) ")"; font-family: var(--font-mono); font-size: 9pt; }
+  h1, h2 { break-after: avoid; }
+}

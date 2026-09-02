@@ -10,6 +10,14 @@
   <meta property="og:title" content="Contact · Matthew Visher" />
   <meta property="og:description" content="Reach out about open-source collaboration, physical security products, speaking, or practitioner research." />
   <meta property="og:url" content="https://matthewvisher.com/contact/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-home.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Matthew Visher — 21 years behind the badge. Now I build the tools I wished it had." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact · Matthew Visher" />
+  <meta name="twitter:description" content="Reach out about open-source collaboration, physical security products, speaking, or practitioner research." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-home.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
@@ -23,6 +31,7 @@
     "@type": "Person",
     "name": "Matthew Visher",
     "url": "https://matthewvisher.com",
+    "email": "mailto:mkvisher@gmail.com",
     "jobTitle": "Director of Law Enforcement Business Development",
     "sameAs": [
       "https://www.linkedin.com/in/matthew-visher-6b4692a8/",
@@ -82,7 +91,7 @@
           </ul>
         </div>
         <dl class="rows">
-          <div><dt>Email</dt><dd><a class="link" href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> <button class="btn btn--pearl" type="button" data-copy="mkvisher@gmail.com">Copy</button></dd></div>
+          <div><dt>Email</dt><dd><a class="link" href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> <button class="btn btn--pearl" type="button" data-copy="mkvisher@gmail.com">Copy</button> <span class="visually-hidden" aria-live="polite" id="copy-status"></span></dd></div>
           <div><dt>Elsewhere</dt><dd><a class="link" href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a> &middot; <a class="link" href="https://x.com/MatthewVisher">X</a> &middot; <a class="link" href="https://github.com/oneshot2001">GitHub</a></dd></div>
           <div><dt>Based in</dt><dd>Salt Lake City, Utah</dd></div>
           <div><dt>Response time</dt><dd>Usually within two working days</dd></div>
@@ -91,12 +100,27 @@
     </section>
 
     <script>
+      var copyStatus = document.getElementById('copy-status');
+      function copied(b) {
+        b.textContent = 'Copied';
+        copyStatus.textContent = 'Email copied';
+        setTimeout(function () { b.textContent = 'Copy'; copyStatus.textContent = ''; }, 1500);
+      }
       document.querySelectorAll('[data-copy]').forEach(function (b) {
         b.addEventListener('click', function () {
-          navigator.clipboard.writeText(b.dataset.copy);
-          b.textContent = 'Copied';
+          try {
+            navigator.clipboard.writeText(b.dataset.copy).then(function () { copied(b); }, function () { fallback(b); });
+          } catch (e) { fallback(b); }
         });
       });
+      function fallback(b) {
+        var range = document.createRange();
+        range.selectNodeContents(b.previousElementSibling);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        if (document.execCommand('copy')) copied(b);
+      }
     </script>
 
   </main>
