@@ -12,39 +12,37 @@
   <meta property="og:url" content="https://matthewvisher.com/notes/no-04/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Saira:ital,wght@1,700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
-  <link rel="stylesheet" href="/assets/css/styles.css" />
-  <link rel="stylesheet" href="/assets/css/article.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260903" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <nav class="global-nav" aria-label="Global">
-    <div class="global-nav__inner">
-      <a class="global-nav__brand" href="/">Matthew Visher</a>
-      <a href="/lab/">Lab</a>
-      <a href="/notes/">Notes</a>
-      <a href="/about/">About</a>
-      <a href="/contact/">Contact</a>
-      <a class="global-nav__spacer" href="https://github.com/oneshot2001">GitHub</a>
-      <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
-    </div>
-  </nav>
-
-  <div class="sub-nav">
-    <div class="sub-nav__inner">
-      <a class="sub-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="#1d1d1f"/><circle cx="13" cy="16.6" r="4.6" fill="#FFD60A"/></svg><span>Matthew Visher</span></a>
-      <div class="sub-nav__links">
-        <a href="/">Home</a>
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
         <a href="/lab/">Lab</a>
-        <a href="/notes/" aria-current="page">Notes from the Field</a>
+        <a href="/notes/" aria-current="page">Notes</a>
         <a href="/about/">About</a>
-        <a class="btn btn--nav" href="/contact/">Get in touch</a>
-      </div>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/">Lab</a>
+          <a href="/notes/" aria-current="page">Notes</a>
+          <a href="/about/">About</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
     </div>
-  </div>
+  </header>
 
   <main id="main">
     <div class="article-masthead">
@@ -117,7 +115,7 @@ KUER, July 30, 2026, on the case number requirement and the September 15 hearing
     <div class="footer__inner">
       <div class="footer__cols">
         <div>
-          <h4>Work</h4>
+          <p class="footer__h">Work</p>
           <ul>
             <li><a href="/lab/">Lab</a></li>
             <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
@@ -125,14 +123,14 @@ KUER, July 30, 2026, on the case number requirement and the September 15 hearing
           </ul>
         </div>
         <div>
-          <h4>Writing</h4>
+          <p class="footer__h">Writing</p>
           <ul>
             <li><a href="/notes/">Notes from the Field</a></li>
             <li><a href="/about/">About</a></li>
           </ul>
         </div>
         <div>
-          <h4>Elsewhere</h4>
+          <p class="footer__h">Elsewhere</p>
           <ul>
             <li><a href="/contact/">Contact</a></li>
             <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
