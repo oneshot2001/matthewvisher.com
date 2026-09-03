@@ -402,7 +402,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   .tile__inner--split { position: relative; width: 100%; padding: var(--xxl) 16px; }
   .hero--split .hero-frame { inset: 16px; }
   .hero--split .hero-copy { max-width: none; padding-inline: 24px; }
+  .hero--split .hero-frame i { display: none; } /* record light reads as an orphan dot on the stacked hero */
 }
+@media (max-width: 640px) {
+  .specimen { font-size: 11.5px; line-height: 1.5; padding: 14px; }
+  .specimen { mask-image: linear-gradient(to right, #000 92%, transparent); } /* scroll cue for long lines */
+}
+@media (max-width: 419px) { .specimen { font-size: 10.5px; } }
 
 /* Print */
 .print-only { display: none; }
