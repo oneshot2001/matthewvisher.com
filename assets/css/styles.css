@@ -406,7 +406,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 @media (max-width: 640px) {
   .specimen { font-size: 11.5px; line-height: 1.5; padding: 14px; }
-  .specimen { mask-image: linear-gradient(to right, #000 92%, transparent); } /* scroll cue for long lines */
 }
 @media (max-width: 419px) { .specimen { font-size: 10.5px; } }
 
