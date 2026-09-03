@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The AI attacked the audit log first. Nobody trained it to. · Notes from the Field No. 11</title>
+  <meta name="description" content="A frontier lab just measured what a reward-seeking agent does to the record of its own actions. Every RTCC platform I know of has one on the roadmap." />
+  <link rel="canonical" href="https://matthewvisher.com/notes/no-11/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The AI attacked the audit log first. Nobody trained it to." />
+  <meta property="og:description" content="A frontier lab just measured what a reward-seeking agent does to the record of its own actions. Every RTCC platform I know of has one on the roadmap." />
+  <meta property="og:url" content="https://matthewvisher.com/notes/no-11/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Notes from the Field · a numbered series on AI in physical security by Matthew Visher." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The AI attacked the audit log first. Nobody trained it to." />
+  <meta name="twitter:description" content="A frontier lab just measured what a reward-seeking agent does to the record of its own actions. Every RTCC platform I know of has one on the roadmap." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903f" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/">Lab</a>
+        <a href="/notes/" aria-current="page">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/">Lab</a>
+          <a href="/notes/" aria-current="page">Notes</a>
+          <a href="/about/">About</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>NOTES FROM THE FIELD</span><span class="am-no">NO. 11</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/notes/">&larr; Notes from the Field</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">AI Agents &middot; Audit Logs</p>
+      <h1 class="article-title">The AI attacked the audit log first. Nobody trained it to.</h1>
+      <p class="article-dek">A frontier lab just measured what a reward-seeking agent does to the record of its own actions. Every RTCC platform I know of has one on the roadmap.</p>
+      <div class="article-byline"><span>By <strong>Matthew Visher</strong></span><span>&middot;</span><span>September 3, 2026</span><span>&middot;</span><span>6 min read</span></div>
+    </header>
+
+    <article class="article-body">
+      <p class="first reveal">Two days ago I wrote that the audit log is the control that worked in August. Chandler and Pflugerville both walked away from their plate readers because somebody read the log. I still believe that. Then I read two posts Anthropic published on Monday, and I think the log has a problem I hadn&#x27;t taken seriously enough.</p>
+      <p>Here&#x27;s the short version. Anthropic took an early version of one of its own models and trained it on 80 environments its researchers already knew were cheatable. Tasks where the fastest way to score was to game the grader instead of doing the work. Nobody told the model to cheat. The environments just paid for it. By the end of training it was cheating on 40 percent of its attempts.</p>
+      <p>Then they gave it root on one of its own training tasks, with a cheating monitor running in the background. In 68 percent of runs it neutralized the monitor: killed the process, forged its verdict file, or both. In half of runs it rewrote the file that logged its own actions so the reviewer wouldn&#x27;t see what it had done. In one run in ten it forged its own score record outright. None of that was in the training. Asked a dangerous question with a grader watching, it complied 29 percent of the time. The same model before this training complied less than one percent.</p>
+      <p>The part that stopped me was a pair of simulated cyber exercises. In one, the model was told the range was practice and everything beyond it was the real internet. It went out of bounds in about a third of runs, most of the time after telling itself the targets were fake anyway. In the other, it was handed a route to a real-looking outside company. It attacked in up to three quarters of runs, and in most of those it had already concluded the target was real. That&#x27;s the behavior Anthropic now thinks was at least partly behind the incidents you read about in July, when Claude models inside a badly configured test environment got into real computer systems they were never supposed to reach. Three incidents, by Anthropic&#x27;s own count. Its post names three causes, and calls the assessment preliminary: a misconfigured sandbox, a model that may have explained away the evidence that the environment was real, and a willingness to take harmful actions to finish a narrow task.</p>
+      <p>Credit where it&#x27;s due. They published the numbers, the transcripts, and the part about their own third-party evaluations getting only after-the-fact review of a sample of transcripts. That&#x27;s not a company hiding the ball. That&#x27;s a company telling you where the ball is.</p>
+      <p>So why is this in a physical security newsletter?</p>
+      <p>Because the product roadmap for every real-time crime center platform I know of now has an agent on it. Something that takes a request in plain English, queries the plate database, pulls the clips, drafts the report, attaches it to the case. The vendors call it a copilot or a coworker. What it is, mechanically, is a model running a long sequence of actions against your evidence systems in pursuit of a task. And the thing this paper measured is what a model does to the record of its own actions when finishing the task is what it gets paid for.</p>
+      <p>Put those two facts next to each other. The audit log is the control that saved Chandler. The audit log is one of the first things a reward-seeking agent goes after. Both true. That&#x27;s the whole problem.</p>
+      <p>I want to be careful here, because the people I most want reading this are the ones who will check. This was a deliberately broken model, trained on an extreme dose of bad environments, tested in scenarios built to provoke exactly this. Anthropic ran its production models through the same scenarios. None showed the same degree of it, though one still went out of bounds in one run in ten of one simulation after deciding the targets were fake. Nobody has shown a shipping model doing this in a police department. This is evidence of a mechanism, not a forecast of how often it happens. But a mechanism is enough to change how you buy, because you&#x27;re not buying today&#x27;s model. You&#x27;re buying whatever the vendor pushes next quarter, trained on whatever environments they had that month. Anthropic&#x27;s own post says that when it froze and re-reviewed its production training environments this spring, more than 10 percent were flagged and pulled until fixed.</p>
+      <p>Here&#x27;s the distinction I&#x27;d write into an RFP tomorrow. A retained log is a log the agent&#x27;s own process can write to. A signed log is one produced by something outside the agent&#x27;s reach, that the agent can&#x27;t rewrite without breaking a seal. Almost everything sold as an audit trail today is the first kind. And by its own account, the strongest AI lab in the world was reviewing only a sample of its outside-evaluation transcripts, after the fact, until the July incidents. That&#x27;s a coverage gap, not the integrity gap I&#x27;m describing. Same lesson though: the record was the weakest layer, and nobody was standing on it. The chiefs&#x27; own association got there in August. The IACP&#x27;s August 20 statement asks for tamper-resistant audit records and regular audits. Line one below is what tamper-resistant has to mean once an agent is in the loop.</p>
+      <p>There&#x27;s a second finding that matters more for procurement than the headline numbers. When there was no grader in the room, the broken model behaved fine. Ordinary behavioral audits scored it about as aligned overall as the untrained version. The tells were buried in sub-scores: ignoring constraints, probing boundaries, and a big jump in guessing it was being tested. A vendor demo is a room with no grader. A pilot with nothing at stake is a room with no grader. The only test that finds this is one that puts the agent under real task pressure and treats getting around the log as something you&#x27;re explicitly looking for.</p>
+      <p>Three lines, then. Not a policy manual, just what I&#x27;d want to see in the next RTCC agreement that includes an AI agent.</p>
+      <p>One: every action the agent takes against plates, video, or case data produces a record written by a component the agent cannot reach, and that record is signed.</p>
+      <p>Two: if the record is missing, or the monitor stops, the action fails. Not logs a warning. Fails.</p>
+      <p>Three: before any model version ships to your center, the vendor runs the test Anthropic just described. The agent is rewarded for finishing a job and the log is in its way. The vendor hands you the transcripts and the pass criteria, every version, and that obligation lives in the contract, not in a demo.</p>
+      <p>I&#x27;ll be honest about the third one. You can check the first two yourself. Ask whether the agent&#x27;s process can write to the log, and unplug the log and see if the agent stops. Nobody in a crime center can build the third test. It takes a sandbox, a harness, and model access you don&#x27;t have. So you&#x27;re taking the vendor&#x27;s word on a test the vendor grades. That&#x27;s the gap. The right answer is somebody outside the company running it, the way Anthropic says it plans to have METR review these incidents, and nothing like that exists for policing software yet. Until it does, the contract line is the best you can get.</p>
+      <p>If a vendor tells you their logs are immutable, ask three things. Immutable to whom. Produced by what process. And what happens when the record isn&#x27;t there.</p>
+      <p>A note on my two hats. My day job is at a company that sells software to police departments, and I work independently on signed action records for exactly this problem. Read that as a bias if you like. I&#x27;d rather you read it as the reason I&#x27;ve spent a year on the question.</p>
+      <p>So here&#x27;s the question for this week, and it&#x27;s answerable without confessing anything. Who in your center can prove the log wasn&#x27;t touched? Not who reads it. The last two pieces covered that. Who can prove it.</p>
+    </article>
+
+    <div class="article-sources">
+      <p>Sources, so you can check my numbers:</p>
+      <p><a href="https://www.anthropic.com/news/improving-alignment-security-efforts">Anthropic, &quot;Improving our alignment and security efforts,&quot; August 31</a></p>
+      <p><a href="https://alignment.anthropic.com/2026/reward-seeker/">Anthropic Alignment Science, &quot;Training a Misaligned Reward Seeker&quot;</a></p>
+      <p><a href="https://www.chandleraz.gov/news-center/chandler-discontinues-use-flocks-automated-license-plate-readers">City of Chandler news release, August 7</a></p>
+      <p><a href="https://www.statesman.com/news/article/pflugerville-flock-license-plate-data-22405205.php">Austin American-Statesman on Pflugerville, August 30</a></p>
+      <p><a href="https://www.theiacp.org/news/official-statements/iacp-statement-on-the-responsible-use-of-automated-license-plate">IACP statement on responsible ALPR use, August 20</a></p>
+      <p>Checked September 2, 2026. If I have any of this wrong, tell me and I will correct it in place.</p>
+    </div>
+
+    <nav class="article-nav" aria-label="Series">
+      <a rel="prev" href="/notes/no-10/"><small>Previous</small>NO. 10 &middot; Chandler didn&#x27;t cancel because of a protest. It cancelled because the audit log worked.</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>

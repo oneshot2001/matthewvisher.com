@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chandler didn't cancel because of a protest. It cancelled because the audit log worked. · Notes from the Field No. 10</title>
+  <meta name="description" content="Two cities, one month, both walked away because someone finally read the log. The vendor should ship the brakes. The community should set the speed limit." />
+  <link rel="canonical" href="https://matthewvisher.com/notes/no-10/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Chandler didn't cancel because of a protest. It cancelled because the audit log worked." />
+  <meta property="og:description" content="Two cities, one month, both walked away because someone finally read the log. The vendor should ship the brakes. The community should set the speed limit." />
+  <meta property="og:url" content="https://matthewvisher.com/notes/no-10/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Notes from the Field · a numbered series on AI in physical security by Matthew Visher." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chandler didn't cancel because of a protest. It cancelled because the audit log worked." />
+  <meta name="twitter:description" content="Two cities, one month, both walked away because someone finally read the log. The vendor should ship the brakes. The community should set the speed limit." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903f" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/">Lab</a>
+        <a href="/notes/" aria-current="page">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/">Lab</a>
+          <a href="/notes/" aria-current="page">Notes</a>
+          <a href="/about/">About</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>NOTES FROM THE FIELD</span><span class="am-no">NO. 10</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/notes/">&larr; Notes from the Field</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Audit Logs &middot; Accountability</p>
+      <h1 class="article-title">Chandler didn't cancel because of a protest. It cancelled because the audit log worked.</h1>
+      <p class="article-dek">Two cities, one month, both walked away because someone finally read the log. The vendor should ship the brakes. The community should set the speed limit.</p>
+      <div class="article-byline"><span>By <strong>Matthew Visher</strong></span><span>&middot;</span><span>September 1, 2026</span><span>&middot;</span><span>6 min read</span></div>
+    </header>
+
+    <article class="article-body">
+      <p class="first reveal">Two weeks ago I wrote that an audit log is only as good as the person reading it, and that the plate-reader logs which caught two officers this summer were read from the outside, by the public, under records law. This is the follow-up, because August moved the story somewhere I didn&#x27;t expect.</p>
+      <p>On August 7, the City of Chandler, Arizona, discontinued its 40 Flock plate readers. The trigger wasn&#x27;t a council fight or a records request. Flock&#x27;s own anomaly-detection tool flagged unusual search activity, the department opened a misuse probe, and the renewal came off the August 13 agenda. As far as I can find, that&#x27;s the first time a city has walked away from a vendor because the vendor&#x27;s accountability feature did exactly what it was built to do.</p>
+      <p>Six days later Flock announced the feature would no longer be optional. By January 1, every law enforcement customer has to run anomalous-search detection. Searches need a case number. Default retention drops from 30 days to seven. The CEO apologized publicly for the misuse cases. Critics pointed out, fairly, that enforcement still depends on the agency that gets flagged. But the shape of the thing has changed. A control that used to live in a policy manual now lives in the product.</p>
+      <p>Chandler wasn&#x27;t alone by month&#x27;s end. On August 27, Pflugerville, Texas cancelled its contract after a resident requested the network audit logs and found that 459 outside agencies had searched the city&#x27;s data 1.6 million times in six months. The department itself had run about five thousand searches. Two cities, one month, both walked away because someone finally read the log. In Chandler the reader was the vendor&#x27;s own software. In Pflugerville it was a guy with a records request.</p>
+      <p>I want to sit with that for a minute, because I think it&#x27;s the most interesting design question in physical security right now, and I don&#x27;t think it belongs only to Flock.</p>
+      <p>Milestone shipped something on August 12 called Selective Blur. When you export video, it masks faces and plates but leaves the rest of the frame intact, so the evidence is still evidence. Privacy used to be a paragraph in the retention policy. Now it&#x27;s a checkbox on the export dialog. On August 2, the EU&#x27;s AI Act transparency rules went live, and any system doing emotion recognition or biometric categorization in Europe now has to tell the people it&#x27;s pointed at. Connecticut&#x27;s governor paused new plate-reader installs on August 7 pending state standards. California&#x27;s Senate is back with a bill that would put search logs, training requirements, and out-of-state sharing limits into statute. Even the chiefs&#x27; own association moved: on August 20 the IACP published a statement calling for tamper-resistant audit records, regular supervisory audits, and treating every plate alert as an investigative lead, not evidence.</p>
+      <p>Every one of those is the same move. Something that was a customer&#x27;s choice is becoming the architecture.</p>
+      <p>Here&#x27;s where I&#x27;m honestly unsure, and I&#x27;d rather ask than pretend. When a vendor makes the brakes mandatory, is that the vendor doing its job, or is that the vendor doing the city council&#x27;s job?</p>
+      <p>The case for mandatory is strong. Chandler is the proof. A control that&#x27;s off by default is off in most places, because most agencies are understaffed and the person who would have turned it on is also the person answering the phones. If the log had been optional in Chandler, nobody would have read it, and the officer would still be running plates. Making it part of the product means the smallest department in the state gets the same guardrail as Fairfax County, which published its whole real-time crime center scorecard on August 7 and clearly has the staff to do it.</p>
+      <p>The case against is also strong, and it&#x27;s the one I heard for 21 years in briefing rooms. Seven days is the wrong number for a missing-persons case that comes in on day nine. A case-number requirement slows down the patrol officer who saw the car five minutes ago and doesn&#x27;t have a report yet. A vendor in Atlanta deciding how a department in Utah handles its data is a kind of governance nobody elected. Utah&#x27;s governor said on August 20 he&#x27;s deeply concerned about officer misuse, and he was talking about the officers, not the vendor. The remedy for a police problem is usually a police policy, written by the people who answer to that community.</p>
+      <p>Jay Draisin, who supervised homicide cases and later built a real-time crime center, put a version of this on my last piece that I haven&#x27;t been able to shake: an RTCC needs seven minutes, and evidence storage is for investigations. Different rooms, different clocks, different rules. That split does more work than most of the policy debate.</p>
+      <p>I think both of those are true at once, and the way I&#x27;ve started to resolve it is this. The vendor should ship the brakes. The community should set the speed limit. Retention length, sharing scope, who gets to search: those are policy, and they belong to the city. But whether a search gets logged, whether an anomaly gets flagged, whether a human has to look before the lockout lifts: those aren&#x27;t policy questions. Those are whether the car has brakes at all. Nobody should have to vote on that.</p>
+      <p>One caution, because I&#x27;ve watched this fail from the inside. A brake with an emergency bypass and a free-text reason field is only a brake if someone reviews the bypass log. Flock&#x27;s case-number requirement ships with an override for emergencies, and the Milwaukee officer convicted this year of running personal plates, 124 searches on one of them, had typed &quot;investigation&quot; in the reason box every time. He wasn&#x27;t caught by the reason field. He was caught because one of the drivers looked up her own plate on a public audit site. The control isn&#x27;t the field. The control is the person who reads what got typed into it.</p>
+      <p>What changed in August is that one company decided it agreed, and it cost them a customer to prove it. I don&#x27;t think Flock is going to be the last. The next real-time crime center RFP I read is going to have a line in it that wasn&#x27;t there a year ago, and it won&#x27;t be about resolution or frame rate. It will be about what the system refuses to let an operator do.</p>
+      <p>If you write those RFPs, or answer them, I&#x27;d like to know where you would draw the line between brake and speed limit. I have a draft in my head and I&#x27;m fairly sure it&#x27;s wrong somewhere.</p>
+    </article>
+
+    <div class="article-sources">
+      <p>Sources, so you can check my numbers:</p>
+      <p>City of Chandler news release, August 7: <a href="https://www.chandleraz.gov/news-center/chandler-discontinues-use-flocks-automated-license-plate-readers">https://www.chandleraz.gov/news-center/chandler-discontinues-use-flocks-automated-license-plate-readers</a></p>
+      <p>AP on Flock policy changes, August 13: <a href="https://apnews.com/article/flock-license-plate-cameras-surveillance-deflock-2a93bc075e2f7ffcca9e04a35d75a3fe">https://apnews.com/article/flock-license-plate-cameras-surveillance-deflock-2a93bc075e2f7ffcca9e04a35d75a3fe</a></p>
+      <p>CNN Business on the auditing and accountability controls, August 13: <a href="https://www.cnn.com/2026/08/13/tech/flock-cameras-police-auditing-controls">https://www.cnn.com/2026/08/13/tech/flock-cameras-police-auditing-controls</a></p>
+      <p>NBC News on Flock&#x27;s oversight changes, August 13: <a href="https://www.nbcnews.com/tech/security/flock-safety-police-abuse-oversight-data-retention-rcna592217">https://www.nbcnews.com/tech/security/flock-safety-police-abuse-oversight-data-retention-rcna592217</a></p>
+      <p>Milestone Selective Blur announcement, August 12 (Security Info Watch): <a href="https://www.securityinfowatch.com/access-identity/access-control/access-control-software-management-systems/product/55397551/milestone-systems-milestone-introduces-targeted-privacy-protection-for-exported-security-video">https://www.securityinfowatch.com/access-identity/access-control/access-control-software-management-systems/product/55397551/milestone-systems-milestone-introduces-targeted-privacy-protection-for-exported-security-video</a></p>
+      <p>European Commission on AI Act enforcement beginning August 2: <a href="https://digital-strategy.ec.europa.eu/en/news/commission-starts-enforcing-ai-act-rules-and-new-transparency-requirements-2-august">https://digital-strategy.ec.europa.eu/en/news/commission-starts-enforcing-ai-act-rules-and-new-transparency-requirements-2-august</a></p>
+      <p>Office of Governor Lamont, August 7: <a href="https://portal.ct.gov/governor/news/press-releases/2026/08-2026/governor-lamont-calls-for-review-of-safety-cameras">https://portal.ct.gov/governor/news/press-releases/2026/08-2026/governor-lamont-calls-for-review-of-safety-cameras</a></p>
+      <p>California SB 1013 (CalMatters Digital Democracy): <a href="https://calmatters.digitaldemocracy.org/bills/ca_202520260sb1013">https://calmatters.digitaldemocracy.org/bills/ca_202520260sb1013</a></p>
+      <p>Fairfax County RTCC transparency page: <a href="https://www.fairfaxcounty.gov/police/real-time-crime-center-transparency">https://www.fairfaxcounty.gov/police/real-time-crime-center-transparency</a></p>
+      <p>Deseret News on Governor Cox&#x27;s August 20 remarks, August 25: <a href="https://www.deseret.com/utah/2026/08/25/flock-safety-cameras-public-concerns-and-scrutiny-policy-changes/">https://www.deseret.com/utah/2026/08/25/flock-safety-cameras-public-concerns-and-scrutiny-policy-changes/</a></p>
+      <p>Austin American-Statesman on Pflugerville, August 27: <a href="https://www.statesman.com/news/article/pflugerville-flock-license-plate-data-22405205.php">https://www.statesman.com/news/article/pflugerville-flock-license-plate-data-22405205.php</a></p>
+      <p>IACP statement on responsible ALPR use, August 20: <a href="https://www.theiacp.org/news/official-statements/iacp-statement-on-the-responsible-use-of-automated-license-plate">https://www.theiacp.org/news/official-statements/iacp-statement-on-the-responsible-use-of-automated-license-plate</a></p>
+      <p>Milwaukee officer sentencing (WISN): <a href="https://www.wisn.com/article/former-milwaukee-officer-sentenced-for-illegal-license-plate-searches/71944051">https://www.wisn.com/article/former-milwaukee-officer-sentenced-for-illegal-license-plate-searches/71944051</a></p>
+      <p>Checked August 31, 2026. If I have any of this wrong, tell me and I will correct it in place.</p>
+    </div>
+
+    <nav class="article-nav" aria-label="Series">
+      <a rel="prev" href="/notes/no-09/"><small>Previous</small>NO. 09 &middot; Seven days is the best thing that ever happened to real-time crime centers.</a>
+      <a rel="next" href="/notes/no-11/"><small>Next</small>NO. 11 &middot; The AI attacked the audit log first. Nobody trained it to.</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>
