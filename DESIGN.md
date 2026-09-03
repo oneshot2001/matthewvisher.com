@@ -26,7 +26,7 @@
 
 Spacing `--xxs`4 `--xs`8 `--sm`12 `--md`17 `--lg`24 `--xl`32 `--xxl`48 `--section`80.
 Radius `--r-none`0 `--r-sm`8 `--r-md`11 (pearl) `--r-lg`18 (cards) `--r-pill`.
-Motion `--ease-out: cubic-bezier(.23,1,.32,1)`, `--dur-ui: 150ms`.
+Motion tokens live in `motion.css` (see Motion).
 No shadows except `--shadow-photo` on the About portrait; no gradients.
 
 ## Type
@@ -59,7 +59,7 @@ Article (`article.css`): title/dek/body serif, body `--ink-print` 19/1.68, kicke
 
 ## Buttons
 
-All `.btn`: pill, 1px border, 17/1.47, 11×22 padding, `transition` transform/background/border 150ms `--ease-out`, `:active scale(.97)`.
+All `.btn`: pill, 1px border, 17/1.47, 11×22 padding, `transition` transform/background/border `--dur-ui` `--ease-out`, `:active scale(.97)`.
 
 | Class | Fill | Text | Border | Hover |
 |---|---|---|---|---|
@@ -76,7 +76,7 @@ Deleted: `.btn--large`, `.btn--secondary-on-dark`, `.btn--dark-utility`.
 
 - `.link` (light): ink, no text-decoration; lemon 2px underline grows in via `background-size: 0% 2px → 100% 2px` at `0 100%`.
 - `.link-on-dark`: lemon. Footer links: ink, hover = 2px lemon underline. `.article-body a`: ink + lemon underline.
-- `.card`: paper, hairline, radius 18, 24px padding; hover border → ink (150ms). Meta mono 12 muted .02em; `.status` gold 600 + lemon tick. `.card--feature` spans the grid, serif 30 title.
+- `.card`: paper, hairline, radius 18, 24px padding; hover border → ink (`--dur-ui`). Meta mono 12 muted .02em; `.status` gold 600 + lemon tick. `.card--feature` spans the grid, serif 30 title.
 - Mono texture: `.card__meta`, `.proof`, `.am-row`, `.article-byline`, `.article-back`, `.article-nav`, `.article-signoff`, `.footer__legal` — `--font-mono` 12–13, muted, .02em.
 - `.specimen` (home tiles): `<pre role="figure">` mono 13, ≤12 lines, radius 11, hairline, no shadow; paper card on charcoal, charcoal card on paper; `<b>` = gold/lemon.
 
@@ -95,10 +95,27 @@ Deleted: `.btn--large`, `.btn--secondary-on-dark`, `.btn--dark-utility`.
 ≤833 hero stacks: copy on kraft with the frame, `<picture class="hero-art">` band below at natural aspect, copy inset 24) · **735** footer 3-col · **640** phone (menu disclosure, type step,
 tile 48×17) · **419** small phone (hero 30). Touch targets ≥44×44.
 
-## Motion (Phase 0 state — Phase 3 moves this to `motion.css`)
+## Motion — `assets/css/motion.css` + `assets/js/motion.js` (loaded on all 13 pages)
 
-Hero shutter 0.7s ink, frame drift 9s, REC pulse 2.4s lemon, `.reveal` rise 0.65s with `--i` stagger,
-tick pop spring. All gated on `html.js` + `prefers-reduced-motion: no-preference`.
+Tokens (`:root` in motion.css): `--ease-out: cubic-bezier(.23,1,.32,1)` · `--ease-spring: cubic-bezier(.34,1.56,.64,1)` ·
+`--dur-ui: 180ms` (every hover/transition) · `--dur-reveal: 600ms` · `--stagger: 50ms` (× `--i` on grid items).
+
+- **Reveals** `.reveal` = home tiles + specimens, Lab/Notes cards, About sections, article `.article-head` / first body `<p>` / `.article-signoff`.
+  Primary: `animation-timeline: view()`, `animation-range: entry 0%→40%` shifted 6% per `--i`. Fallback (`@supports not`): `html.js .reveal`
+  hidden → IntersectionObserver adds `.in` → rise with `--i × --stagger` delay. **Rule: nothing is invisible at rest** — no JS = fully visible;
+  view() leaves anything already in the viewport at its end state.
+- **Hero** shutter (ink, 550ms `cubic-bezier(.7,0,.2,1)`, starts 0ms) plays once per session: motion.js sets `html.mv-first` when
+  `sessionStorage.mv_seen` is unset. Frame is static (no drift). REC dot pulses 3.2s. ≥834 the portrait gets a 6% scroll-linked parallax
+  (`animation-timeline: scroll(root)`, range `0 100vh`; img is 107% tall, top −7%, so no gap).
+- **View transitions** (`styles.css`): `@view-transition { navigation: auto }`, `nameplate` on `.site-nav__name`, `mark` on `.site-nav .mark`,
+  root crossfade 220ms. Exactly one element per name per page.
+- **Ticks** `.tick` (lemon dot + ink check; also `.proof li::before/::after`): spring pop 400ms `--ease-spring` via the `scale` property.
+  Card ticks pop when the card's reveal lands (200ms + stagger); hero proof ticks pop 550ms + stagger after the shutter (first visit only);
+  Copy button swaps in `<span class="tick">Copied`; article signoff tick pops with its reveal.
+- **Hover** pills `translateY(-1px)` + lemon −6%; secondary fills 8%; cards hairline → ink; `.link` lemon underline grows in. All `--dur-ui --ease-out`.
+- **Reduced motion** (`prefers-reduced-motion: reduce`): reveals opacity-only 300ms, no transform; shutter/parallax off; REC dot static at .9;
+  ticks static; `scroll-behavior: auto` (smooth only under `no-preference`); view-transition pseudo animations `none`.
+- Print (`styles.css`) forces `.reveal` visible and `animation: none`.
 
 ## Do / Don't
 

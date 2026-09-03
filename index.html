@@ -22,7 +22,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903b" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
   <script src="/assets/js/motion.js" defer></script>
   <script type="application/ld+json">
@@ -89,10 +90,10 @@
           <a class="btn btn--secondary" href="/about/">About me</a>
         </div>
         <ul class="proof">
-          <li>21 years law enforcement</li>
-          <li>Director of LE BD, AI video analytics</li>
-          <li>Builder: onvif-mcp, AAR, EdgeProof</li>
-          <li>Author, Notes from the Field</li>
+          <li style="--i:0">21 years law enforcement</li>
+          <li style="--i:1">Director of LE BD, AI video analytics</li>
+          <li style="--i:2">Builder: onvif-mcp, AAR, EdgeProof</li>
+          <li style="--i:3">Author, Notes from the Field</li>
         </ul>
         </div>
       </div>
@@ -108,7 +109,7 @@
             <a class="btn btn--secondary" href="/lab/">See onvif-mcp in the Lab</a>
           </div>
         </div>
-<pre class="specimen" role="figure" aria-label="onvif-mcp terminal transcript">$ onvif-mcp list_cameras
+<pre class="specimen reveal" role="figure" aria-label="onvif-mcp terminal transcript">$ onvif-mcp list_cameras
   lobby   AXIS P3285-LVE   192.168.1.19   ok
   gate    AXIS Q6325-LE    192.168.1.32   ok  ptz
   yard    AXIS Q6358-LE    192.168.1.33   ok  ptz
@@ -131,7 +132,7 @@ $ onvif-mcp --verify
             <a class="btn btn--secondary" href="/lab/">See AAR in the Lab</a>
           </div>
         </div>
-<pre class="specimen" role="figure" aria-label="Agent Action Receipt, JSON">{
+<pre class="specimen reveal" role="figure" aria-label="Agent Action Receipt, JSON">{
   "action":      "ptz_preset",
   "target":      "yard · AXIS Q6358-LE",
   "principal":   "agent:claude-main",
@@ -154,7 +155,7 @@ $ onvif-mcp --verify
             <a class="btn btn--primary" href="/lab/">See EdgeProof in the Lab</a>
           </div>
         </div>
-<pre class="specimen" role="figure" aria-label="EdgeProof verify readout">$ edgeproof verify yard-20260902.mp4
+<pre class="specimen reveal" role="figure" aria-label="EdgeProof verify readout">$ edgeproof verify yard-20260902.mp4
   frame     00:12:41.033
   sha256    …9f2a
   signer    AXIS-Q6358  (cert …3e77)

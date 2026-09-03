@@ -22,9 +22,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903b" />
-  <link rel="stylesheet" href="/assets/css/article.css?v=20260903b" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -59,7 +61,7 @@
     </div>
     <a class="article-back" href="/notes/">&larr; Notes from the Field</a>
 
-    <header class="article-head">
+    <header class="article-head reveal">
       <p class="article-kicker">Agents · Accountability</p>
       <h1 class="article-title">We taught agents to act. We didn&#x27;t teach them to leave a receipt.</h1>
       <p class="article-dek">When an AI agent takes an action inside a physical security system, what record does it leave behind? I went looking. I don&#x27;t think I can finish this alone.</p>
@@ -67,7 +69,7 @@
     </header>
 
     <article class="article-body">
-      <p class="first">Last week I wrote about a camera company that shipped tooling for an AI agent instead of a person. That post ended on a question I couldn&#x27;t answer, and I&#x27;ve spent the days since chasing it. Here&#x27;s where I&#x27;ve gotten to. I&#x27;m posting it because I don&#x27;t think I can finish it alone.</p>
+      <p class="first reveal">Last week I wrote about a camera company that shipped tooling for an AI agent instead of a person. That post ended on a question I couldn&#x27;t answer, and I&#x27;ve spent the days since chasing it. Here&#x27;s where I&#x27;ve gotten to. I&#x27;m posting it because I don&#x27;t think I can finish it alone.</p>
       <p>The question is easy to ask and apparently hard to answer. When an agent takes an action inside a physical security system, what record does it leave behind?</p>
       <h2>What&#x27;s actually shipping</h2>
       <p>This isn&#x27;t hypothetical anymore. Rhombus published a workflow in July where an agent checks camera occupancy after hours, then calls a building management API to drop empty floors into energy-saving mode. Wowza launched a framework that fires downstream workflows off live video, model-agnostic, which is the sensible way to build it. Ambient put its agentic work around response and triage rather than detection. That&#x27;s the honest place to put it.</p>
@@ -109,7 +111,7 @@
       <a rel="prev" href="/notes/no-01/"><small>Previous</small>NO. 01 &middot; A camera company just treated an AI agent as its user.</a>
       <a rel="next" href="/notes/no-04/"><small>Next</small>NO. 04 &middot; Both of them typed a reason. The system wrote it down.</a>
     </nav>
-    <div class="article-signoff">Matthew Visher · <a href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> · <a href="/">matthewvisher.com</a></div>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> · <a href="/">matthewvisher.com</a></div>
   </main>
 
   <footer class="footer">

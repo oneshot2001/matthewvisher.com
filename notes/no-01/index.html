@@ -22,9 +22,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903b" />
-  <link rel="stylesheet" href="/assets/css/article.css?v=20260903b" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -59,7 +61,7 @@
     </div>
     <a class="article-back" href="/notes/">&larr; Notes from the Field</a>
 
-    <header class="article-head">
+    <header class="article-head reveal">
       <p class="article-kicker">Agents · Platforms</p>
       <h1 class="article-title">A camera company just treated an AI agent as its user.</h1>
       <p class="article-dek">Rhombus gave Claude Code the keys to its camera platform: a site map, tool docs, credentials, and permission to work. The first vendor to design for an agent as the user.</p>
@@ -67,7 +69,7 @@
     </header>
 
     <article class="article-body">
-      <p class="first">In April, Rhombus quietly shipped something I didn&#x27;t expect to see this soon: a plugin that teaches Claude Code, Anthropic&#x27;s terminal agent, how to operate their camera platform. One CLI command snapshots your entire deployment, every site, every camera, a still image from each, into files the agent reads before it answers anything. In July they published the workflow that made me sit up: the agent checks occupancy from cameras after 5 PM, and for any floor empty more than an hour, it calls the building management API and drops the HVAC into energy-saving mode.</p>
+      <p class="first reveal">In April, Rhombus quietly shipped something I didn&#x27;t expect to see this soon: a plugin that teaches Claude Code, Anthropic&#x27;s terminal agent, how to operate their camera platform. One CLI command snapshots your entire deployment, every site, every camera, a still image from each, into files the agent reads before it answers anything. In July they published the workflow that made me sit up: the agent checks occupancy from cameras after 5 PM, and for any floor empty more than an hour, it calls the building management API and drops the HVAC into energy-saving mode.</p>
       <p>I spent this week reading their GitHub repos and the actual skill files, not the press release, and here&#x27;s what I understand so far. They didn&#x27;t bolt a chatbot onto a dashboard. They gave the agent what you&#x27;d give a new employee: a map of the site, documentation for the tools, credentials, and permission to work. For twenty years the user of a security platform was a human at a console. This is the first vendor I&#x27;ve seen design for a different user, an agent with a terminal. &quot;List every offline camera across my deployment and group them by location&quot; is now a complete query. No console, no filters, no CSV export. That&#x27;s genuinely impressive work, and the pattern is public, so others will follow.</p>
       <p>And the more I studied it, the more questions I ended up with. I don&#x27;t have answers to these. I&#x27;m sharing them because I suspect the rest of the industry will hit them too, and I&#x27;d rather we start talking about them now.</p>
       <p>The first one comes from my old life. I spent 21 years in law enforcement, and I sat through enough evidence hearings to know that the record of how evidence was handled matters as much as the evidence. So: when an agent pulls frames from an alert clip, describes what it saw, and stitches a multi-camera incident video, what is the record of what it did? Which footage it touched, what it was asked, what it decided, what it skipped. As far as I can tell, nothing like that exists yet, anywhere in the industry. If defense counsel asks who reviewed the footage and the answer is &quot;a language model with an API key,&quot; what happens next? I honestly don&#x27;t know. That question keeps me up.</p>
@@ -85,7 +87,7 @@
     <nav class="article-nav" aria-label="Series">
       <a rel="next" href="/notes/no-02/"><small>Next</small>NO. 02 &middot; We taught agents to act. We didn&#x27;t teach them to leave a receipt.</a>
     </nav>
-    <div class="article-signoff">Matthew Visher · <a href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> · <a href="/">matthewvisher.com</a></div>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> · <a href="/">matthewvisher.com</a></div>
   </main>
 
   <footer class="footer">
