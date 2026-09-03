@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://matthewvisher.com/assets/og/og-home.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Matthew Visher — 21 years behind the badge. Now I build the tools I wished it had." />
+  <meta property="og:image:alt" content="Matthew Visher · 21 years behind the badge. Now I build the tools I wished it had." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Matthew Visher · Physical Security Tools" />
   <meta name="twitter:description" content="Verification and commissioning tools for physical security, built by a 21-year law enforcement veteran." />
@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903d" />
   <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
   <script src="/assets/js/motion.js" defer></script>
@@ -106,7 +106,7 @@
           <p class="t-lead stack-lead">AI agents can't talk to security cameras. Now they can.</p>
           <div class="actions">
             <a class="btn btn--primary" href="https://github.com/oneshot2001/onvif-mcp">View on GitHub</a>
-            <a class="btn btn--secondary" href="/lab/">See onvif-mcp in the Lab</a>
+            <a class="btn btn--secondary" href="/lab/onvif-mcp/">See onvif-mcp in the Lab</a>
           </div>
         </div>
 <pre class="specimen reveal" role="figure" aria-label="onvif-mcp terminal transcript">$ onvif-mcp list_cameras
@@ -118,7 +118,7 @@ $ onvif-mcp get_snapshot lobby
 $ onvif-mcp ptz_preset yard --name dock
   yard → preset "dock"   <b>device_acknowledged</b>
 $ onvif-mcp --verify
-  <b>chain OK</b> — 3 receipts, hashes linked, sigs valid</pre>
+  <b>chain OK</b> · 3 receipts, hashes linked, sigs valid</pre>
       </div>
     </section>
 
@@ -129,7 +129,7 @@ $ onvif-mcp --verify
           <p class="t-lead stack-lead">Signed, replayable proof of what an AI agent actually did.</p>
           <div class="actions">
             <a class="btn btn--primary" href="https://github.com/oneshot2001/aar">View on GitHub</a>
-            <a class="btn btn--secondary" href="/lab/">See AAR in the Lab</a>
+            <a class="btn btn--secondary" href="/lab/aar/">See AAR in the Lab</a>
           </div>
         </div>
 <pre class="specimen reveal" role="figure" aria-label="Agent Action Receipt, JSON">{
@@ -152,7 +152,7 @@ $ onvif-mcp --verify
           <h2 class="t-display">EdgeProof</h2>
           <p class="t-lead stack-lead">Video that can prove it hasn't been altered, from the lens to the courtroom.</p>
           <div class="actions">
-            <a class="btn btn--primary" href="/lab/">See EdgeProof in the Lab</a>
+            <a class="btn btn--primary" href="/lab/edgeproof/">See EdgeProof in the Lab</a>
           </div>
         </div>
 <pre class="specimen reveal" role="figure" aria-label="EdgeProof verify readout">$ edgeproof verify yard-20260902.mp4
@@ -186,6 +186,7 @@ $ onvif-mcp --verify
             <li><a href="/lab/">Lab</a></li>
             <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
             <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
           </ul>
         </div>
         <div>

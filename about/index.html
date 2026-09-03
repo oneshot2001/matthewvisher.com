@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://matthewvisher.com/assets/og/og-home.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Matthew Visher — 21 years behind the badge. Now I build the tools I wished it had." />
+  <meta property="og:image:alt" content="Matthew Visher · 21 years behind the badge. Now I build the tools I wished it had." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="About · Matthew Visher" />
   <meta name="twitter:description" content="21 years in law enforcement, major investigations and covert surveillance. Now building verification tools for physical security." />
@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903d" />
   <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
   <script src="/assets/js/motion.js" defer></script>
@@ -34,6 +34,12 @@
     "url": "https://matthewvisher.com",
     "email": "mailto:mkvisher@gmail.com",
     "jobTitle": "Director of Law Enforcement Business Development",
+    "hasOccupation": [
+      { "@type": "Occupation", "name": "Director of Law Enforcement Business Development" },
+      { "@type": "Occupation", "name": "Independent software builder" }
+    ],
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Salt Lake Community College" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Salt Lake City", "addressRegion": "UT" },
     "sameAs": [
       "https://www.linkedin.com/in/matthew-visher-6b4692a8/",
       "https://x.com/MatthewVisher",
@@ -70,6 +76,7 @@
   </header>
 
   <main id="main">
+    <p class="print-only">Matthew Visher · mkvisher@gmail.com · matthewvisher.com · Salt Lake City, Utah</p>
 
     <section class="tile tile--light">
       <div class="tile__inner tile__inner--prose about-band">
@@ -78,6 +85,9 @@
           <p class="t-lead stack-lead">One career, told in order.</p>
           <div class="prose">
             <p>I spent 21 years as a sworn law enforcement officer, retiring as a sergeant. That means two decades of using the tools this industry sells: the cameras, the plate readers, the records systems, the video that did or didn't hold up when it mattered.</p>
+          </div>
+          <div class="actions">
+            <a class="btn btn--secondary" href="/Matthew-Visher-Resume.pdf" download>Download PDF résumé</a>
           </div>
         </div>
         <picture class="about-band__art">
@@ -114,6 +124,48 @@
           <div><dt>Product leader</dt><dd>Director of law enforcement business development at an AI video analytics company.</dd></div>
           <div><dt>Builder</dt><dd>Independent open-source tools and products for verification and commissioning.</dd></div>
         </dl>
+        <section id="timeline" class="reveal">
+          <h2 class="t-section">Timeline</h2>
+          <ol class="timeline">
+            <li>
+              <span class="timeline__years">2026–</span>
+              <h3 class="timeline__role">Independent builder</h3>
+              <p class="timeline__org">onvif-mcp, Agent Action Receipts, EdgeProof, camspec, Commissioning Walk</p>
+              <p class="timeline__note">Open-source verification and commissioning tools for physical security.</p>
+            </li>
+            <li>
+              <span class="timeline__years">2026–</span>
+              <h3 class="timeline__role">Director of Law Enforcement Business Development</h3>
+              <p class="timeline__org">An AI video analytics company</p>
+              <p class="timeline__note">Real-time crime centers and agency deployments; the vendor side of the counter.</p>
+            </li>
+            <li>
+              <span class="timeline__years">2021–2026</span>
+              <h3 class="timeline__role">Regional Sales Manager</h3>
+              <p class="timeline__org">Axis Communications, Utah</p>
+              <p class="timeline__note">Camera and access-control solutions for financial institutions and public agencies; integrator and A&amp;E partnerships.</p>
+            </li>
+            <li>
+              <span class="timeline__years">2020–2021</span>
+              <h3 class="timeline__role">Investigator</h3>
+              <p class="timeline__org">Utah Division of Occupational and Professional Licensing</p>
+              <p class="timeline__note">Regulatory compliance investigations; intelligence-platform consulting for real-time threat assessment.</p>
+            </li>
+            <li>
+              <span class="timeline__years">2017–2020</span>
+              <h3 class="timeline__role">Fraud &amp; Security Specialist Manager</h3>
+              <p class="timeline__org">Deseret First Credit Union</p>
+              <p class="timeline__note">Fraud program (SAR/CTR, BSA/AML), physical security infrastructure (Axis + Milestone), law-enforcement liaison.</p>
+            </li>
+            <li>
+              <span class="timeline__years">1996–2017</span>
+              <h3 class="timeline__role">Police Sergeant</h3>
+              <p class="timeline__org">Unified Police Department, Salt Lake City</p>
+              <p class="timeline__note">Supervised multi-agency federal task forces (US Marshals, DEA, ATF, FBI, DHS); financial-crime and asset-forfeiture investigations; protocols for high-risk surveillance and confidential-informant management.</p>
+            </li>
+          </ol>
+          <p class="t-caption timeline__caption">Certifications: Federal Task Force Operations · Axis Communications Systems · Milestone Systems · BSA/AML Compliance.<br />Education: Salt Lake Community College.</p>
+        </section>
         <div class="prose">
           <h2>Operating principles</h2>
           <ul>
@@ -139,6 +191,7 @@
             <li><a href="/lab/">Lab</a></li>
             <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
             <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
           </ul>
         </div>
         <div>

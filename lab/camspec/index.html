@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>camspec · Lab · Matthew Visher</title>
+  <meta name="description" content="Camera commissioning as code: a YAML spec, a read-only plan, an approved and verified apply, and a PASS/FAIL handoff PDF. Ships inside onvif-mcp; live-verified on AXIS hardware." />
+  <link rel="canonical" href="https://matthewvisher.com/lab/camspec/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="camspec · Lab · Matthew Visher" />
+  <meta property="og:description" content="Camera commissioning as code: a YAML spec, a read-only plan, an approved and verified apply, and a PASS/FAIL handoff PDF. Ships inside onvif-mcp; live-verified on AXIS hardware." />
+  <meta property="og:url" content="https://matthewvisher.com/lab/camspec/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-home.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Matthew Visher · 21 years behind the badge. Now I build the tools I wished it had." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="camspec · Lab · Matthew Visher" />
+  <meta name="twitter:description" content="Camera commissioning as code: a YAML spec, a read-only plan, an approved and verified apply, and a PASS/FAIL handoff PDF. Ships inside onvif-mcp; live-verified on AXIS hardware." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-home.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903d" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/lab.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "camspec",
+      "description": "Commissioning-as-code for security cameras: YAML desired state, read-only plan, verified apply, PASS/FAIL handoff.",
+      "url": "https://matthewvisher.com/lab/camspec/",
+      "codeRepository": "https://github.com/oneshot2001/onvif-mcp",
+      "programmingLanguage": "Python",
+      "license": "https://opensource.org/licenses/MIT"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/" aria-current="page">Lab</a>
+        <a href="/notes/">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/" aria-current="page">Lab</a>
+          <a href="/notes/">Notes</a>
+          <a href="/about/">About</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>LAB · CAMSPEC</span><span class="am-no">04 / 05</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/lab/">&larr; Lab</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Prototype · Commissioning as code</p>
+      <h1 class="article-title">camspec</h1>
+      <p class="article-dek">A camera spec you can diff, a plan you can read, an apply that can fail, and a handoff someone can sign.</p>
+      <dl class="lab-meta">
+        <div><dt>Type</dt><dd>Prototype</dd></div>
+        <div><dt>Status</dt><dd><span class="status"><span class="tick" aria-hidden="true"></span>Beta</span> · Phases 1+2 live-verified Aug 29 to 30</dd></div>
+        <div><dt>Updated</dt><dd>Aug 2026</dd></div>
+        <div><dt>Repo</dt><dd><a href="https://github.com/oneshot2001/onvif-mcp/blob/main/docs/commission-packet.md">onvif-mcp · docs/commission-packet.md</a></dd></div>
+        <div><dt>License</dt><dd>MIT</dd></div>
+      </dl>
+    </header>
+
+    <article class="article-body">
+      <h2>The problem in the field</h2>
+      <p class="first reveal">Every site's spec is prose plus a PDF plus a Teams thread. The installer reads what they can, sets what they remember, and the sign-off is "it shows a picture." Six months later somebody inherits the site and has no way to know what the cameras were supposed to be set to, let alone whether they still are.</p>
+      <h2>Why the usual answers fail</h2>
+      <p>Vendor config tools are per-camera UIs with a screenshot as the record. Bulk tools push settings and don't read them back, so a camera that answers 200 and quietly ignores you looks the same as one that complied. Nothing re-checks the site after the truck leaves, and nothing undoes a bad change.</p>
+      <h2>What I built</h2>
+      <p>Commissioning as code. Desired state lives in specs/*.yaml. A read-only plan shows the live-to-desired diff. The apply runs only after explicit approval, checks its postconditions by reading the camera back, and rolls back if a postcondition fails. A later conformance check compares the site to the spec again. A model can write the spec and explain deviations in plain language; the apply itself is deterministic and does not involve a model.</p>
+      <h2>How it works</h2>
+      <p>Phase 1 covers parameters and PTZ presets, with a JSON handoff and six acceptance tests, including a verify that fails when something changes out of band and a forced-fail rollback. It passed live on a Q6358. Phase 2 deploys AXIS Object Analytics scenarios with merge-by-name and readback, watches events over a TLS WebSocket, reads presets back, and rolls scenarios back on a failed apply. The walk test on August 30 saw one motion event inside a 60-second window on a P3285, and produced this:</p>
+<pre class="specimen" role="figure" aria-label="camspec handoff excerpt">handoff   lobby · AXIS P3285-LVE · 2026-08-30
+  plan       3 changes   2 params · 1 preset
+  apply      approved    postconditions 3/3
+  readback   preset "entry"            ok
+  event      motion, 1 in 60 s window  ok
+  rollback   not needed
+  output     handoff/lobby-20260830.json → .pdf
+  <b>PASS</b>     installer ________   owner ________</pre>
+      <p>The JSON handoff is the source of truth. The PDF is rendered from it: a PASS or FAIL badge, the device block, the plan, what was applied, any verification failures, rollback status, and signature lines.</p>
+      <h2>Where it stands</h2>
+      <p>Beta, AXIS only, one bench. The quirks it has already caught are the reason readback exists. A Q6358 on OS 12.9 returns 204 for setserverpresetname and never persists the name. A P3285 on OS 12.7 needs --anyauth on ACAP endpoints. The camera clock drifted 17 seconds without NTP, so events are stamped with host time. No integrator has trialed it, and the AXIS OS 13 preview has breaking changes I haven't absorbed yet.</p>
+      <h2>What's next</h2>
+      <p>Put it in front of installers. The kill criterion is written down: three integrators decline, or it cuts the checklist by less than 30 percent, and I stop. The wireless <a href="/lab/commissioning-walk/">Commissioning Walk</a> may end up living here as one more pin in the same handoff.</p>
+      <ul>
+        <li><a href="https://github.com/oneshot2001/onvif-mcp/blob/main/docs/commission-packet.md">docs/commission-packet.md</a> in onvif-mcp</li>
+        <li><a href="/lab/onvif-mcp/">onvif-mcp</a>, the server it ships inside</li>
+      </ul>
+    </article>
+
+    <nav class="article-nav" aria-label="Lab">
+      <a rel="prev" href="/lab/edgeproof/"><small>Previous</small>EdgeProof</a>
+      <a rel="next" href="/lab/commissioning-walk/"><small>Next</small>Commissioning Walk</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>

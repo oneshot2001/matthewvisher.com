@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent Action Receipts · Lab · Matthew Visher</title>
+  <meta name="description" content="A wire spec and offline verifier for signed, tamper-evident receipts of what an AI agent saw, was allowed to do, and did. Deterministic CBOR, COSE_Sign1, stdlib-only Python verifier." />
+  <link rel="canonical" href="https://matthewvisher.com/lab/aar/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Agent Action Receipts · Lab · Matthew Visher" />
+  <meta property="og:description" content="A wire spec and offline verifier for signed, tamper-evident receipts of what an AI agent saw, was allowed to do, and did. Deterministic CBOR, COSE_Sign1, stdlib-only Python verifier." />
+  <meta property="og:url" content="https://matthewvisher.com/lab/aar/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-home.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Matthew Visher · 21 years behind the badge. Now I build the tools I wished it had." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Agent Action Receipts · Lab · Matthew Visher" />
+  <meta name="twitter:description" content="A wire spec and offline verifier for signed, tamper-evident receipts of what an AI agent saw, was allowed to do, and did. Deterministic CBOR, COSE_Sign1, stdlib-only Python verifier." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-home.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903d" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/lab.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "Agent Action Receipts",
+      "description": "Wire spec and offline verifier for signed, tamper-evident receipts of AI agent actions.",
+      "url": "https://matthewvisher.com/lab/aar/",
+      "codeRepository": "https://github.com/oneshot2001/aar",
+      "programmingLanguage": "Python",
+      "license": "https://www.apache.org/licenses/LICENSE-2.0"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/" aria-current="page">Lab</a>
+        <a href="/notes/">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/" aria-current="page">Lab</a>
+          <a href="/notes/">Notes</a>
+          <a href="/about/">About</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>LAB · AAR</span><span class="am-no">02 / 05</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/lab/">&larr; Lab</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Open-source spec + tool · Evidence</p>
+      <h1 class="article-title">Agent Action Receipts</h1>
+      <p class="article-dek">Before an agent's output moves something in the world or becomes evidence, what has to be provable about it?</p>
+      <dl class="lab-meta">
+        <div><dt>Type</dt><dd>Open-source spec + tool</dd></div>
+        <div><dt>Status</dt><dd><span class="status"><span class="tick" aria-hidden="true"></span>Active</span> · v0.2-rc7, v0.2.0 tag due Sep 4</dd></div>
+        <div><dt>Updated</dt><dd>Sep 2026</dd></div>
+        <div><dt>Repo</dt><dd><a href="https://github.com/oneshot2001/aar">github.com/oneshot2001/aar</a></dd></div>
+        <div><dt>License</dt><dd>Apache-2.0 code · CC BY 4.0 spec</dd></div>
+      </dl>
+    </header>
+
+    <article class="article-body">
+      <h2>The problem in the field</h2>
+      <p class="first reveal">I spent a career handing evidence to people who had every reason to doubt it. Chain of custody was the answer: who had it, when, and what they did with it, written down in a way a stranger could check. Agents are now doing things that used to need a person with a badge. Unlocking a door. Moving a camera. Tagging a clip that ends up in a case file. The question I keep coming back to is what must be independently provable about what an agent saw, inferred, was authorized to do, and actually did, before its output triggers physical-world action or becomes evidence.</p>
+      <h2>Why the usual answers fail</h2>
+      <p>The audit trail lives in the platform that did the work, so a compromised or careless platform grades its own homework. Reading the trail often needs an account and a license from the vendor. And JSON logs are easy to write and hard to sign, because two encoders will serialize the same record two ways.</p>
+      <h2>What I built</h2>
+      <p>A small wire spec and a reference verifier. Receipts are deterministic CBOR with a detached COSE_Sign1 signature (ES256), closed schemas, and normative CDDL. The verifier, pyref, is Python 3.11 standard library only. No network, no wall clock, no dependencies. Verifying receipts is free, forever, offline, with no account and no license from anyone. The conformance vectors are byte-pinned known-answer tests generated by an independent TypeScript harness, and the threat model, v0.1, lists 30 findings. The reference producer is <a href="/lab/onvif-mcp/">onvif-mcp</a>.</p>
+      <h2>How it works</h2>
+      <p>A producer signs each receipt and links it to the previous one. The verifier checks the schema, the signature, the chain, and the contents of a declared epoch. Output is short on purpose:</p>
+<pre class="specimen" role="figure" aria-label="pyref verify output">$ python -m pyref verify receipts/2026-08-30.cbor
+  receipts   3
+  schema     aar/0.2      ok
+  cose       ES256        ok   kid …3e77
+  chain      seq 1 → 3    ok
+  epoch      2026-08-30T14:00Z … 14:59Z   ok
+  <b>VERIFIED</b>   3/3   offline · stdlib · no clock</pre>
+      <p>What that gives you: attribution to a signer, tamper evidence after emission, and tamper evidence over the declared contents of an epoch. What it does not give you: it can't stop a compromised signer from lying before it signs, it can't prove an inference was correct, and it doesn't establish legal compliance with anything. I'd rather say that here than have someone find out in a hearing.</p>
+      <h2>Where it stands</h2>
+      <p>A stable experimental spec, not an adopted standard. There is no second independent implementation yet, and that gap matters, because the best bug I've found so far came from a cross-check. The reference CBOR encoder wrote every unsigned integer between 2^24 and 2^32 wrong. That range covers every real Unix timestamp. All 188 fixtures stayed green because they came from the same encoder. The clean-room second implementation caught it on its first pass. One implementation agreeing with itself proves nothing.</p>
+      <h2>What's next</h2>
+      <p>Tag v0.2.0 on September 4, run the conformance suite in CI, and get one external producer emitting receipts that pyref verifies without my help. That external run, or an acknowledgement from the people writing the adjacent standards, is the signal I'm watching for.</p>
+      <ul>
+        <li><a href="https://github.com/oneshot2001/aar">github.com/oneshot2001/aar</a></li>
+        <li><a href="/lab/onvif-mcp/">onvif-mcp</a>, the reference producer</li>
+      </ul>
+    </article>
+
+    <nav class="article-nav" aria-label="Lab">
+      <a rel="prev" href="/lab/onvif-mcp/"><small>Previous</small>onvif-mcp</a>
+      <a rel="next" href="/lab/edgeproof/"><small>Next</small>EdgeProof</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>

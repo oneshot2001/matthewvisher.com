@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Commissioning Walk · Lab · Matthew Visher</title>
+  <meta name="description" content="What a wireless camera link needs to hold a stream, day and night, measured on real cameras and frozen into installer pass/fail thresholds. Thresholds v0.1; no app yet." />
+  <link rel="canonical" href="https://matthewvisher.com/lab/commissioning-walk/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Commissioning Walk · Lab · Matthew Visher" />
+  <meta property="og:description" content="What a wireless camera link needs to hold a stream, day and night, measured on real cameras and frozen into installer pass/fail thresholds. Thresholds v0.1; no app yet." />
+  <meta property="og:url" content="https://matthewvisher.com/lab/commissioning-walk/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-home.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Matthew Visher · 21 years behind the badge. Now I build the tools I wished it had." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Commissioning Walk · Lab · Matthew Visher" />
+  <meta name="twitter:description" content="What a wireless camera link needs to hold a stream, day and night, measured on real cameras and frozen into installer pass/fail thresholds. Thresholds v0.1; no app yet." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-home.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903d" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/lab.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Commissioning Walk",
+      "description": "Measured wireless bitrate thresholds for security cameras, frozen into installer pass/fail pin profiles.",
+      "url": "https://matthewvisher.com/lab/commissioning-walk/"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/" aria-current="page">Lab</a>
+        <a href="/notes/">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/" aria-current="page">Lab</a>
+          <a href="/notes/">Notes</a>
+          <a href="/about/">About</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>LAB · COMMISSIONING-WALK</span><span class="am-no">05 / 05</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/lab/">&larr; Lab</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Experiment · Wireless links</p>
+      <h1 class="article-title">Commissioning Walk</h1>
+      <p class="article-dek">What a wireless camera link has to carry, day and night, turned into a pass or fail an installer can sign.</p>
+      <dl class="lab-meta">
+        <div><dt>Type</dt><dd>Experiment</dd></div>
+        <div><dt>Status</dt><dd><span class="status"><span class="tick" aria-hidden="true"></span>Measuring</span> · thresholds frozen v0.1</dd></div>
+        <div><dt>Updated</dt><dd>Aug 2026</dd></div>
+        <div><dt>Link</dt><dd>No public repo yet · see <a href="/lab/camspec/">camspec</a></dd></div>
+        <div><dt>License</dt><dd>Not yet released</dd></div>
+      </dl>
+    </header>
+
+    <article class="article-body">
+      <h2>The problem in the field</h2>
+      <p class="first reveal">Wireless camera links fail in ways a laptop speed test doesn't catch. The installer stands at the mount, the phone shows four bars, the site gets signed off, and the stream drops at 2 a.m. when the lot is busy and the camera is pushing four times the bitrate it did at noon. Nobody measured what the camera would need. They measured what the phone could see.</p>
+      <h2>Why the usual answers fail</h2>
+      <p>Android throttles foreground scans to four per two minutes, so the AR heatmap apps are drawing beautiful false precision. Signal strength isn't quality. And one phone at one moment is not the camera that will live there for five years. The market splits into consumer visualizers at zero to ten dollars and professional survey kits at five thousand dollars of hardware plus a seat per year. Nothing in between sells evidence and a verdict at phone price.</p>
+      <h2>What I built</h2>
+      <p>So far, the numbers. I ran 20-second RTSP over TCP captures, VBR, uncapped, on my own cameras. A P3285 on a quiet 1080p30 H.264 scene averaged 1.1 Mbps with a 2.3 peak. A Q6358 on a static 4K60 scene sat at 10.8. A Q6325 on a busy roundabout at 1080p60 ran 28 to 36.5 average and peaked at 43.1. The Q6358 on a valley scene at 4K60 ran 80.6 to 82.9 with an 86.9 peak. Motion dominates: a 30x spread between quiet and busy. Peaks run 1.2 to 2.1 times average. H.265 and AV1 saved nothing at uncapped VBR, and 60 fps costs about double.</p>
+      <h2>How it works</h2>
+      <p>The wedge is a pin: a 5-to-10-second active workload run at each mount point while associated, measuring sustained throughput, latency, jitter, loss, roam and BSSID, and band state. Pass means every one-second bucket clears the profile's floor, loss stays under 0.5 percent, and jitter under 20 ms. The output is a Commissioning Certificate PDF with a pass or fail. The report is the product.</p>
+<pre class="specimen" role="figure" aria-label="Frozen v0.1 pin profiles">profile        floor    pin   pass rule, every 1 s bucket
+CAM-QUIET        4 Mbps 10 s  ≥ floor, loss &lt; 0.5%, jitter &lt; 20 ms
+CAM-STD          8 Mbps 10 s  same
+CAM-BUSY        45 Mbps 15 s  same
+CAM-4K          20 Mbps 15 s  same
+CAM-4K60-BUSY  100 Mbps 15 s  same</pre>
+      <h2>Where it stands</h2>
+      <p>Thresholds are frozen at v0.1 and there is no app. The night run on August 30 changed the design. IR didn't inflate bitrate, and the Q6358 held about 30 fps at 17.8 Mbps. But the P3285 in IR wash collapsed to 0.1 Mbps of unusable gray, which means a bandwidth-only walk would pass a blind camera. An image-sanity check, entropy or edge density, is now part of the plan. Caveats: Zipstream state isn't readable on OS 12.x, so these numbers are near worst case, and a multi-camera uplink needs N times the profile.</p>
+      <h2>What's next</h2>
+      <p>An Android pin-sampler spike to find out whether a phone can run the workload honestly, then three to five installer interviews. If it earns its keep it may live as a "WiFi hold" pin inside <a href="/lab/camspec/">camspec</a> rather than as its own app.</p>
+      <ul>
+        <li><a href="/lab/camspec/">camspec</a>, where this may end up</li>
+        <li><a href="/lab/onvif-mcp/">onvif-mcp</a>, the server camspec ships inside</li>
+      </ul>
+    </article>
+
+    <nav class="article-nav" aria-label="Lab">
+      <a rel="prev" href="/lab/camspec/"><small>Previous</small>camspec</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>

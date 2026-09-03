@@ -1,0 +1,26 @@
+/* Lab — detail pages (article register + mono metadata block) and the index feature card */
+.lab-meta { margin: 30px 0 0; padding: 18px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sm) var(--lg); text-align: left;
+  font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: .02em; color: var(--ink); }
+.lab-meta div { display: grid; grid-template-columns: 8ch minmax(0, 1fr); gap: var(--sm); }
+.lab-meta dt { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; line-height: 1.8; color: var(--muted); }
+.lab-meta dd { margin: 0; overflow-wrap: anywhere; }
+.lab-meta .status { color: var(--gold); font-weight: 600; }
+.lab-meta .tick { margin-right: var(--xs); }
+.lab-meta a { color: var(--ink); text-decoration-color: var(--lemon); text-decoration-thickness: 2px; }
+@media (max-width: 640px) { .lab-meta { grid-template-columns: 1fr; } }
+
+.article-body h2:first-child { margin-top: 0; }
+.article-body code { font-family: var(--font-mono); font-size: .85em; }
+.article-body ul { margin: 0 0 26px; padding-left: 1.2em; }
+.article-body li { margin-bottom: var(--xs); }
+.article-body .specimen { margin: 0 0 26px; background: var(--charcoal); color: var(--on-dark);
+  border-color: color-mix(in oklch, var(--on-dark) 18%, transparent); }
+.article-body .specimen b { color: var(--lemon); }
+
+/* Lab index — feature card: copy left, specimen right ≥834 */
+.card--feature { min-width: 0; display: grid; gap: var(--lg); align-items: center; }
+@media (min-width: 834px) { .card--feature { grid-template-columns: 1fr 1fr; gap: var(--xxl); } }
+.card .specimen { background: var(--charcoal); color: var(--on-dark);
+  border-color: color-mix(in oklch, var(--on-dark) 18%, transparent); }
+.card .specimen b { color: var(--lemon); }

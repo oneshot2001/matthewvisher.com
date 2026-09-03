@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EdgeProof · Lab · Matthew Visher</title>
+  <meta name="description" content="Prove a clip came from a specific camera at a specific time and was not altered. Signed at the camera edge with public PKI; a per-detection Signed Detection Record that outlives the video." />
+  <link rel="canonical" href="https://matthewvisher.com/lab/edgeproof/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="EdgeProof · Lab · Matthew Visher" />
+  <meta property="og:description" content="Prove a clip came from a specific camera at a specific time and was not altered. Signed at the camera edge with public PKI; a per-detection Signed Detection Record that outlives the video." />
+  <meta property="og:url" content="https://matthewvisher.com/lab/edgeproof/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-home.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Matthew Visher · 21 years behind the badge. Now I build the tools I wished it had." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="EdgeProof · Lab · Matthew Visher" />
+  <meta name="twitter:description" content="Prove a clip came from a specific camera at a specific time and was not altered. Signed at the camera edge with public PKI; a per-detection Signed Detection Record that outlives the video." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-home.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903d" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/lab.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "EdgeProof",
+      "description": "Camera-edge video provenance: per-detection Signed Detection Records and signed video, verified against public PKI.",
+      "url": "https://matthewvisher.com/lab/edgeproof/"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/" aria-current="page">Lab</a>
+        <a href="/notes/">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/" aria-current="page">Lab</a>
+          <a href="/notes/">Notes</a>
+          <a href="/about/">About</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>LAB · EDGEPROOF</span><span class="am-no">03 / 05</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/lab/">&larr; Lab</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Product · Video provenance</p>
+      <h1 class="article-title">EdgeProof</h1>
+      <p class="article-dek">Prove a clip came from a specific camera at a specific time, and that nobody touched it on the way.</p>
+      <dl class="lab-meta">
+        <div><dt>Type</dt><dd>Product</dd></div>
+        <div><dt>Status</dt><dd><span class="status"><span class="tick" aria-hidden="true"></span>In development</span> · concept validated, Tier 0 shipped</dd></div>
+        <div><dt>Updated</dt><dd>Jul 2026</dd></div>
+        <div><dt>Repo</dt><dd>Opens after v0.1 review</dd></div>
+        <div><dt>License</dt><dd>Built on the MIT-licensed signed video framework</dd></div>
+      </dl>
+    </header>
+
+    <article class="article-body">
+      <h2>The problem in the field</h2>
+      <p class="first reveal">Footage gets challenged. I watched it happen for two decades, and the challenge is rarely about what the video shows. It's about whether that file is the file the camera made. The chain of custody for a clip today rests on people and paperwork: who exported it, from which server, and whether anyone believes them. A hash taken at export proves the file hasn't changed since export. It says nothing about the hours before.</p>
+      <h2>Why the usual answers fail</h2>
+      <p>Watermarks are cosmetic. Server-side signing ties trust to the VMS vendor's key, so you're trusting the same system whose export you were questioning. Proprietary evidence formats lock the proof to one player. And most schemes sign the rendered video, which is the wrong object when an analytic fired on a frame and the frame is what matters.</p>
+      <h2>What I built</h2>
+      <p>EdgeProof signs at the camera edge using public PKI. It builds on the MIT-licensed signed video framework, and ONVIF Media Signing v25.12 is the cross-vendor path for H.264 and H.265. Audio is out of scope. The core primitive is the Signed Detection Record: about 500 bytes of CBOR plus a detached COSE_Sign1 signature over ECDSA P-256, signed per detection.</p>
+<pre class="specimen" role="figure" aria-label="Signed Detection Record field list">Signed Detection Record   ~500 B · CBOR + COSE_Sign1 (ES256)
+  camera_id      device identity, bound to its certificate
+  captured_at    camera time of the source frame
+  analytic       name + version of what fired
+  frame_sha256   hash of the source frame, not a render
+  detection      class · confidence · region
+  seq / prev     place in the per-camera chain
+  sig            detached, ECDSA P-256
+  trust_tier     <b>absent by design</b> · the verifier decides</pre>
+      <h2>How it works</h2>
+      <p>One record, two envelopes. A standalone CBOR/COSE file that outlives the video, so the proof survives even when the footage is purged, and an ONVIF SEI tag carried inside the stream when the video is retained. Trust is a ladder that the verifier climbs, and the record never claims its own rung. Tier 0 is a software key. Tier 2 is a per-camera key attested by the manufacturer, which is the ship target and depends on vendors implementing it. Tier 3, a factory-burned key, is probably out of reach.</p>
+      <h2>Where it stands</h2>
+      <p>The concept is validated and Tier 0 has shipped: edgeproof-sdr v0.1.0 on July 4, 2026 and v0.2.0 the next day. There is no hosted service. The repository stays private until it has been through a review I'm not going to skip. A software key proves the record wasn't altered after signing; it does not yet prove the record came from that camera. That is the Tier 2 gap, and it is a vendor gap as much as mine.</p>
+      <h2>What's next</h2>
+      <p>A hosted verifier, then pilots with agencies that have a reason to care. The benchmark I've set: a 500-clip test set with zero false confirmations. A verifier that ever says yes to a doctored clip is worse than no verifier at all.</p>
+      <ul>
+        <li>Repo opens after v0.1 review</li>
+        <li><a href="/lab/aar/">Agent Action Receipts</a>, the same signing discipline applied to agents</li>
+      </ul>
+    </article>
+
+    <nav class="article-nav" aria-label="Lab">
+      <a rel="prev" href="/lab/aar/"><small>Previous</small>Agent Action Receipts</a>
+      <a rel="next" href="/lab/camspec/"><small>Next</small>camspec</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>

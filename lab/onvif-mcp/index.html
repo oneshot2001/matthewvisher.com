@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>onvif-mcp · Lab · Matthew Visher</title>
+  <meta name="description" content="An MCP server that gives AI agents a governed, receipted interface to security cameras: discovery, snapshots, PTZ, commissioning. AXIS VAPIX and ONVIF under one contract." />
+  <link rel="canonical" href="https://matthewvisher.com/lab/onvif-mcp/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="onvif-mcp · Lab · Matthew Visher" />
+  <meta property="og:description" content="An MCP server that gives AI agents a governed, receipted interface to security cameras: discovery, snapshots, PTZ, commissioning. AXIS VAPIX and ONVIF under one contract." />
+  <meta property="og:url" content="https://matthewvisher.com/lab/onvif-mcp/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-home.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Matthew Visher · 21 years behind the badge. Now I build the tools I wished it had." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="onvif-mcp · Lab · Matthew Visher" />
+  <meta name="twitter:description" content="An MCP server that gives AI agents a governed, receipted interface to security cameras: discovery, snapshots, PTZ, commissioning. AXIS VAPIX and ONVIF under one contract." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-home.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903d" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/lab.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "onvif-mcp",
+      "description": "MCP server giving AI agents a governed, receipted interface to security cameras over AXIS VAPIX and ONVIF.",
+      "url": "https://matthewvisher.com/lab/onvif-mcp/",
+      "codeRepository": "https://github.com/oneshot2001/onvif-mcp",
+      "programmingLanguage": "Python",
+      "license": "https://opensource.org/licenses/MIT"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/" aria-current="page">Lab</a>
+        <a href="/notes/">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/" aria-current="page">Lab</a>
+          <a href="/notes/">Notes</a>
+          <a href="/about/">About</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>LAB · ONVIF-MCP</span><span class="am-no">01 / 05</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/lab/">&larr; Lab</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Open-source tool · MCP server</p>
+      <h1 class="article-title">onvif-mcp</h1>
+      <p class="article-dek">The governed doorway between AI agents and video infrastructure.</p>
+      <dl class="lab-meta">
+        <div><dt>Type</dt><dd>Open-source tool</dd></div>
+        <div><dt>Status</dt><dd><span class="status"><span class="tick" aria-hidden="true"></span>Active</span> · v0.1.0, experimental</dd></div>
+        <div><dt>Updated</dt><dd>Aug 2026</dd></div>
+        <div><dt>Repo</dt><dd><a href="https://github.com/oneshot2001/onvif-mcp">github.com/oneshot2001/onvif-mcp</a></dd></div>
+        <div><dt>License</dt><dd>MIT</dd></div>
+      </dl>
+    </header>
+
+    <article class="article-body">
+      <h2>The problem in the field</h2>
+      <p class="first reveal">Most of what I learned about video evidence comes down to one question: can you prove where it came from and that nobody touched it? For twenty-one years that question was about footage. Now agents are reaching for the cameras themselves. An agent that can pull a snapshot or swing a PTZ head is an operator, and the record of what an agent did is usually a log line inside the same system that did it. Edit the log and nothing notices.</p>
+      <h2>Why the usual answers fail</h2>
+      <p>ONVIF is the industry standard, and it is a swamp of SOAP, profiles, and vendor quirks. The quick fix is a thin wrapper that hands a model the raw camera API and puts the policy in the prompt. That leaves two holes. The agent can do anything the credential can do. And the check that stopped it lives nowhere. A gate that fires without leaving a record can't prove it ever fired.</p>
+      <h2>What I built</h2>
+      <p>An MCP server over stdio. The tools are list_cameras, get_snapshot, ptz_move, ptz_preset, get_receipts, and commission_plan / apply / verify. Policy is per agent and fails closed: a tool allowlist, a camera allowlist, and PTZ step bounds. An agent the policy doesn't name gets nothing. No secrets are written to disk; credentials are resolved at startup from a local store.</p>
+      <h2>How it works</h2>
+      <p>Every call, allowed or denied, appends a receipt to a JSONL file. Each receipt carries the hash of the one before it and an ed25519 signature. Frames are content-hashed, so a snapshot can be tied to the receipt that produced it. Running with <code>--verify</code> walks the chain, and if one byte has changed it names the exact sequence number. This is what a denied call looks like on disk:</p>
+<pre class="specimen" role="figure" aria-label="onvif-mcp denied-call receipt">{
+  "seq":       41,
+  "ts":        "2026-08-20T21:04:17.512Z",
+  "agent":     "agent:research-bot",
+  "tool":      "ptz_move",
+  "camera":    "yard",
+  "decision":  <b>"deny"</b>,
+  "reason":    "camera not in allowlist",
+  "prev":      "sha256:…c04d",
+  "sig":       "ed25519:…8Qf1"
+}</pre>
+      <p>Since August 15 the receipts are wire-conformant with <a href="/lab/aar/">Agent Action Receipts</a>, and AAR's independent verifier checks them. Under the one tool contract there are two transports, AXIS VAPIX over HTTP CGI and ONVIF SOAP, picked per camera. The SOAP is hand-authored. I claim no ONVIF conformance.</p>
+      <h2>Where it stands</h2>
+      <p>Version 0.1.0, experimental, tested against the three AXIS cameras on my own bench. Two things I measured rather than read: on AXIS OS 12.9.57 the admin account works for ONVIF over digest auth, while older 12.x firmware needs a separate ONVIF account. RelativeMove pan maps to degrees divided by 360 exactly; tilt and zoom are approximate. No non-AXIS hardware has been tried. The server signs with one key, not one per agent. It went out on Show HN on August 20, 2026.</p>
+      <h2>What's next</h2>
+      <p>Per-agent signing keys and a signed policy file, clip export, non-AXIS ONVIF hardware, and alignment with the MCP 2026-07-28 stateless revision. A side-ship came out of this work: <a href="https://github.com/oneshot2001/vapix-openapi">vapix-openapi</a>, an MIT-licensed OpenAPI description of the fifteen VAPIX paths I needed.</p>
+      <ul>
+        <li><a href="https://github.com/oneshot2001/onvif-mcp">github.com/oneshot2001/onvif-mcp</a></li>
+        <li><a href="https://github.com/oneshot2001/vapix-openapi">github.com/oneshot2001/vapix-openapi</a></li>
+        <li><a href="/lab/camspec/">camspec</a>, the commissioning tools that ship inside it</li>
+      </ul>
+    </article>
+
+    <nav class="article-nav" aria-label="Lab">
+      <a rel="next" href="/lab/aar/"><small>Next</small>Agent Action Receipts</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>
