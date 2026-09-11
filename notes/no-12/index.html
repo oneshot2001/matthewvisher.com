@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The cameras signed the video. Nobody signed the search. · Notes from the Field No. 12</title>
+  <meta name="description" content="ONVIF just shipped a standard that lets a camera prove its footage is untouched. The record of who searched that footage is still a plain text row the vendor keeps." />
+  <link rel="canonical" href="https://matthewvisher.com/notes/no-12/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The cameras signed the video. Nobody signed the search." />
+  <meta property="og:description" content="ONVIF just shipped a standard that lets a camera prove its footage is untouched. The record of who searched that footage is still a plain text row the vendor keeps." />
+  <meta property="og:url" content="https://matthewvisher.com/notes/no-12/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Notes from the Field · a numbered series on AI in physical security by Matthew Visher." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The cameras signed the video. Nobody signed the search." />
+  <meta name="twitter:description" content="ONVIF just shipped a standard that lets a camera prove its footage is untouched. The record of who searched that footage is still a plain text row the vendor keeps." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903f" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/">Lab</a>
+        <a href="/notes/" aria-current="page">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/">Lab</a>
+          <a href="/notes/" aria-current="page">Notes</a>
+          <a href="/about/">About</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>NOTES FROM THE FIELD</span><span class="am-no">NO. 12</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/notes/">&larr; Notes from the Field</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Evidence Integrity &middot; Audit Logs</p>
+      <h1 class="article-title">The cameras signed the video. Nobody signed the search.</h1>
+      <p class="article-dek">ONVIF just shipped a standard that lets a camera prove its footage is untouched. The record of who searched that footage is still a plain text row the vendor keeps.</p>
+      <div class="article-byline"><span>By <strong>Matthew Visher</strong></span><span>&middot;</span><span>September 8, 2026</span><span>&middot;</span><span>5 min read</span></div>
+    </header>
+
+    <article class="article-body">
+      <p class="first reveal">On August 26 a standards body most people have never heard of published something I have wanted for ten years. ONVIF, the group that makes cameras from different manufacturers talk to each other, released a candidate spec called Media Signing. A camera that supports it signs the video as it encodes it. Anyone with the public key can later prove the footage came from that camera and has not been altered since. The signing and verification code is open source. Video only for now, audio later, and ONVIF says the final version lands by the end of the year.</p>
+      <p>Nobody on X posted about it. I checked. The same week, the physical security world on X was consumed by one company&#x27;s license plate readers, and for good reason. Flock Safety spent August getting audited in public. The Washington Post counted more than 50 officers charged with or accused of using the plate network to track people they had no business tracking. Flock answered on August 13 with a package of fixes, a case code on every search by year end and anomaly detection that flags odd search patterns among them. Nine days later Georgia investigators arrested three former Savannah officers and one former civilian employee for misusing the same system. The department found it because someone read the audit log. On September 9 an Albany County, New York sheriff&#x27;s investigator was charged after more than 4,000 personal searches, most of them on an ex. That one started with an outside tip; the log only supplied the count. The same day a former Wrightsville Beach, North Carolina officer was indicted for misusing the same kind of system.</p>
+      <p>Then Wired pulled apart the public code behind a Flock product still in testing and found an AI investigator with dozens of ready-made prompts, fourteen of which needed no plate, no name, and no description to start a search. On September 7 the Pittsburgh Post-Gazette reported it was still in testing with a small group.</p>
+      <p>Put the two stories next to each other. We now have a standard for proving a piece of evidence is what it claims to be. We have nothing for proving a search was what it claimed to be. The video can testify. The search still needs a character witness.</p>
+      <p>Think about what a signed video actually gives a court. The camera vouches for the footage at the moment of capture, and the vouching cannot be forged or removed after the fact without the math showing it. The custody chain starts at the sensor.</p>
+      <p>An audit log gives a city council less. A row in a database that says an officer ran a plate on a date with a reason code. Lou Hayes Jr., a Chicago-area detective supervisor twenty years into these systems, has spent August arguing for that row in his own ALPR series: verified search purposes, audit trails, penalties for misuse, and a few extra clicks before older data opens. I agree with every word. The row is still the weak point. Who wrote the row? The same system the officer was using. Who holds it? The vendor. Who can change it? Ask them. Every one of the cities that walked away from their plate readers this month got there by reading those rows. Savannah&#x27;s arrests came from those rows. A volunteer site that now lets anyone look up whether their plate has been searched works by pulling those rows out of public records requests. The log is the control that worked in August. Be honest about why. It worked because nobody had thought to touch it. Every officer, every vendor, every city attorney in the country now knows the log is what gets you caught. Controls that work by obscurity stop working the day they make the news. It is also a plain text record produced by the party being audited, and Senator Hawley&#x27;s September 2 letters to Motorola, Verkada, and Axon asked, in so many words, for exactly that record back to January 2021.</p>
+      <p>Cities are landing in different places. Santa Barbara kept plate readers and switched vendors so the footage would live inside its own system. Tempe turned its cameras off and said it will not replace them with anyone. Dallas will lose the state-funded cameras this month and, in a nonbinding budget vote, signaled it will keep the ones it pays for itself. All three are defensible. None of them can prove a search record was never touched. They read it and hope.</p>
+      <p>I do not think that is a Flock problem. Flock is the company whose logs got read because Flock has more cameras than anyone else, more than 120,000 across 49 states by Senator Hawley&#x27;s count. Every platform that lets an operator query a plate, a face, a trajectory, or a clip has the same shape: an action against evidence, and a record of that action written by the platform itself.</p>
+      <p>The ask is smaller than it sounds. The camera industry just agreed on how a device signs what it saw. The software industry should agree on how a system signs what it did. The record of a search should be produced by a component the searcher cannot reach, signed at the moment of the action, and verifiable by the city without the vendor&#x27;s help. Nothing exotic about it. Same math ONVIF just shipped, pointed at a different file.</p>
+      <p>Three questions for the next contract, or the next council meeting.</p>
+      <p>One: who produces the search log, and can the person or process being logged write to it?</p>
+      <p>Two: can the city verify a log entry is unaltered without asking the vendor?</p>
+      <p>Three: when the log cannot be written, does the search fail, or does it proceed with a warning?</p>
+      <p>If the answer to the first is the vendor&#x27;s application, the second is no, and the third is proceed, you do not have an audit trail. You have a diary the author keeps.</p>
+      <p>The objection I expect is that the logs are already immutable. Write-once storage, tamper-evident, the works. Good. Immutable storage stops a row from being edited after it lands. It says nothing about who wrote the row, whether the row was written at all, or whether the process that writes rows was running when the search happened. Savannah&#x27;s audit caught officers who did not know the log existed. The next ones will know.</p>
+      <p>A note on my two hats. My day job is at a company that sells software to police departments, and I work independently on signed action records for exactly this problem. Read that as a bias if you like. I would rather you read it as why the ONVIF release made my week and nobody else seemed to notice.</p>
+      <p>So here is the question for this week, and it takes one word to answer. In your city, who holds the key that proves a search record is untouched: the vendor, the city, or nobody? Put the word in the comments. I will tally them Friday and publish the count, no names, no cities.</p>
+      <p>The cameras can sign the video now. Ask who signs the search.</p>
+    </article>
+
+    <div class="article-sources">
+      <p>Sources, so you can check my numbers:</p>
+      <p><a href="https://www.onvif.org/pressrelease/onvif-media-signing-add-on-release-candidate/">ONVIF, Media Signing Add-on release candidate, August 26</a></p>
+      <p><a href="https://www.flocksafety.com/blog/flock-guardrails-address-lpr-privacy-concerns-and-police-transparency">Flock Safety, platform guardrails, August 13</a></p>
+      <p><a href="https://www.flocksafety.com/blog/what-flocks-privacy-and-security-updates-mean-for-private-sector-customers">Flock Safety, what the updates mean for private-sector customers, September 1</a></p>
+      <p><a href="https://www.theillinoismodel.com/2026/08/for-how-long-should-automated-license.html">Lou Hayes Jr., The Illinois Model, ALPR series (retention post, August 14)</a></p>
+      <p><a href="https://cbs6albany.com/news/local/sheriffs-office-employee-arrested-accused-of-unauthorized-access-to-law-databases-albany-county-sheriffs-office-press-conference-case-enforcement-wednesday-sept-9-2026-craig-d-apple-sr-district-attorney-lee-c-kindlon-cbs6-wrgb">CBS6 Albany on the Albany County Sheriff&#x27;s Office arrest, September 9</a></p>
+      <p><a href="https://www.fox5atlanta.com/news/4-former-savannah-police-employees-arrested-misusing-flock-cameras">FOX 5 Atlanta on the Savannah arrests, August 22</a></p>
+      <p><a href="https://www.wired.com/story/flock-safety-os-investigate/">Wired on Flock OS Investigate, August 19</a></p>
+      <p><a href="https://www.hawley.senate.gov/hawley-expands-investigation-into-surveillance-cameras-warns-flock-competitors/">Senator Hawley, letters to Motorola, Verkada, and Axon, September 2 (release September 3)</a></p>
+      <p><a href="https://www.hawley.senate.gov/wp-content/uploads/2026/09/2026-09-02-Axon-ALPR-Letter.pdf">Senator Hawley, letter to Axon with the January 2021 records annex</a></p>
+      <p><a href="https://www.outerbanksvoice.com/2026/09/10/former-wrightsville-beach-police-officer-charged-with-misuse-of-license-plate-reader/">Outer Banks Voice on the Wrightsville Beach indictment, September 10</a></p>
+      <p><a href="https://www.post-gazette.com/news/politics-state/2026/09/07/ai-automatic-license-plate-readers-cameras-surveillance-police-pennsylvania/stories/202609020083">Pittsburgh Post-Gazette on Flock&#x27;s AI investigator, September 7</a></p>
+      <p><a href="https://www.newspress.com/2026/08/24/what-is-verkada-the-ai-powered-license-plate-readers-set-to-replace-flock-cameras-in-santa-barbara/">Santa Barbara News-Press on the Verkada switch, August 24</a></p>
+      <p><a href="https://www.azfamily.com/2026/08/26/tempe-turns-off-flock-cameras-ends-contract-with-company/">Arizona&#x27;s Family on Tempe, August 26</a></p>
+      <p><a href="https://www.dallasnews.com/news/public-safety/article/dallas-council-keeping-flock-22411175.php">Dallas Morning News on the council vote</a></p>
+      <p><a href="https://www.businessinsider.com/have-i-been-flocked-creator-interview-camera-tracking-viral-2026-8">Business Insider on HaveIBeenFlocked, August</a></p>
+      <p>Checked September 11, 2026. If I have any of this wrong, tell me and I will correct it in place.</p>
+    </div>
+
+    <nav class="article-nav" aria-label="Series">
+      <a rel="prev" href="/notes/no-11/"><small>Previous</small>NO. 11 &middot; The AI attacked the audit log first. Nobody trained it to.</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>
