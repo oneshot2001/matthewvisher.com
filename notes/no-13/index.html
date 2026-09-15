@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The camera you bought in 2019 is the breach you will have in 2027. · Notes from the Field No. 13</title>
+  <meta name="description" content="Every booth at GSX says it runs on your existing cameras. 14,500 of the existing cameras were just taken with a 2021 bug. Nobody is keeping the list." />
+  <link rel="canonical" href="https://matthewvisher.com/notes/no-13/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The camera you bought in 2019 is the breach you will have in 2027." />
+  <meta property="og:description" content="Every booth at GSX says it runs on your existing cameras. 14,500 of the existing cameras were just taken with a 2021 bug. Nobody is keeping the list." />
+  <meta property="og:url" content="https://matthewvisher.com/notes/no-13/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Notes from the Field · a numbered series on AI in physical security by Matthew Visher." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The camera you bought in 2019 is the breach you will have in 2027." />
+  <meta name="twitter:description" content="Every booth at GSX says it runs on your existing cameras. 14,500 of the existing cameras were just taken with a 2021 bug. Nobody is keeping the list." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903f" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/">Lab</a>
+        <a href="/notes/" aria-current="page">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/">Lab</a>
+          <a href="/notes/" aria-current="page">Notes</a>
+          <a href="/about/">About</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>NOTES FROM THE FIELD</span><span class="am-no">NO. 13</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/notes/">&larr; Notes from the Field</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Camera Cybersecurity &middot; AI Retrofit</p>
+      <h1 class="article-title">The camera you bought in 2019 is the breach you will have in 2027.</h1>
+      <p class="article-dek">Every booth at GSX says it runs on your existing cameras. 14,500 of the existing cameras were just taken with a 2021 bug. Nobody is keeping the list.</p>
+      <div class="article-byline"><span>By <strong>Matthew Visher</strong></span><span>&middot;</span><span>September 15, 2026</span><span>&middot;</span><span>5 min read</span></div>
+    </header>
+
+    <article class="article-body">
+      <p class="first reveal">GSX is running in Atlanta this week, and if you walk the floor you will hear one sentence at almost every booth: it runs on your existing cameras. Milestone previewed a natural-language search layer for BriefCam, on top of a VMS whose device pack now covers more than 16,300 camera models. Cobalt AI launched a monitoring product that sits on the cameras, VMS, and access control a site already owns. 3xLOGIC shipped VIGIL 13.5 in early August with an "AI Bridge" that adds perimeter, loitering, and fall detection to cameras already on the wall. Verkada&#x27;s survey of more than 2,700 security leaders, out August 12, found that cloud-managed organizations use AI at 2.6 times the rate of on-premises ones. It is a vendor survey, so weigh it accordingly, but the pitch it supports is everywhere: keep your cameras, add our intelligence.</p>
+      <p>I read the first day of GSX coverage looking for the word firmware. I did not find it.</p>
+      <p>Here is what the existing cameras were doing while the industry wrote that pitch. On August 18, a threat intelligence firm called Hunt.io published a reconstruction of a campaign it named Operation CameraSwarm. More than 14,500 Dahua cameras compromised in 35 days this summer. Most of them fell to plain password guessing. On 1,923 of them the attackers went in through a pair of authentication bypasses, CVE-2021-33044 and CVE-2021-33045, and left behind a backdoor account that survives a password change and, on most firmware Hunt.io tested, a factory reset. On 283 of them they got in using nothing but the serial number, through the vendor&#x27;s own peer-to-peer relay, and most of those required no password at all. I wrote a short note on this in August. Dahua&#x27;s public response, as of this morning, is a statement to the trade press recommending strong passwords and updates. No advisory.</p>
+      <p>Those two bypasses are five years old. Dahua patched them in 2021. CISA added them to its Known Exploited Vulnerabilities list in August 2024. The camera did not get the memo, because nobody was assigned to deliver it.</p>
+      <p>If you think that is a Dahua story, here is one from last Wednesday. On September 9 a CVE was finally assigned to a bug in KGUARD digital video recorders that lets anyone on the network run commands on the device with no password. The record says the flaw affects firmware from 2016, that firmware after 2017 appears to fix it, and that it is being exploited right now by Mirai variants. Read the last line of that CVE entry carefully: it was assigned "to document the active exploitation and lack of documentation from the vendor." A nine-year-old hole, patched, still live on enough devices to be worth a botnet&#x27;s time, and the vendor never wrote it down. Hikvision&#x27;s CVE-2017-7921, another nine-year-old bug rated 9.8, went onto CISA&#x27;s exploited list this March for the same reason.</p>
+      <p>I want to be careful here, because the easy version of this article writes itself, and it is wrong. The easy version says: this is why we banned Chinese cameras. The FCC&#x27;s prohibition on importing and marketing Hikvision and Dahua gear for covered purposes took effect July 16, and it now reaches older models that were authorized years ago. Integrators are scrambling for replacement part numbers. Problem solved.</p>
+      <p>Except nobody breached a camera that was sitting in a warehouse waiting to be imported. Every one of those 14,500 devices was already installed, already on a network, already pointed at a loading dock or a parking lot or a school hallway. The ban stops the next sale. It does nothing about the last ten years of sales, which is where the attack surface actually lives. If anything it makes the installed base harder to keep, because the warranty swaps and firmware support go away with the imports. A camera does not become safe because its country of origin changed. It becomes safe because somebody knows it exists, knows what firmware it runs, and has a way to update it. On most sites I have walked, nobody can answer the first question, let alone the third.</p>
+      <p>That is the part I keep coming back to. Physical security AI does not have a model problem. It has an endpoint problem.</p>
+      <p>The retrofit pitch is a sensible one. Rip-and-replace is expensive, and it just got more expensive. Novaira Insights reported on August 8 that hyperscale AI buyers are competing for the same DRAM, NAND, and high-capacity hard drives that go into recorders, and surveillance storage lead times have stretched from four to six weeks to somewhere between 12 and 52. So the economics push everyone toward retrofit. Layer the AI on top of the estate you have.</p>
+      <p>But the estate you have is the estate in the Hunt.io report. Every retrofit product is a new set of credentials, a new cloud connector, a new reason for a seven-year-old camera to have a route to the internet. We are building the smartest layer the industry has ever had on top of the least-inventoried layer it has ever had, and I am not sure the people buying the top layer have ever seen a complete list of the bottom one.</p>
+      <p>I taught myself this field, and the thing nobody told me early enough is that a camera is a Linux computer with a lens. It has a web server, a shell, a firmware image, and a default password that somebody chose in a factory. Treat it like a laptop and most of this makes sense. Nobody would put a laptop from 2019 on the network with no patching plan and then install an AI agent on it. We do it with cameras every day, and we call it modernization.</p>
+      <p>Last week I wrote that the industry can now sign a video frame. It still cannot tell you what firmware the camera that signed it is running.</p>
+      <p>A note on my two hats. My day job is at a company that sells an AI layer for existing cameras, so I am inside the pitch I am describing. Read that as a bias if you like. I would rather you read it as why I keep asking for the list before the layer goes on.</p>
+      <p>So the question I am sitting with is for the integrators, because I think they are the ones holding this. Before the next AI retrofit goes on a site, can you produce the list? Every camera, its firmware, its last update, whether the peer-to-peer relay is on, whether the password is still the one from the box. Not a guess. A list. If you can, I would like to know what tooling got you there, because I have not found one that does it across vendors. If you cannot, I think that list is the product the industry is missing, and it is a lot less glamorous than a video wall agent.</p>
+      <p>The camera you bought in 2019 is still there. So is the bug. The only question is who finds it first.</p>
+    </article>
+
+    <div class="article-sources">
+      <p>Sources, so you can check my numbers:</p>
+      <p><a href="https://hunt.io/blog/operation-cameraswarm-dahua-cameras-compromised">Hunt.io, Operation CameraSwarm, August 18</a></p>
+      <p><a href="https://thehackernews.com/2026/08/hackers-compromised-14500-dahua-devices.html">The Hacker News on CameraSwarm, with Dahua&#x27;s statement, August 19</a></p>
+      <p><a href="https://www.dahuasecurity.com/about-dahua/trust-center/dahua-psirt/dhcc-sa-202106-001:security-advisory---identity-authentication-bypass-vulnerability-found-in-some-dahua-products">Dahua advisory DHCC-SA-202106-001 for CVE-2021-33044 and 33045 (2021)</a></p>
+      <p><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog">CISA Known Exploited Vulnerabilities catalog (Dahua entries added August 21, 2024; Hikvision CVE-2017-7921 added March 5, 2026)</a></p>
+      <p><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-87827">NVD, CVE-2026-87827, KGUARD DVR, published September 9</a></p>
+      <p><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-7921">NVD, CVE-2017-7921, Hikvision</a></p>
+      <p><a href="https://www.govinfo.gov/content/pkg/FR-2026-07-06/html/2026-13518.htm">FCC covered-equipment prohibition, Federal Register, July 6 (effective July 16)</a></p>
+      <p><a href="https://www.einpresswire.com/article/931340158/3xlogic-launches-vigil-13-5">3xLOGIC VIGIL 13.5 release, August 3</a></p>
+      <p><a href="https://www.prnewswire.com/news-releases/verkadas-2026-state-of-cloud-physical-security-report-reveals-a-gap-in-ai-adoption-302850140.html">Verkada 2026 State of Cloud Physical Security, August 12</a></p>
+      <p><a href="https://www.sdmmag.com/articles/105694-novaira-insights-video-surveillance-market-faces-faster-growth-chinese-reset-and-2026-price-shock">Novaira Insights via SDM, August 8</a></p>
+      <p><a href="https://www.securityinfowatch.com/ai/news/55404990/milestone-systems-milestone-to-preview-next-generation-briefcam-at-gsx-2026">Milestone at GSX 2026, SecurityInfoWatch, September 14</a></p>
+      <p><a href="https://www.einpresswire.com/article/941394380">Cobalt AI Monitoring Intelligence launch, September 14</a></p>
+      <p><a href="https://www.securityinfowatch.com/security-executives/article/55404976/gsx-2026-day-1-highlights-ai-integrated-security-and-new-approaches-to-security-operations">SecurityInfoWatch GSX Day 1 roundup, September 15</a></p>
+      <p>Checked September 15, 2026. If I have any of this wrong, tell me and I will correct it in place.</p>
+    </div>
+
+    <nav class="article-nav" aria-label="Series">
+      <a rel="prev" href="/notes/no-12/"><small>Previous</small>NO. 12 &middot; The cameras signed the video. Nobody signed the search.</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:mkvisher@gmail.com">mkvisher@gmail.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>
