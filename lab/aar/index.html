@@ -80,7 +80,7 @@
       <p class="article-dek">Before an agent's output moves something in the world or becomes evidence, what has to be provable about it?</p>
       <dl class="lab-meta">
         <div><dt>Type</dt><dd>Open-source spec + tool</dd></div>
-        <div><dt>Status</dt><dd><span class="status"><span class="tick" aria-hidden="true"></span>Active</span> · v0.2-rc7, v0.2.0 tag due Sep 4</dd></div>
+        <div><dt>Status</dt><dd><span class="status"><span class="tick" aria-hidden="true"></span>Active</span> · v0.2.0, tagged Sep 10</dd></div>
         <div><dt>Updated</dt><dd>Sep 2026</dd></div>
         <div><dt>Repo</dt><dd><a href="https://github.com/oneshot2001/aar">github.com/oneshot2001/aar</a></dd></div>
         <div><dt>License</dt><dd>Apache-2.0 code · CC BY 4.0 spec</dd></div>
@@ -115,7 +115,7 @@
       <h2>Where it stands</h2>
       <p>A stable experimental spec, not an adopted standard. There is no second independent implementation yet, and that gap matters, because the best bug I've found so far came from a cross-check. The reference CBOR encoder wrote every unsigned integer between 2^24 and 2^32 wrong. That range covers every real Unix timestamp. All 188 fixtures stayed green because they came from the same encoder. The clean-room second implementation caught it on its first pass. One implementation agreeing with itself proves nothing.</p>
       <h2>What's next</h2>
-      <p>Tag v0.2.0 on September 4, run the conformance suite in CI, and get one external producer emitting receipts that pyref verifies without my help. That external run, or an acknowledgement from the people writing the adjacent standards, is the signal I'm watching for.</p>
+      <p>v0.2.0 is tagged, as of September 10, and the conformance suite runs in CI on every change. What's left is the part I can't do myself: one external producer emitting receipts that pyref verifies without my help. That external run, or an acknowledgement from the people writing the adjacent standards, is the signal I'm watching for. The wire may still change in response to it.</p>
       <ul>
         <li><a href="https://github.com/oneshot2001/aar">github.com/oneshot2001/aar</a></li>
         <li><a href="/lab/onvif-mcp/">onvif-mcp</a>, the reference producer</li>
