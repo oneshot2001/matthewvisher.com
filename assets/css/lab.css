@@ -18,6 +18,13 @@
   border-color: color-mix(in oklch, var(--on-dark) 18%, transparent); }
 .article-body .specimen b { color: var(--lemon); }
 
+/* Lab detail — explainer film between the head and the body, wider than the 620 prose column */
+.lab-film { max-width: 980px; margin: 48px auto 0; padding: 0 24px; }
+.lab-film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: var(--charcoal);
+  border: 1px solid var(--hairline); border-radius: var(--r-md); }
+.lab-film figcaption { margin-top: var(--sm); font-family: var(--font-mono); font-size: 13px; line-height: 1.5;
+  letter-spacing: .02em; color: var(--muted); text-wrap: pretty; }
+
 /* Lab index — feature card: copy left, specimen right ≥834 */
 .card--feature { min-width: 0; display: grid; gap: var(--lg); align-items: center; }
 @media (min-width: 834px) { .card--feature { grid-template-columns: 1fr 1fr; gap: var(--xxl); } }
