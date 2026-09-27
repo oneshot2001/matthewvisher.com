@@ -78,7 +78,7 @@
       <dl class="lab-meta">
         <div><dt>Type</dt><dd>Product</dd></div>
         <div><dt>Status</dt><dd><span class="status"><span class="tick" aria-hidden="true"></span>In development</span> · concept validated, Tier 0 shipped</dd></div>
-        <div><dt>Updated</dt><dd>Jul 2026</dd></div>
+        <div><dt>Updated</dt><dd>Sep 2026</dd></div>
         <div><dt>Repo</dt><dd>Opens after v0.1 review</dd></div>
         <div><dt>License</dt><dd>Built on the MIT-licensed signed video framework</dd></div>
       </dl>
@@ -102,11 +102,24 @@
   trust_tier     <b>absent by design</b> · the verifier decides</pre>
       <h2>How it works</h2>
       <p>One record, two envelopes. A standalone CBOR/COSE file that outlives the video, so the proof survives even when the footage is purged, and an ONVIF SEI tag carried inside the stream when the video is retained. Trust is a ladder that the verifier climbs, and the record never claims its own rung. Tier 0 is a software key. Tier 2 is a per-camera key attested by the manufacturer, which is the ship target and depends on vendors implementing it. Tier 3, a factory-burned key, is probably out of reach.</p>
+      <h2>When the video is degraded, not deleted</h2>
+      <p>Retention rules say keep ninety days. Storage budgets say you can't keep ninety days at full rate, so the archive transcodes it, cuts it to event clips, or thins it to keyframes somewhere around day fifteen. The camera's signature covered the original bytes. After the first transcode it covers nothing, and a sixty-day-old clip walks into a hearing with no proof at all. The fix is not to sign the copy again with the archive's key and call it authentic. It's a second small record, emitted by whatever did the transform, that says what it read, what it wrote, and how.</p>
+<pre class="specimen" role="figure" aria-label="Derivation Record field list">Derivation Record   ~400 B · CBOR + COSE_Sign1 (ES256) · signed by the archive, never the camera
+  cam            the source camera, carried forward on every hop
+  src.sha256     hash of the bytes it read
+  src.proof      hash of the source's retained signatures, if kept
+  src.prev       the previous hop, when this is not the first
+  out_sha256     hash of the bytes it wrote
+  transform      transcode · clip · keyframes · downsample
+  policy         the retention rule that triggered it · displayed, never judged
+  rung           <b>absent by design</b> · the verifier walks the chain and reports how far it reached</pre>
+      <p>The verifier's answer is graded, and it says so. <em>Attested</em> means the archive's key vouches for the transform and nothing more. <em>Chained</em> means every hop links back to a first source. <em>Camera-linked</em> means the first hop kept the camera's signature set alongside the derivative, and the retained keyframes still check against it. Two keys, two answers: a plain software key on the archive job can still produce a camera-linked copy of a manufacturer-attested stream, and the certificate says exactly that. What the record refuses to do is judge the policy. Whether one frame every five seconds satisfies a state's retention statute is a legal question about the rule, not a property of the bytes.</p>
       <h2>Where it stands</h2>
       <p>The concept is validated and Tier 0 has shipped: edgeproof-sdr v0.1.0 on July 4, 2026 and v0.2.0 the next day. There is no hosted service. The repository stays private until it has been through a review I'm not going to skip. A software key proves the record wasn't altered after signing; it does not yet prove the record came from that camera. That is the Tier 2 gap, and it is a vendor gap as much as mine.</p>
       <h2>What's next</h2>
       <p>A hosted verifier, then pilots with agencies that have a reason to care. The benchmark I've set: a 500-clip test set with zero false confirmations. A verifier that ever says yes to a doctored clip is worse than no verifier at all.</p>
       <ul>
+        <li>Derivation Record wire format drafted September 2026; freezes after the same three-gate review v2 went through</li>
         <li>Repo opens after v0.1 review</li>
         <li><a href="/lab/aar/">Agent Action Receipts</a>, the same signing discipline applied to agents</li>
       </ul>
