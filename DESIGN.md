@@ -2,21 +2,23 @@
 
 > Warm, one-temperature editorial system. Independent work; never Alpha Vision cyan/navy.
 > Agents: read this before writing UI. Use `var(--token)`, never inline hex or rgba
-> (translucency = `color-mix(in oklch, var(--x) N%, transparent)`).
+> (new translucency = `color-mix(in srgb, var(--x) N%, transparent)`; an oklch mix of parchment toward transparent rendered pink. Existing oklch ink/lemon mixes stay).
 
 ## Tokens (`assets/css/styles.css` `:root`)
 
 | Token | Hex | Role |
 |---|---|---|
 | `--paper` | #FAF8F3 | dominant canvas, light tiles, cards |
-| `--parchment` | #F1EDE3 | alternating tile, header (80% frosted), footer, mobile menu |
+| `--parchment` | #F1EDE3 | alternating tile, header (86% frosted), footer, mobile menu |
 | `--ink` | #1C1B18 | all text on light; secondary-button outline; card hover border |
 | `--charcoal` | #24221E | the one dark tile (`.tile--dark`, `-2`, `-3` all resolve here) |
-| `--kraft` | #B9A27A | hero copy-block ground ≤833 (stacked hero) |
+| `--deep` | #141310 | home flagship chapter ground only (`.hm-chapter`) |
+| `--kraft` | #B9A27A | home hero ground at every width |
 | `--hairline` | #DAD3C4 | 1px borders: header, cards, rows, footer rule, pearl button |
 | `--muted` | #6B665C | captions, meta, legal, definition labels |
 | `--lemon` | #FFD60A | the only accent: primary fill, nav pill, link underline, mark dot, ticks |
 | `--gold` | #6A5600 | lemon's readable-on-light form — ONLY `.card__meta .status`, `.article-kicker`, `.article-signoff a` |
+| `--rust-on-dark` | #E8744A | failed / denied state on dark (home tamper readout). Never decoration |
 | `--on-lemon` | #1C1B18 | text on lemon |
 | `--focus` | = ink | `outline: 2px solid; outline-offset: 2px` on `a, button, summary` `:focus-visible` |
 | `--ink-print` | #1A1917 | `.article-body` colour |
@@ -52,7 +54,7 @@ Article (`article.css`): title/dek/body serif, body `--ink-print` 19/1.68, kicke
 
 ## Header — one `.site-nav`
 
-- `<header class="site-nav">` sticky top 0, 52px, parchment 80% + `saturate(180%) blur(20px)`, hairline bottom. `z-index: 50`.
+- `<header class="site-nav">` sticky top 0, 52px, parchment 86% (srgb mix) + `blur(20px)`, no saturate, hairline bottom. `z-index: 50`.
 - Left: mark + nameplate → `/`. Right: `<nav class="site-nav__links">` Lab · Notes · About · GitHub (14px, ink @ .8, `aria-current="page"` = opacity 1 / 600) then `.btn--nav` "Get in touch" → `/contact/`.
 - Home and Contact carry no `aria-current`; every `/notes/*` page marks Notes.
 - ≤640: link row hidden; `<details class="site-nav__menu"><summary>Menu</summary><nav>…</nav></details>` drops a full-width parchment panel (absolute, `top:100%`, hairline bottom) listing Lab / Notes / About / GitHub / LinkedIn. No JS. Brand stays on one line at 390.
@@ -78,47 +80,80 @@ Deleted: `.btn--large`, `.btn--secondary-on-dark`, `.btn--dark-utility`.
 - `.link-on-dark`: lemon. Footer links: ink, hover = 2px lemon underline. `.article-body a`: ink + lemon underline.
 - `.card`: paper, hairline, radius 18, 24px padding; hover border → ink (`--dur-ui`). Meta mono 12 muted .02em; `.status` gold 600 + lemon tick. `.card--feature` spans the grid, serif 30 title.
 - Mono texture: `.card__meta`, `.proof`, `.am-row`, `.article-byline`, `.article-back`, `.article-nav`, `.article-signoff`, `.footer__legal` — `--font-mono` 12–13, muted, .02em.
-- `.specimen` (home tiles): `<pre role="figure">` mono 13, ≤12 lines, radius 11, hairline, no shadow; paper card on charcoal, charcoal card on paper; `<b>` = gold/lemon.
+- `.specimen` (Lab pages): `<pre role="figure">` mono 13, ≤12 lines, radius 11, hairline, no shadow; paper card on charcoal, charcoal card on paper; `<b>` = gold/lemon.
 
 ## Surfaces & layout
 
 - Tiles full-bleed, radius 0, 80px vertical padding (48 ≤640); colour change is the divider.
   `.tile--light` paper · `.tile--parchment` parchment · `.tile--dark/-2/-3` charcoal.
-- Content max-widths: 1440 grids · 980 prose tile (About + Contact sit on this one left axis; `.rows` 62ch) · 1120 `.tile__inner--duo` + footer inner.
+- Content max-widths: 1440 grids · 980 prose tile (About + Contact sit on this one left axis; `.rows` 62ch) · 1120 footer inner · 1200 home (`.hm-wrap`).
 - Footer: parchment, `.footer__inner` 1120, `.footer__cols` `repeat(3, minmax(0,1fr))` gap 24 ≥735,
   headings `<p class="footer__h">` mono 12 uppercase .08em muted, links 17/2.41 ink, legal 12 muted.
   Elsewhere column = Contact · LinkedIn · GitHub · X on every page.
 
+## Home — `assets/css/home.css` + `assets/js/home.js` (loaded on `/` only)
+
+Every home class is `hm-` prefixed. One container: `.hm-wrap` 1200. Breakpoints 900 (desktop layout, chapter pins) and 640 (phone type + padding).
+Lemon pills are rationed to one per view: nav, hero, closing band. Everything else is `.hm-go` (ink text, lemon underline grows in, chevron).
+
+| Order | Section | Notes |
+|---|---|---|
+| 1 | `.hero.hm-hero` | kraft ground; ≥900 full height (`100svh − 52`), portrait `object-fit: cover` right center, copy ≤56% wide; <900 copy block then portrait band. H1 `clamp(38px, 6vw, 88px)` / 1.0 / −0.028em |
+| 2 | `.hm-proof` | four credentials, 4-col ≥900, 2×2 below; mono label + tick, 500 statement |
+| 3 | `.hm-thesis` | parchment; one serif sentence `clamp(34px, 6.2vw, 100px)`, ends on the lemon full stop |
+| 4 | `.hm-chapter` | EdgeProof on `--deep`; steps Lens / Archive / Courtroom left, `.hm-rig` (track + readout + dial) right |
+| 5 | `.hm-work` | `.hm-bento`: onvif-mcp (charcoal cell) + AAR (parchment cell) two-up, commissioning cell full width. Radius 28 |
+| 6 | `.hm-notes` | parchment; the three newest notes as `.hm-card` with typographic `.hm-cover` (charcoal, lemon, paper in that order). **Hand-maintained**: `publish-note.py` does not touch `/` |
+| 7 | `.hm-about` | photograph + one-line bio, then `.hm-path` four-step progression (last dot lemon) |
+| 8 | `.hm-close` | charcoal; one question, one lemon pill |
+
+Lemon means verified or primary action. Rust means failed or denied. Never swap them.
+Hero overlay layout applies at ≥900 wide **and** aspect ≥11:10; taller viewports stack (copy block, then portrait band) so the figure never sits under the copy.
+The chapter pins at ≥900 wide **and** ≥780 tall. `.hm-go` carries a 44px hit area through `::before`. Inactive steps dim to .62, never lower (4.5:1 on `--deep`).
+Home radii: 14 specimen, 22 rig / photo / phone cell, 28 cell. Home gold: `.hm-spec b` on paper, `.hm-cover--paper` number. Dots ring with `outline`, not `box-shadow`.
+Print rules use literal `#000`, as the `styles.css` print block does.
+
 ## Breakpoints
 
-**1068** small desktop (hero 44 / display 32; hero copy 440 / inset 40; portrait `object-position` 72%) · **834/833** tablet (grid 2-col ≥835; `.about-band` + `.tile__inner--duo` 2-col ≥834;
-≤833 hero stacks: copy on kraft with the frame, `<picture class="hero-art">` band below at natural aspect, copy inset 24) · **735** footer 3-col · **640** phone (menu disclosure, type step,
+**1068** small desktop (`.t-hero` 44 / display 32) · **900/899** home only (see Home) · **834/833** tablet (grid 2-col ≥835; `.about-band` 2-col ≥834) · **735** footer 3-col · **640** phone (menu disclosure, type step,
 tile 48×17) · **419** small phone (hero 30). Touch targets ≥44×44.
 
-## Motion — `assets/css/motion.css` + `assets/js/motion.js` (loaded on all 13 pages)
+## Motion — `assets/css/motion.css` + `assets/js/motion.js` (loaded on every page)
 
 Tokens (`:root` in motion.css): `--ease-out: cubic-bezier(.23,1,.32,1)` · `--ease-spring: cubic-bezier(.34,1.56,.64,1)` ·
 `--dur-ui: 180ms` (every hover/transition) · `--dur-reveal: 600ms` · `--stagger: 50ms` (× `--i` on grid items).
 
-- **Reveals** `.reveal` = home tiles + specimens, Lab/Notes cards, About sections, article `.article-head` / first body `<p>` / `.article-signoff`.
+- **Reveals** `.reveal` = home section heads, cells, cards and about blocks, Lab/Notes cards, About sections, article `.article-head` / first body `<p>` / `.article-signoff`.
   Primary: `animation-timeline: view()`, `animation-range: entry 0%→40%` shifted 6% per `--i`. Fallback (`@supports not`): `html.js .reveal`
   hidden → IntersectionObserver adds `.in` → rise with `--i × --stagger` delay. **Rule: nothing is invisible at rest** — no JS = fully visible;
   view() leaves anything already in the viewport at its end state.
 - **Hero** shutter (ink, 550ms `cubic-bezier(.7,0,.2,1)`, starts 0ms) plays once per session: motion.js sets `html.mv-first` when
-  `sessionStorage.mv_seen` is unset. Frame is static (no drift). REC dot pulses 3.2s. ≥834 the portrait gets a 6% scroll-linked parallax
-  (`animation-timeline: scroll(root)`, range `0 100vh`; img is 107% tall, top −7%, so no gap).
+  `sessionStorage.mv_seen` is unset.
+- **Home motion** (`home.js`), one idea: the printed halftone behind the portrait is alive.
+  - *Field* `<canvas class="hm-field">` in the hero and, fainter, in the closing band. Lemon dots on a 13px grid (11 <640) rotated 32°; dot radius
+    carries the tone. Rings travel outward from a focal point behind the head, dots swell within 150px of the pointer. One fill path per frame.
+    `assets/img/figure-mask.png` (450×278 silhouette cut from the portrait) is sampled once per build so no dot lands on the figure.
+    Runs only while its section is on screen and the tab is visible.
+  - *Verified read* (hero only): every 3–6s a patch of dots coheres, ink corner brackets draw, a mono label types in, then it dissolves.
+    Placement rejects the figure and any hero text or link.
+  - *Thesis* words ink in with scroll (opacity .13 → 1); the full stop pops last.
+  - *Chapter* ≥900 the section is 300vh with a sticky inner; scroll progress sets `data-step` 1 → 2 → 3, which lights the step, fills the track and
+    reveals readout rows. Otherwise and under reduced motion: not pinned, step 3, everything shown. The dial is always visible and focusable; it toggles `.tampered` (rust readout) and announces
+    the result through a `role="status"` line.
+  - *Specimens* `.hm-spec` lines type in on first view (90ms stagger).
+  - No JS: every section renders at its end state; the field is simply absent.
 - **View transitions** (`styles.css`): `@view-transition { navigation: auto }`, `nameplate` on `.site-nav__name`, `mark` on `.site-nav .mark`,
   root crossfade 220ms. Exactly one element per name per page.
-- **Ticks** `.tick` (lemon dot + ink check; also `.proof li::before/::after`): spring pop 400ms `--ease-spring` via the `scale` property.
-  Card ticks pop when the card's reveal lands (200ms + stagger); hero proof ticks pop 550ms + stagger after the shutter (first visit only);
+- **Ticks** `.tick` (lemon dot + ink check): spring pop 400ms `--ease-spring` via the `scale` property.
+  Card ticks pop when the card's reveal lands (200ms + stagger);
   Copy button swaps in `<span class="tick">Copied`; article signoff tick pops with its reveal.
 - **Hover** pills `translateY(-1px)` + lemon −6%; secondary fills 8%; cards hairline → ink; `.link` lemon underline grows in. All `--dur-ui --ease-out`.
-- **Reduced motion** (`prefers-reduced-motion: reduce`): reveals opacity-only 300ms, no transform; shutter/parallax off; REC dot static at .9;
-  ticks static; `scroll-behavior: auto` (smooth only under `no-preference`); view-transition pseudo animations `none`.
+- **Reduced motion** (`prefers-reduced-motion: reduce`): reveals opacity-only 300ms, no transform; shutter off; home field draws one still frame,
+  no brackets, thesis fully inked, chapter unpinned; ticks static; `scroll-behavior: auto` (smooth only under `no-preference`); view-transition pseudo animations `none`.
 - Print (`styles.css`) forces `.reveal` visible and `animation: none`.
 
 ## Do / Don't
 
 - Do: one accent (lemon), gold only in the three named places, ink outlines for secondary actions.
-- Do: `?v=YYYYMMDD` bump on every stylesheet link on all 12 pages when CSS changes (4h edge cache).
-- Don't: inline hex/rgba, a second dark, weight 300, shadows, Inter/Saira/SF Pro, `.global-nav`/`.sub-nav`.
+- Do: `?v=YYYYMMDD` bump on every stylesheet link on every page when CSS changes (4h edge cache); `home.css` / `home.js` carry their own `?v=`.
+- Don't: inline hex/rgba, a dark beyond charcoal and the home chapter's `--deep`, weight 300, shadows, Inter/Saira/SF Pro, `.global-nav`/`.sub-nav`.

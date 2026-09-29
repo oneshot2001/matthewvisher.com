@@ -18,16 +18,18 @@
   <meta name="twitter:title" content="Matthew Visher · Physical Security Tools" />
   <meta name="twitter:description" content="Verification and commissioning tools for physical security, built by a 21-year law enforcement veteran." />
   <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-home.png" />
-  <link rel="preload" as="image" type="image/avif" href="/assets/img/portrait-engraved.avif" media="(min-width: 834px)" />
-  <link rel="preload" as="image" type="image/avif" href="/assets/img/portrait-engraved-sm.avif" media="(max-width: 833px)" />
+  <link rel="preload" as="image" type="image/avif" href="/assets/img/portrait-engraved.avif" media="(min-width: 900px)" />
+  <link rel="preload" as="image" type="image/avif" href="/assets/img/portrait-engraved-sm.avif" media="(max-width: 899px)" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260903f" />
-  <link rel="stylesheet" href="/assets/css/motion.css?v=20260903b" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260929a" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260929a" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=20260929c" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
   <script src="/assets/js/motion.js" defer></script>
+  <script src="/assets/js/home.js?v=20260929c" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -73,107 +75,181 @@
 
   <main id="main">
 
-    <section class="tile tile--parchment hero hero--split">
-      <picture class="hero-art">
-        <source type="image/avif" media="(min-width: 834px)" srcset="/assets/img/portrait-engraved.avif" />
+    <section class="hero hm-hero">
+      <picture class="hm-hero__art">
+        <source type="image/avif" media="(min-width: 900px)" srcset="/assets/img/portrait-engraved.avif" />
         <source type="image/avif" srcset="/assets/img/portrait-engraved-sm.avif" />
-        <source type="image/webp" media="(min-width: 834px)" srcset="/assets/img/portrait-engraved.webp" />
+        <source type="image/webp" media="(min-width: 900px)" srcset="/assets/img/portrait-engraved.webp" />
         <source type="image/webp" srcset="/assets/img/portrait-engraved-sm.webp" />
         <img src="/assets/img/portrait-engraved.jpg" alt="Matthew Visher, engraved portrait on kraft paper" width="1800" height="1112" fetchpriority="high" decoding="async" />
       </picture>
+      <canvas class="hm-field" aria-hidden="true"></canvas>
       <div class="hero-shutter" aria-hidden="true"></div>
-      <div class="tile__inner tile__inner--split">
-        <div class="hero-frame" aria-hidden="true"><i></i></div>
-        <div class="hero-copy">
-        <h1 class="t-hero">21 years behind the badge. Now I build the tools I wished it had.</h1>
-        <p class="t-lead stack-lead">Verification and commissioning tools for physical security.</p>
-        <div class="actions">
-          <a class="btn btn--primary" href="/lab/">Explore the Lab</a>
-          <a class="btn btn--secondary" href="/about/">About me</a>
-        </div>
-        <ul class="proof">
-          <li style="--i:0">21 years law enforcement</li>
-          <li style="--i:1">Director of LE BD, AI video analytics</li>
-          <li style="--i:2">Builder: onvif-mcp, AAR, EdgeProof</li>
-          <li style="--i:3">Author, Notes from the Field</li>
-        </ul>
+      <div class="hm-hero__copy">
+        <h1>21 years behind the badge. Now I build the tools I wished it had.</h1>
+        <p class="hm-hero__lead">Verification and commissioning tools for physical security.</p>
+        <div class="hm-hero__actions">
+          <a class="btn btn--primary btn--lg" href="/lab/">Explore the Lab</a>
+          <a class="hm-go" href="/about/">About me</a>
         </div>
       </div>
     </section>
 
-    <section class="tile reveal tile--dark">
-      <div class="tile__inner tile__inner--duo">
-        <div>
-          <h2 class="t-display">onvif-mcp</h2>
-          <p class="t-lead stack-lead">AI agents can't talk to security cameras. Now they can.</p>
-          <div class="actions">
-            <a class="btn btn--primary" href="https://github.com/oneshot2001/onvif-mcp">View on GitHub</a>
-            <a class="btn btn--secondary" href="/lab/onvif-mcp/">See onvif-mcp in the Lab</a>
+    <section class="hm-proof" aria-label="Background">
+      <div class="hm-wrap">
+        <ul>
+          <li><span class="hm-mono"><span class="tick" aria-hidden="true"></span>Practitioner</span><b>21 years sworn law enforcement</b></li>
+          <li><span class="hm-mono"><span class="tick" aria-hidden="true"></span>Day job</span><b>Director of LE business development, AI video analytics</b></li>
+          <li><span class="hm-mono"><span class="tick" aria-hidden="true"></span>Builder</span><b>onvif-mcp, Agent Action Receipts, EdgeProof</b></li>
+          <li><span class="hm-mono"><span class="tick" aria-hidden="true"></span>Author</span><b>Notes from the Field</b></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="hm-thesis">
+      <div class="hm-wrap">
+        <span class="hm-mono">The standard I build to</span>
+        <p>If it can't survive a challenge, it isn't evidence<i aria-hidden="true"></i></p>
+      </div>
+    </section>
+
+    <section class="hm-chapter hm-dark" data-step="3">
+      <div class="hm-chapter__pin">
+        <div class="hm-wrap hm-chapter__grid">
+          <div>
+            <span class="hm-mono">Flagship &middot; Video provenance</span>
+            <h2>EdgeProof</h2>
+            <p class="hm-chapter__lead">Video that can prove it hasn't been altered, from the lens to the courtroom.</p>
+            <ol class="hm-steps">
+              <li><h3><span>01</span>Lens</h3><p>Signed at the camera. Every detection gets its own record before anything leaves the device.</p></li>
+              <li><h3><span>02</span>Archive</h3><p>Survives the transcode. When retention thins the footage, a second record says what was read, what was written, and how.</p></li>
+              <li><h3><span>03</span>Courtroom</h3><p>Anyone can check it. A verifier walks the chain and gives a graded answer.</p></li>
+            </ol>
+            <p class="hm-chapter__cta"><a class="hm-go" href="/lab/edgeproof/">See EdgeProof in the Lab</a></p>
+          </div>
+          <div class="hm-rig">
+            <div class="hm-track" aria-hidden="true">
+              <div class="hm-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/></svg>Lens</div>
+              <div class="hm-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="5" rx="1"/><rect x="3" y="12" width="18" height="8" rx="1"/><path d="M9 16h6"/></svg>Archive</div>
+              <div class="hm-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path class="ok" d="M5 12.5l4.5 4.5L19 7.5"/><path class="bad" d="M6 6l12 12M18 6L6 18"/></svg>Courtroom</div>
+            </div>
+            <div class="hm-readout" role="figure" aria-label="EdgeProof verify readout">
+              <span class="cmd">$ edgeproof verify yard-20260902.mp4</span>
+              <div data-s="1"><span class="k">frame</span><span>00:12:41.033</span></div>
+              <div data-s="1"><span class="k">sha256</span><span><span class="ok">&hellip;9f2a</span><span class="bad">&hellip;41c7</span></span></div>
+              <div data-s="1"><span class="k">signer</span><span>AXIS-Q6358  (cert &hellip;3e77)</span></div>
+              <div data-s="2"><span class="k">chain</span><span><span class="ok">OK  (prev &hellip;c04d)</span><span class="bad">BROKEN at segment 2</span></span></div>
+              <div data-s="2"><span class="k">segments</span><span><span class="ok">3/3 signed</span><span class="bad">2/3 signed</span></span></div>
+              <div data-s="3"><span class="k">status</span><span><b class="ok">VERIFIED &#10003;</b><b class="bad">FAILED &#10005;</b></span></div>
+            </div>
+            <div class="hm-rig__foot" hidden>
+              <button class="hm-dial" type="button" id="hm-dial">Flip one byte</button>
+              <small>Change a single byte in the file and run it again.</small>
+              <span class="visually-hidden" id="hm-status" role="status"></span>
+            </div>
           </div>
         </div>
-<pre class="specimen reveal" role="figure" aria-label="onvif-mcp terminal transcript">$ onvif-mcp list_cameras
+      </div>
+    </section>
+
+    <section class="hm-work">
+      <div class="hm-wrap">
+        <div class="hm-head reveal"><h2>Shipped, and open.</h2><a class="hm-go" href="/lab/">All Lab work</a></div>
+        <div class="hm-bento">
+          <article class="hm-cell hm-cell--dark hm-dark reveal">
+            <span class="hm-mono">Open-source tool &middot; Active</span>
+            <h3>onvif-mcp</h3>
+            <p class="hm-cell__lead">AI agents can't talk to security cameras. Now they can.</p>
+            <div class="hm-links"><a class="hm-go" href="https://github.com/oneshot2001/onvif-mcp">View on GitHub</a><a class="hm-go" href="/lab/onvif-mcp/">In the Lab</a></div>
+<pre class="hm-spec" role="figure" aria-label="onvif-mcp terminal transcript">$ onvif-mcp list_cameras
   lobby   AXIS P3285-LVE   192.168.1.19   ok
   gate    AXIS Q6325-LE    192.168.1.32   ok  ptz
   yard    AXIS Q6358-LE    192.168.1.33   ok  ptz
-$ onvif-mcp get_snapshot lobby
-  snapshots/lobby-1725300161.jpg   sha256 …4c1e
 $ onvif-mcp ptz_preset yard --name dock
-  yard → preset "dock"   <b>device_acknowledged</b>
+  yard &rarr; preset "dock"   <b>device_acknowledged</b>
 $ onvif-mcp --verify
-  <b>chain OK</b> · 3 receipts, hashes linked, sigs valid</pre>
-      </div>
-    </section>
-
-    <section class="tile reveal tile--light">
-      <div class="tile__inner tile__inner--duo">
-        <div>
-          <h2 class="t-display">Agent Action Receipts</h2>
-          <p class="t-lead stack-lead">Signed, replayable proof of what an AI agent actually did.</p>
-          <div class="actions">
-            <a class="btn btn--primary" href="https://github.com/oneshot2001/aar">View on GitHub</a>
-            <a class="btn btn--secondary" href="/lab/aar/">See AAR in the Lab</a>
-          </div>
-        </div>
-<pre class="specimen reveal" role="figure" aria-label="Agent Action Receipt, JSON">{
+  <b>chain OK</b> &middot; 3 receipts, sigs valid</pre>
+          </article>
+          <article class="hm-cell hm-cell--light reveal" style="--i:1">
+            <span class="hm-mono">Open-source spec + tool &middot; Active</span>
+            <h3>Agent Action Receipts</h3>
+            <p class="hm-cell__lead">Signed, replayable proof of what an AI agent actually did.</p>
+            <div class="hm-links"><a class="hm-go" href="https://github.com/oneshot2001/aar">View on GitHub</a><a class="hm-go" href="/lab/aar/">In the Lab</a></div>
+<pre class="hm-spec" role="figure" aria-label="Agent Action Receipt, JSON">{
   "action":      "ptz_preset",
-  "target":      "yard · AXIS Q6358-LE",
+  "target":      "yard &middot; AXIS Q6358-LE",
   "principal":   "agent:claude-main",
-  "ts":          "2026-09-02T14:12:41.033Z",
-  "input_hash":  "sha256:…b71d",
-  "result_hash": "sha256:…9f2a",
+  "result_hash": "sha256:&hellip;9f2a",
   "decision":    "allow",
-  "sig":         "cose_es256:…Q3kR",
+  "sig":         "cose_es256:&hellip;Q3kR",
   "verified":    <b>true</b>
 }</pre>
+          </article>
+          <article class="hm-cell hm-cell--wide reveal">
+            <div>
+              <span class="hm-mono">Commissioning</span>
+              <h3>camspec and the Commissioning Walk</h3>
+              <p class="hm-cell__lead">Tools that turn "the camera shows a picture" into a measurable pass or fail.</p>
+            </div>
+            <div class="hm-links"><a class="hm-go" href="/lab/camspec/">camspec</a><a class="hm-go" href="/lab/commissioning-walk/">Commissioning Walk</a></div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="tile reveal tile--dark-2">
-      <div class="tile__inner tile__inner--duo">
-        <div>
-          <h2 class="t-display">EdgeProof</h2>
-          <p class="t-lead stack-lead">Video that can prove it hasn't been altered, from the lens to the courtroom.</p>
-          <div class="actions">
-            <a class="btn btn--primary" href="/lab/edgeproof/">See EdgeProof in the Lab</a>
+    <!-- Notes row: the three newest notes. Update by hand when a note publishes (publish-note.py does not touch this page). -->
+    <section class="hm-notes">
+      <div class="hm-wrap">
+        <div class="hm-head reveal"><h2>Notes from the Field</h2><a class="hm-go" href="/notes/">All notes</a></div>
+        <div class="hm-cards">
+          <a class="hm-card reveal" href="/notes/no-15/">
+            <div class="hm-cover"><div class="hm-cover__top"><span>Notes from the Field</span><b>NO. 15</b></div><strong>The Seal Was Intact</strong></div>
+            <time datetime="2026-09-29">September 29, 2026</time>
+            <p>The AI had to prove it followed the law. It did. Then one word in the law changed meaning, and the game still won.</p>
+          </a>
+          <a class="hm-card reveal" href="/notes/no-14/" style="--i:1">
+            <div class="hm-cover hm-cover--lemon"><div class="hm-cover__top"><span>Notes from the Field</span><b>NO. 14</b></div><strong>A Standing Man Is a Vertical Line</strong></div>
+            <time datetime="2026-09-22">September 22, 2026</time>
+            <p>Keep time, and give it a place on the screen. The camera view is the floor, time goes up, and whoever stops becomes a post you can spot from across the room. Tested on my own cameras. It worked, and it broke.</p>
+          </a>
+          <a class="hm-card reveal" href="/notes/no-13/" style="--i:2">
+            <div class="hm-cover hm-cover--paper"><div class="hm-cover__top"><span>Notes from the Field</span><b>NO. 13</b></div><strong>The camera you bought in 2019 is the breach you will have in 2027.</strong></div>
+            <time datetime="2026-09-15">September 15, 2026</time>
+            <p>Every booth at GSX says it runs on your existing cameras. 14,500 of the existing cameras were just taken with a 2021 bug. Nobody is keeping the list.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="hm-about">
+      <div class="hm-wrap">
+        <div class="hm-about__grid">
+          <picture class="reveal">
+            <source type="image/avif" srcset="/assets/img/portrait-head-wide-1120.avif" />
+            <source type="image/webp" srcset="/assets/img/portrait-head-wide-1120.webp" />
+            <img src="/assets/img/portrait-head-wide.jpg" alt="Matthew Visher" width="1120" height="896" loading="lazy" decoding="async" />
+          </picture>
+          <div class="reveal">
+            <span class="hm-mono">About</span>
+            <h2>One career, told in order.</h2>
+            <p>Most of this technology was built by people who never had to depend on it at 2 a.m. You can tell.</p>
+            <div class="hm-links"><a class="hm-go" href="/about/">More about me</a><a class="hm-go" href="/Matthew-Visher-Resume.pdf">Download r&eacute;sum&eacute;</a></div>
           </div>
         </div>
-<pre class="specimen reveal" role="figure" aria-label="EdgeProof verify readout">$ edgeproof verify yard-20260902.mp4
-  frame     00:12:41.033
-  sha256    …9f2a
-  signer    AXIS-Q6358  (cert …3e77)
-  chain     OK  (prev …c04d)
-  segments  3/3 signed
-  status    <b>VERIFIED ✓</b></pre>
+        <ol class="hm-path reveal">
+          <li><span class="hm-mono">01</span><b>Practitioner</b><span>21 years sworn, retired sergeant. Major investigations and covert surveillance.</span></li>
+          <li><span class="hm-mono">02</span><b>Translator</b><span>Moved to the vendor side to explain agencies to technologists.</span></li>
+          <li><span class="hm-mono">03</span><b>Product leader</b><span>Director of LE business development, AI video analytics.</span></li>
+          <li><span class="hm-mono">04</span><b>Builder</b><span>Independent open-source tools for verification and commissioning.</span></li>
+        </ol>
       </div>
     </section>
 
-    <section class="tile reveal tile--light">
-      <div class="tile__inner">
-        <h2 class="t-display">Notes from the Field</h2>
-        <p class="t-lead stack-lead">What AI in physical security looks like from someone who spent 21 years as the end user.</p>
-        <div class="actions">
-          <a class="btn btn--primary" href="/notes/">Read the notes</a>
-        </div>
+    <section class="hm-close hm-dark">
+      <canvas class="hm-field" aria-hidden="true"></canvas>
+      <div class="hm-wrap reveal">
+        <h2>Building something that has to hold up?</h2>
+        <a class="btn btn--primary btn--lg" href="/contact/">Get in touch</a>
       </div>
     </section>
 
