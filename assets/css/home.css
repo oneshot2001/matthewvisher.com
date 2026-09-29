@@ -231,6 +231,9 @@
   max-width: 16ch; margin: 0 auto 40px;
 }
 
+@media (max-width: 374px) {
+  .hm-proof li, .hm-proof li:first-child { padding-inline: 8px; }   /* keeps tick and label on one line at 320 */
+}
 @media (max-width: 639px) {
   .hm-wrap { padding-inline: 20px; }
   .hm-hero__copy { padding-inline: 20px; }

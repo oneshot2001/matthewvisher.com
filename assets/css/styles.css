@@ -320,7 +320,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   .site-nav__menu { display: block; }
   .site-nav__menu summary {
     list-style: none; cursor: pointer;
-    font-size: 14px; line-height: 1.29; padding: 6px 4px; color: var(--ink);
+    font-size: 14px; line-height: 1.29; padding: 13px 4px; color: var(--ink);   /* 44px tall */
   }
   .site-nav__menu summary::-webkit-details-marker { display: none; }
   .site-nav__menu[open] summary { font-weight: 600; }
@@ -340,6 +340,28 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 @media (max-width: 419px) {
   .t-hero { font-size: 30px; }
+}
+/* Small phones: name + pill + Menu need 381px. Tighten the gutters, then drop the pill; Contact is in the menu. */
+@media (max-width: 400px) {
+  .site-nav__inner { padding: 0 var(--sm); }
+  .btn--nav { padding: 6px 10px; }
+  .article-body a { overflow-wrap: anywhere; }
+  /* definition rows stack so a long value (email + Copy) cannot push the page wider */
+  .rows > div { flex-direction: column; gap: var(--xxs); }
+  .rows dt { width: auto; }
+  .rows dd { min-width: 0; overflow-wrap: anywhere; }
+}
+@media (max-width: 374px) {
+  .btn--nav { display: none; }
+  .site-nav__menu { margin-left: auto; }
+}
+/* Safety net: whatever the font metrics (blocked or still-swapping web fonts), the header cannot exceed the screen.
+   The nameplate is the only item allowed to shrink; the menu panel scrolls inside a short viewport. */
+@media (max-width: 640px) {
+  .site-nav__name { min-width: 0; }
+  .site-nav__name span { overflow: hidden; text-overflow: ellipsis; }
+  .btn--nav, .site-nav__menu { flex: none; }
+  .site-nav__menu nav { max-height: calc(100dvh - 52px); overflow-y: auto; }
 }
 
 /* ---------- Hero shell + tick glyph (home layout lives in home.css; animation in motion.css) ---------- */

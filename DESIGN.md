@@ -56,8 +56,11 @@ Article (`article.css`): title/dek/body serif, body `--ink-print` 19/1.68, kicke
 
 - `<header class="site-nav">` sticky top 0, 52px, parchment 86% (srgb mix) + `blur(20px)`, no saturate, hairline bottom. `z-index: 50`.
 - Left: mark + nameplate → `/`. Right: `<nav class="site-nav__links">` Lab · Notes · About · GitHub (14px, ink @ .8, `aria-current="page"` = opacity 1 / 600) then `.btn--nav` "Get in touch" → `/contact/`.
-- Home and Contact carry no `aria-current`; every `/notes/*` page marks Notes.
-- ≤640: link row hidden; `<details class="site-nav__menu"><summary>Menu</summary><nav>…</nav></details>` drops a full-width parchment panel (absolute, `top:100%`, hairline bottom) listing Lab / Notes / About / GitHub / LinkedIn. No JS. Brand stays on one line at 390.
+- Home carries no `aria-current`; Contact marks only its menu link; every `/notes/*` page marks Notes.
+- ≤640: link row hidden; `<details class="site-nav__menu"><summary>Menu</summary><nav>…</nav></details>` drops a full-width parchment panel (absolute, `top:100%`, hairline bottom) listing Lab / Notes / About / Contact / GitHub / LinkedIn. No JS. Brand stays on one line at 390.
+- ≤400: header gutters 12. ≤374: the "Get in touch" pill is hidden (name + pill + Menu need 381px) and Contact is reached through the menu. `summary` is 44 tall.
+  The thresholds assume the web fonts; as a safety net ≤640 the nameplate may shrink with an ellipsis and the pill and menu may not, so the header
+  cannot exceed the screen on fallback fonts. The menu panel scrolls inside a short viewport.
 
 ## Buttons
 
@@ -134,7 +137,7 @@ Print rules use literal `#000`, as the `styles.css` print block does.
 ## Breakpoints
 
 **1068** small desktop (`.t-hero` 44 / display 32) · **900/899** Home and `pages.css` layouts · **1000** About timeline + rail two-column (rail sticks only when the viewport is also ≥700 tall) · **834/833** tablet (grid 2-col ≥835; `.about-band` 2-col ≥834) · **735** footer 3-col · **640** phone (menu disclosure, type step,
-tile 48×17) · **419** small phone (hero 30). Touch targets ≥44×44.
+tile 48×17) · **419** small phone (hero 30) · **400** header gutters 12, `.rows` stack · **374** header pill hidden, home proof cells tighten. Touch targets ≥44×44.
 
 ## Motion — `assets/css/motion.css` + `assets/js/motion.js` (loaded on every page)
 
