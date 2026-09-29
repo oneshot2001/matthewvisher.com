@@ -69,6 +69,7 @@ def main():
     p_read = re.search(r'(\d+ min read)', tpl).group(1)
     words = sum(len(p.split()) for p in k["paras"]); mins = max(1, round(words/230))
     h = tpl
+    h = re.sub(r'\n    <figure class="note-film.*?</figure>\n', "", h, flags=re.S)  # a film belongs to its own note only
     h = h.replace(p_title, E(k["title"]))
     h = h.replace(p_meta, E(dek))
     h = h.replace(f"/notes/no-{prev:02d}/", f"/notes/no-{no:02d}/")

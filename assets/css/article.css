@@ -57,6 +57,13 @@
   .article-body { font-size: 18px; }
 }
 
+/* Note film: between the head and the body, wider than the 620 prose column (mirrors .lab-film) */
+.note-film { max-width: 980px; margin: 48px auto 0; padding: 0 24px; }
+.note-film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: var(--charcoal);
+  border: 1px solid var(--hairline); border-radius: var(--r-md); }
+.note-film figcaption { margin-top: var(--sm); font-family: var(--font-mono); font-size: 13px; line-height: 1.5;
+  letter-spacing: .02em; color: var(--muted); text-wrap: pretty; }
+
 @media print {
   @page { margin: 18mm; }
   .site-nav, .footer, .btn, .skip-link, .am-dot, .article-back, .article-nav { display: none !important; }
