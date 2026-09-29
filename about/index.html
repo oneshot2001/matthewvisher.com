@@ -24,6 +24,7 @@
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
   <link rel="stylesheet" href="/assets/css/styles.css?v=20260929a" />
   <link rel="stylesheet" href="/assets/css/motion.css?v=20260929a" />
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20260929e" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
   <script src="/assets/js/motion.js" defer></script>
   <script type="application/ld+json">
@@ -78,10 +79,10 @@
   <main id="main">
     <p class="print-only">Matthew Visher · mkvisher@gmail.com · matthewvisher.com · Salt Lake City, Utah</p>
 
-    <section class="tile tile--light">
+    <section class="tile tile--light pg-about-head">
       <div class="tile__inner tile__inner--prose about-band">
         <div>
-          <h1 class="t-hero">About</h1>
+          <h1>About</h1>
           <p class="t-lead stack-lead">One career, told in order.</p>
           <div class="prose">
             <p>I spent 21 years as a sworn law enforcement officer, retiring as a sergeant. That means two decades of using the tools this industry sells: the cameras, the plate readers, the records systems, the video that did or didn't hold up when it mattered.</p>
@@ -91,41 +92,49 @@
           </div>
         </div>
         <picture class="about-band__art">
-          <source type="image/avif" srcset="/assets/img/portrait-head-wide-1120.avif 1120w, /assets/img/portrait-head-wide-2240.avif 2240w" sizes="(min-width: 834px) 466px, 100vw" />
-          <source type="image/webp" srcset="/assets/img/portrait-head-wide-1120.webp 1120w, /assets/img/portrait-head-wide-2240.webp 2240w" sizes="(min-width: 834px) 466px, 100vw" />
+          <source type="image/avif" srcset="/assets/img/portrait-head-wide-1120.avif 1120w, /assets/img/portrait-head-wide-2240.avif 2240w" sizes="(min-width: 834px) 576px, 100vw" />
+          <source type="image/webp" srcset="/assets/img/portrait-head-wide-1120.webp 1120w, /assets/img/portrait-head-wide-2240.webp 2240w" sizes="(min-width: 834px) 576px, 100vw" />
           <img src="/assets/img/portrait-head-wide.jpg" alt="Matthew Visher" width="2400" height="1920" fetchpriority="high" decoding="async" />
         </picture>
       </div>
     </section>
 
     <section class="tile reveal tile--parchment">
-      <div class="tile__inner tile__inner--prose">
-        <div class="prose">
+      <div class="tile__inner pg-wrap pg-story">
           <p>Much of that career was spent on major investigations and covert surveillance: building covert hides, running video surveillance, and standing up quick, hasty deployments of covert and overt camera platforms to capture intelligence or evidence on long-running, sensitive, high-value cases. When a platform failed on one of those, you didn't lose a data point. You lost weeks of work, and sometimes the case.</p>
-          <p>Most of that technology was built by people who never had to depend on it at 2 a.m. You can tell.</p>
+        <p class="pg-quote">Most of that technology was built by people who never had to depend on it at 2 a.m. You can tell.</p>
           <p>Today I work on the other side of the counter. My day job is leading law enforcement business development for an AI video analytics company. On my own time I build independent tools that attack the gaps I kept running into: cameras that can't prove they were installed right, video that can't prove it's untampered, AI agents that can't prove what they did.</p>
+      </div>
+    </section>
 
-          <h2>What I work on</h2>
-          <ul>
-            <li><strong>Verification.</strong> Signed video evidence and provenance (EdgeProof), and signed receipts for AI agent actions (AAR). If it can't survive a challenge, it isn't evidence.</li>
-            <li><strong>Commissioning.</strong> Tools that turn "the camera shows a picture" into a measurable pass or fail (camspec, the Commissioning Walk).</li>
-            <li><strong>Agent infrastructure.</strong> Making cameras and physical security systems something AI agents can actually operate (onvif-mcp).</li>
-            <li><strong>Writing.</strong> Notes from the Field, a series on what AI in physical security looks like when you've stood on both sides of it.</li>
-          </ul>
+    <section class="tile reveal tile--light">
+      <div class="tile__inner pg-wrap">
+        <h2 class="pg-h2">What I work on</h2>
+        <ul class="pg-work">
+          <li><h3>Verification</h3><p>Signed video evidence and provenance (<a class="link" href="/lab/edgeproof/">EdgeProof</a>), and signed receipts for AI agent actions (<a class="link" href="/lab/aar/">AAR</a>). If it can't survive a challenge, it isn't evidence.</p></li>
+          <li><h3>Commissioning</h3><p>Tools that turn "the camera shows a picture" into a measurable pass or fail (<a class="link" href="/lab/camspec/">camspec</a>, the <a class="link" href="/lab/commissioning-walk/">Commissioning Walk</a>).</p></li>
+          <li><h3>Agent infrastructure</h3><p>Making cameras and physical security systems something AI agents can actually operate (<a class="link" href="/lab/onvif-mcp/">onvif-mcp</a>).</p></li>
+          <li><h3>Writing</h3><p><a class="link" href="/notes/">Notes from the Field</a>, a series on what AI in physical security looks like when you've stood on both sides of it.</p></li>
+        </ul>
+      </div>
+    </section>
 
-        </div>
-
-        <div class="prose">
-          <h2>The progression</h2>
-        </div>
-        <dl class="rows">
+    <section class="tile reveal tile--parchment">
+      <div class="tile__inner pg-wrap">
+        <h2 class="pg-h2">The progression</h2>
+        <dl class="pg-path">
           <div><dt>Practitioner</dt><dd>21 years sworn law enforcement, retired sergeant. Major investigations, covert surveillance, covert hides, rapid deployment of covert and overt video platforms on sensitive high-value cases.</dd></div>
           <div><dt>Translator</dt><dd>Moved to the vendor side to explain agencies to technologists and technology to agencies.</dd></div>
           <div><dt>Product leader</dt><dd>Director of law enforcement business development at an AI video analytics company.</dd></div>
           <div><dt>Builder</dt><dd>Independent open-source tools and products for verification and commissioning.</dd></div>
         </dl>
+      </div>
+    </section>
+
+    <section class="tile tile--light">
+      <div class="tile__inner pg-wrap pg-record">
         <section id="timeline" class="reveal">
-          <h2 class="t-section">Timeline</h2>
+          <h2 class="pg-h2">Timeline</h2>
           <ol class="timeline">
             <li>
               <span class="timeline__years">2026–</span>
@@ -166,17 +175,20 @@
           </ol>
           <p class="t-caption timeline__caption">Certifications: Federal Task Force Operations · Axis Communications Systems · Milestone Systems · BSA/AML Compliance.<br />Education: Salt Lake Community College.</p>
         </section>
-        <div class="prose">
-          <h2>Operating principles</h2>
-          <ul>
-            <li>Measure before claiming. Frozen thresholds beat vibes.</li>
-            <li>Evidence over demos. A signed record beats a screenshot.</li>
-            <li>Build for the person who inherits the install.</li>
-          </ul>
-
-          <h2>Disclosure</h2>
-          <p class="fine">Everything on this site is my own independent work and my own views. Nothing here draws on my employer's proprietary technology, customers, or data, and nothing here should be read as speaking for them.</p>
-        </div>
+        <aside class="pg-rail reveal" aria-label="Principles and disclosure">
+          <div>
+            <h2>Operating principles</h2>
+            <ul>
+              <li>Measure before claiming. Frozen thresholds beat vibes.</li>
+              <li>Evidence over demos. A signed record beats a screenshot.</li>
+              <li>Build for the person who inherits the install.</li>
+            </ul>
+          </div>
+          <div>
+            <h2>Disclosure</h2>
+            <p class="fine">Everything on this site is my own independent work and my own views. Nothing here draws on my employer's proprietary technology, customers, or data, and nothing here should be read as speaking for them.</p>
+          </div>
+        </aside>
       </div>
     </section>
 

@@ -18,7 +18,7 @@
 | `--muted` | #6B665C | captions, meta, legal, definition labels |
 | `--lemon` | #FFD60A | the only accent: primary fill, nav pill, link underline, mark dot, ticks |
 | `--gold` | #6A5600 | lemon's readable-on-light form — ONLY `.card__meta .status`, `.article-kicker`, `.article-signoff a` |
-| `--rust-on-dark` | #E8744A | failed / denied state on dark (home tamper readout). Never decoration |
+| `--rust-on-dark` | #E8744A | failed / denied state on dark (home tamper readout, Lab specimens `b.no`). Never decoration |
 | `--on-lemon` | #1C1B18 | text on lemon |
 | `--focus` | = ink | `outline: 2px solid; outline-offset: 2px` on `a, button, summary` `:focus-visible` |
 | `--ink-print` | #1A1917 | `.article-body` colour |
@@ -78,7 +78,7 @@ Deleted: `.btn--large`, `.btn--secondary-on-dark`, `.btn--dark-utility`.
 
 - `.link` (light): ink, no text-decoration; lemon 2px underline grows in via `background-size: 0% 2px → 100% 2px` at `0 100%`.
 - `.link-on-dark`: lemon. Footer links: ink, hover = 2px lemon underline. `.article-body a`: ink + lemon underline.
-- `.card`: paper, hairline, radius 18, 24px padding; hover border → ink (`--dur-ui`). Meta mono 12 muted .02em; `.status` gold 600 + lemon tick. `.card--feature` spans the grid, serif 30 title.
+- `.card`: paper, hairline, radius 18, 24px padding; hover border → ink (`--dur-ui`). Meta mono 12 muted .02em; `.status` gold 600 + lemon tick. `.card--feature` spans the grid, serif 30 title (index pages override card titles, see Index pages).
 - Mono texture: `.card__meta`, `.proof`, `.am-row`, `.article-byline`, `.article-back`, `.article-nav`, `.article-signoff`, `.footer__legal` — `--font-mono` 12–13, muted, .02em.
 - `.specimen` (Lab pages): `<pre role="figure">` mono 13, ≤12 lines, radius 11, hairline, no shadow; paper card on charcoal, charcoal card on paper; `<b>` = gold/lemon.
 
@@ -86,7 +86,7 @@ Deleted: `.btn--large`, `.btn--secondary-on-dark`, `.btn--dark-utility`.
 
 - Tiles full-bleed, radius 0, 80px vertical padding (48 ≤640); colour change is the divider.
   `.tile--light` paper · `.tile--parchment` parchment · `.tile--dark/-2/-3` charcoal.
-- Content max-widths: 1440 grids · 980 prose tile (About + Contact sit on this one left axis; `.rows` 62ch) · 1120 footer inner · 1200 home (`.hm-wrap`).
+- Content max-widths: 1440 grids · 980 prose tile (Contact; `.rows` 62ch) · 1120 footer inner · 1200 Home (`.hm-wrap`) and Lab index, Notes index, About (`.pg-wrap`).
 - Footer: parchment, `.footer__inner` 1120, `.footer__cols` `repeat(3, minmax(0,1fr))` gap 24 ≥735,
   headings `<p class="footer__h">` mono 12 uppercase .08em muted, links 17/2.41 ink, legal 12 muted.
   Elsewhere column = Contact · LinkedIn · GitHub · X on every page.
@@ -113,9 +113,27 @@ The chapter pins at ≥900 wide **and** ≥780 tall. `.hm-go` carries a 44px hit
 Home radii: 14 specimen, 22 rig / photo / phone cell, 28 cell. Home gold: `.hm-spec b` on paper, `.hm-cover--paper` number. Dots ring with `outline`, not `box-shadow`.
 Print rules use literal `#000`, as the `styles.css` print block does.
 
+## Index pages + About — `assets/css/pages.css` (Lab index, Notes index, About)
+
+`pg-` prefixed, tokens only, same 1200 left axis and type scale as Home. Contact and 404 keep the centred `.t-hero` head.
+
+- **Page head** `.pg-head`: left-aligned H1 `clamp(44px, 6vw, 88px)` / 1.0 / −0.028em, `.pg-lead` ≤44ch balanced. No centred narrow leads.
+- **Index cards** `.pg-index`: every card title is serif 500 (26; feature `clamp(30px, 3.4vw, 44px)`).
+- **Notes index** `.pg-notes`: each card is its own typographic cover. `.card__meta` becomes a mono masthead (NO. left, date right, double rule).
+  The newest note (`.card--feature`) is the charcoal cover: radius 28, title `clamp(36px, 4.8vw, 68px)`, date in lemon.
+  Styled entirely from the markup `scripts/publish-note.py` writes; do not change `<ul class="grid grid--3">` or the feature `<li>` opening tag.
+- **Lab specimens**: a denied or failed value is `<b class="no">` and reads `--rust-on-dark` (`lab.css`). Plain `<b>` stays lemon = verified.
+- **About**: head band on the 1200 axis · `.pg-story` prose left, `.pg-quote` right (lemon rule) · `.pg-work` 2×2 parchment cells with Lab links ·
+  `<dl class="pg-path">` four-step progression (same figure as Home's `.hm-path`, full wording, numerals from a CSS counter) ·
+  `.pg-record` timeline left, `.pg-rail` (operating principles, disclosure) right ≥1000.
+  Story DOM order is paragraph, quote, paragraph; the grid moves the quote to the right column. In-text links in `.pg-work` show their underline at rest.
+- Radii on these pages: 22 cells and rail, 28 Notes feature cover.
+- The index grid sections are **not** `.reveal`: a section taller than five viewports never crosses the fallback observer's threshold. Cards carry their own reveal.
+- Print: `pages.css` has its own print block; About prints as a compact résumé.
+
 ## Breakpoints
 
-**1068** small desktop (`.t-hero` 44 / display 32) · **900/899** home only (see Home) · **834/833** tablet (grid 2-col ≥835; `.about-band` 2-col ≥834) · **735** footer 3-col · **640** phone (menu disclosure, type step,
+**1068** small desktop (`.t-hero` 44 / display 32) · **900/899** Home and `pages.css` layouts · **1000** About timeline + rail two-column (rail sticks only when the viewport is also ≥700 tall) · **834/833** tablet (grid 2-col ≥835; `.about-band` 2-col ≥834) · **735** footer 3-col · **640** phone (menu disclosure, type step,
 tile 48×17) · **419** small phone (hero 30). Touch targets ≥44×44.
 
 ## Motion — `assets/css/motion.css` + `assets/js/motion.js` (loaded on every page)

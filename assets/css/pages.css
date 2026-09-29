@@ -1,0 +1,134 @@
+/* matthewvisher.com — Lab index, Notes index, About (DESIGN.md › Index pages + About). Tokens only; pg- prefixed.
+   Same left axis and type scale as the home page (home.css). Notes cards are styled from the markup
+   scripts/publish-note.py writes, so that script needs no change. */
+
+.pg-wrap.tile__inner { max-width: 1200px; text-align: left; }
+.pg-mono {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 400; line-height: 1.4;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+
+/* ---------- Page head — left axis, one line of lead where it fits ---------- */
+.pg-head { padding-block: clamp(56px, 7vw, 104px) clamp(40px, 5vw, 72px); }
+.pg-head h1 {
+  font-family: var(--font-serif); font-weight: 500;
+  font-size: clamp(44px, 6vw, 88px); line-height: 1; letter-spacing: -0.028em;
+}
+.pg-head .pg-lead { font-size: clamp(20px, 1.9vw, 26px); line-height: 1.3; margin-top: 20px; max-width: 44ch; text-wrap: balance; }
+.pg-index .grid { margin-top: 0; }
+.pg-index .card h2 { font-family: var(--font-serif); font-weight: 500; font-size: 26px; line-height: 1.12; letter-spacing: -0.01em; }
+.pg-index .card--feature h2 { font-size: clamp(30px, 3.4vw, 44px); line-height: 1.05; letter-spacing: -0.02em; }
+
+/* ---------- Notes index — each card is its own typographic cover ---------- */
+.pg-notes .card { padding: 22px var(--lg) var(--lg); display: flex; flex-direction: column; }
+.pg-notes .card__meta {
+  justify-content: space-between; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  padding-bottom: 10px; margin-bottom: 28px; border-bottom: 3px double var(--hairline);
+}
+.pg-notes .card h2 { text-wrap: balance; }
+.pg-notes .card p { color: color-mix(in srgb, var(--ink) 82%, transparent); }
+.pg-notes .card .ev { margin-top: auto; padding-top: var(--md); color: var(--ink); }
+.pg-notes .card--feature {
+  background: var(--charcoal); color: var(--on-dark); border-color: var(--charcoal);
+  padding: clamp(28px, 3.2vw, 44px); border-radius: 28px;
+}
+.pg-notes .card--feature:hover { border-color: var(--lemon); }
+.pg-notes .card--feature .card__meta { color: var(--muted-on-dark); border-color: color-mix(in srgb, var(--on-dark) 16%, transparent); margin-bottom: clamp(48px, 7vw, 104px); }
+.pg-notes .card--feature .card__meta .status { color: var(--lemon); font-weight: 500; }
+.pg-notes .card--feature h2 { font-size: clamp(36px, 4.8vw, 68px); line-height: 1.02; letter-spacing: -0.026em; max-width: 18ch; }
+.pg-notes .card--feature p { font-size: 20px; line-height: 1.32; color: var(--muted-on-dark); max-width: 52ch; margin-top: var(--md); }
+.pg-notes .card--feature .ev { font-size: 17px; padding-top: var(--xl); }
+.pg-notes .card--feature .link { color: var(--on-dark); }
+.pg-notes .card--feature a:focus-visible { outline-color: var(--lemon); }
+
+/* ---------- About ---------- */
+.pg-about-head .about-band { max-width: 1200px; }
+.pg-about-head h1 {
+  font-family: var(--font-serif); font-weight: 500;
+  font-size: clamp(44px, 6vw, 88px); line-height: 1; letter-spacing: -0.028em;
+}
+/* DOM order is paragraph, quote, paragraph (reading order); ≥900 the quote takes the right column */
+.pg-story { display: grid; gap: var(--lg); align-items: start; }
+.pg-story > p:not(.pg-quote) { font-size: 19px; line-height: 1.55; max-width: 62ch; text-wrap: pretty; }
+.pg-story > .pg-quote { margin-block: var(--sm); max-width: none; }
+.pg-quote {
+  font-family: var(--font-serif); font-weight: 500;
+  font-size: clamp(30px, 3.6vw, 52px); line-height: 1.06; letter-spacing: -0.022em; text-wrap: balance;
+  padding-left: var(--lg); border-left: 4px solid var(--lemon);
+}
+@media (min-width: 900px) {
+  .pg-story { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: var(--lg) 72px; }
+  .pg-story > p:not(.pg-quote) { grid-column: 1; }
+  .pg-story > .pg-quote { grid-column: 2; grid-row: 1 / span 2; margin-block: 0; }
+}
+
+.pg-h2 { font-family: var(--font-serif); font-weight: 500; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.04; letter-spacing: -0.022em; margin-bottom: 40px; }
+.pg-work { list-style: none; padding: 0; display: grid; gap: 20px; }
+.pg-work li { background: var(--parchment); border-radius: 22px; padding: clamp(24px, 2.6vw, 36px); }
+.pg-work h3 { font-family: var(--font-serif); font-weight: 500; font-size: 30px; line-height: 1.1; letter-spacing: -0.015em; margin-bottom: var(--xs); }
+.pg-work p { max-width: 44ch; text-wrap: pretty; }
+.pg-work .link { background-size: 100% 2px; }   /* in-text links show their underline at rest */
+@media (min-width: 835px) { .pg-work { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.pg-path { margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); position: relative; counter-reset: step; }
+.pg-path::before { content: ""; position: absolute; left: 0; right: 0; top: 5px; height: 2px; background: var(--hairline); }
+.pg-path > div { position: relative; padding: 28px var(--lg) 0 0; counter-increment: step; }
+.pg-path > div::before { content: ""; position: absolute; top: 0; left: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); }
+.pg-path > div:last-child::before { background: var(--lemon); outline: 2px solid var(--ink); }
+.pg-path dt { font-family: var(--font-serif); font-weight: 500; font-size: 26px; line-height: 1.15; }
+.pg-path dt::before {
+  content: counter(step, decimal-leading-zero); display: block; margin-bottom: 6px;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.08em; color: var(--muted);
+}
+.pg-path dd { margin: var(--xs) 0 0; font-size: 16px; color: var(--muted); max-width: 30ch; text-wrap: pretty; }
+@media (max-width: 899px) {
+  .pg-path { grid-template-columns: 1fr; }
+  .pg-path::before { left: 5px; right: auto; top: 0; bottom: 28px; width: 2px; height: auto; }
+  .pg-path > div { padding: 0 0 28px var(--xl); }
+}
+
+.pg-record { display: grid; gap: var(--xxl); align-items: start; }
+.pg-record #timeline { margin-top: 0; }
+.pg-record .timeline, .pg-record .timeline__caption { max-width: none; }
+.pg-rail { display: grid; gap: var(--lg); }
+.pg-rail > div { border: 1px solid var(--hairline); border-radius: 22px; padding: var(--lg) 28px 28px; }
+.pg-rail h2 { font-family: var(--font-serif); font-weight: 500; font-size: 26px; line-height: 1.15; margin-bottom: var(--sm); }
+.pg-rail ul { list-style: none; padding: 0; }
+.pg-rail li { padding: var(--sm) 0; border-top: 1px solid var(--hairline); text-wrap: pretty; }
+.pg-rail .fine { margin-top: var(--xs); }
+@media (min-width: 1000px) {
+  .pg-record { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 72px; }
+}
+@media (min-width: 1000px) and (min-height: 700px) { .pg-rail { position: sticky; top: 84px; } }
+
+@media (max-width: 640px) {
+  .pg-notes .card--feature { border-radius: 22px; }
+  .pg-notes .card__meta { margin-bottom: 20px; }
+}
+@media print {
+  /* About prints as a résumé: compact type, no cells, reading order kept */
+  .pg-head { padding-block: 0 8mm; }
+  .pg-head h1, .pg-about-head h1 { font-size: 20pt; }
+  .pg-head .pg-lead { font-size: 11pt; margin-top: 4pt; }
+  .pg-h2 { font-size: 15pt; margin-bottom: 6pt; }
+  .pg-wrap.tile__inner, .pg-about-head .about-band { max-width: none; }
+  .pg-story, .pg-record, .pg-work, .pg-path, .pg-rail { display: block; }
+  .pg-story > p:not(.pg-quote), .pg-story > .pg-quote { font: inherit; letter-spacing: 0; max-width: none; margin: 6pt 0 0; }
+  .pg-quote { border: 0; padding: 0; }
+  .pg-work li, .pg-rail > div { background: none !important; border: 0; border-radius: 0; padding: 0; margin-top: 4pt; }
+  .pg-work h3, .pg-rail h2, .pg-path dt { font-family: inherit; font-size: 10.5pt; font-weight: 600; margin: 0; }
+  .pg-work p { max-width: none; }
+  .pg-work .link { background: none; }
+  .pg-path::before, .pg-path > div::before, .pg-path dt::before { display: none; }
+  .pg-path > div { padding: 0; margin-top: 4pt; }
+  .pg-path dd { font-size: inherit; color: #000; max-width: none; margin: 0; }
+  .pg-rail { position: static; margin-top: 8pt; }
+  .pg-rail li { padding: 0; border: 0; }
+  .pg-rail h2 { margin-top: 6pt; }
+  .tile:has(> .pg-wrap), .pg-about-head { padding-bottom: 2mm; }
+  .pg-record #timeline .pg-h2 { margin-top: 4pt; }
+  .pg-notes .card--feature { background: none !important; border-color: #000; border-radius: 0; padding: 0; }
+  .pg-notes .card--feature * { color: #000 !important; }
+  .pg-notes .card--feature h2 { font-size: 15pt; }
+  .pg-notes .card--feature .card__meta { margin-bottom: 6pt; }
+}

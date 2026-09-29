@@ -31,3 +31,6 @@
 .card .specimen { background: var(--charcoal); color: var(--on-dark);
   border-color: color-mix(in oklch, var(--on-dark) 18%, transparent); }
 .card .specimen b { color: var(--lemon); }
+
+/* A denied or failed value reads rust, never lemon (lemon = verified). Lab specimens sit on charcoal. */
+.specimen b.no { color: var(--rust-on-dark); }
