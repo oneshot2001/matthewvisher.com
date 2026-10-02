@@ -128,6 +128,21 @@
       <p>Also on LinkedIn: <a href="https://www.linkedin.com/pulse/seal-intact-matthew-visher-nws5f/">the article</a> and <a href="https://www.linkedin.com/posts/matthew-visher-6b4692a8_i-spent-years-signing-evidence-seals-half-ugcPost-7511469796044189699-fttT/">the film</a>.</p>
     </div>
 
+    <div class="article-sources article-receipts" id="receipts">
+      <p>Receipts for the film, so you can check what is on screen. Every run on Bend 2.0.34 (release tarball, sha256 a60c820c&hellip;e8c267), September 29, 2026.</p>
+      <p><strong>LAWS.bend, both laws.</strong> The v2.0.34 demo file, unchanged: <code>git show v2.0.34:demos/app_win_is_bug_2d/LAWS.bend</code>, sha256 84c7f702&hellip;c38c04c7.</p>
+      <p><strong>main.bend header and the original is_won.</strong> main.bend lines 6&ndash;7. The real reading, <code>Game{x, y, w} = g; w</code>, is what the won_field keeps in the switched version.</p>
+      <p><strong>Five attempts, their errors, their times.</strong> The run transcript for attempts 1b&ndash;1f. Times from /usr/bin/time, three runs each, all identical: 0.27, 0.05, 0.05, 0.03, 0.05 s.</p>
+      <p><strong>The switch.</strong> In the switched main.bend, <code>def is_won &hellip; False{}</code> and <code>def at_flag &hellip; False{}</code>.</p>
+      <p><strong>ALL PROOFS CHECK &middot; 0.05 s.</strong> <code>bend PROOF.bend</code> on 2.0.34, exit 0, 0.05 s.</p>
+      <p><strong>The board, START, F, walls.</strong> <code>bend main.bend</code> grid output, 12&times;8, P on the starting cell.</p>
+      <p><strong>The walk and the two wraps.</strong> main.bend line 245 move list (Right&times;4, Down&times;3, Right, Down) through warp_right, warp_down and wall, north and west moves dropped: (8,5)&rarr;(11,5)&rarr;wrap&rarr;(0,5)&rarr;(0,7)&rarr;wrap&rarr;(0,0)&rarr;(1,0)&rarr;(1,1)=F.</p>
+      <p><strong>WON (this line is unreachable).</strong> <code>bend main.bend</code> output on the switched version, with the player on the drawn F.</p>
+      <p><strong>Hands and bills.</strong> Illustration, AI-generated (Seedance), labeled on screen and in the credit. Not a record of anything.</p>
+      <p><strong>Closing line.</strong> The analogy from this note. Not a technical claim.</p>
+      <p>Not claimed: that an AI did this on its own (the moves were made by hand), that Bend is broken (it checked the sentence it was given), any web-page behavior, or any endorsement by or affiliation with Bend.</p>
+    </div>
+
     <nav class="article-nav" aria-label="Series">
       <a rel="prev" href="/notes/no-14/"><small>Previous</small>NO. 14 &middot; A Standing Man Is a Vertical Line</a>
     </nav>
