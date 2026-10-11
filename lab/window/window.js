@@ -131,7 +131,7 @@ function lock() {
   lockOut.innerHTML = "<b>On.</b> default-src 'none'. Reload to remove it.";
 }
 
-document.addEventListener('securitypolicyviolation', (e) => {
+function record(e) {
   // Once locked, the header and the lock both report each refusal; count the lock's copy.
   // (The header alone can still refuse base-uri, form-action, frame-ancestors; this page uses none.)
   if (locked && e.originalPolicy.includes('script-src')) return;
@@ -141,7 +141,9 @@ document.addEventListener('securitypolicyviolation', (e) => {
   b.className = 'no';
   b.textContent = String(refused);
   refusedOut.append(b, ` · last: ${e.blockedURI || e.effectiveDirective}`);
-});
+}
+refusals.forEach(record); // caught by refusals.js before this file ran
+document.addEventListener('securitypolicyviolation', record);
 
 function loadDetector() {
   return import(VENDOR + 'vision_bundle.mjs').then(({ FaceDetector }) => FaceDetector.createFromOptions(

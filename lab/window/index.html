@@ -24,8 +24,9 @@
   <link rel="stylesheet" href="/assets/css/lab.css?v=20260929a" />
   <link rel="stylesheet" href="/assets/css/motion.css?v=20260929a" />
   <link rel="stylesheet" href="/lab/window/window.css?v=20261010a" />
+  <script src="/lab/window/refusals.js?v=20261010a"></script>
   <script src="/assets/js/motion.js" defer></script>
-  <script type="module" src="/lab/window/window.js?v=20261010a"></script>
+  <script type="module" src="/lab/window/window.js?v=20261010b"></script>
   <script type="application/ld+json">
   {
       "@context": "https://schema.org",
@@ -124,7 +125,7 @@ referrer-policy: no-referrer</pre>
       <p>The second lock closes before the camera opens. When you press Start, the page loads the tracker, then adds a stricter rule: <code>default-src 'none'</code>. From then on the page can't fetch, post, or load anything from anywhere, my own server included. A browser lets a page tighten these rules but never loosen them, so there's no unlock. Reload and you get the page you started with, camera off.</p>
       <h2>Check it yourself</h2>
       <ol>
-        <li>Open your browser's developer tools to the Network tab and press Start. Everything arrives before the camera light comes on: the tracker, a 230 KB face model, and 11.7 MB of WebAssembly. Once the light is on, nothing new loads. About a minute in, one row shows up marked blocked. It gets its own section below.</li>
+        <li>Open your browser's developer tools to the Network tab and reload. One row is already marked blocked; the section below explains it. Press Start. Everything else arrives before the camera light comes on: the tracker, a 230 KB face model, and 11.7 MB of WebAssembly. Once the light is on, nothing new loads. About a minute in, a second row shows up marked blocked.</li>
         <li>In the Console, type <code>fetch('/')</code> before you press Start. It works. Type it again after. The browser refuses and quotes the rule that stopped it.</li>
         <li>Turn off your Wi-Fi with the camera running. Nothing changes. The window doesn't need the internet.</li>
         <li>Reload with the Network tab open, click the first row, and read the response headers. Those are the rules your browser held this page to from the first byte.</li>
@@ -137,7 +138,8 @@ vision_bundle.mjs
   d885630c297c0b20b1fe86096cb06291
   c4c8080876f27852e724f24ac603713f</pre>
       <h2>What the lock caught</h2>
-      <p>About a minute after you press Start, Refused ticks up by one. The request it caught is a POST to <code>odml.pa.googleapis.com/v1/log</code>. That's MediaPipe, the tracker, reporting usage metrics to Google on a one-minute timer. Google's documentation says the library does this, and says the metrics cover performance and usage, not your images. The page refuses it anyway, because it promised the camera stays in this tab. A site that runs this version of MediaPipe without a rule like this one sends that report.</p>
+      <p>It catches something before you press anything. Cloudflare, the company that serves this site, adds its own analytics script to the pages it sends out. That script isn't in this page's source. It gets added on the way to you, and the first lock refuses it, so Refused reads one as soon as the page loads.</p>
+      <p>About a minute after you press Start, Refused ticks up again. The request it caught is a POST to <code>odml.pa.googleapis.com/v1/log</code>. That's MediaPipe, the tracker, reporting usage metrics to Google on a one-minute timer. Google's documentation says the library does this, and says the metrics cover performance and usage, not your images. The page refuses it anyway, because it promised the camera stays in this tab. A site that runs this version of MediaPipe without a rule like this one sends that report.</p>
       <h2>What this doesn't prove</h2>
       <ul>
         <li>The rules can't stop a page from navigating or opening a new window. A page that smuggled data out in an address would change an address bar you can see.</li>
