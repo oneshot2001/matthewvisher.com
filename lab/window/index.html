@@ -138,7 +138,7 @@ vision_bundle.mjs
   d885630c297c0b20b1fe86096cb06291
   c4c8080876f27852e724f24ac603713f</pre>
       <h2>What the lock caught</h2>
-      <p>It catches something before you press anything. Cloudflare, the company that serves this site, adds its own analytics script to the pages it sends out. That script isn't in this page's source. It gets added on the way to you, and the first lock refuses it, so Refused reads one as soon as the page loads.</p>
+      <p>It catches something before you press anything. Cloudflare, which serves this site, adds an analytics script to the pages it sends out. That's a setting on my hosting account, and the script isn't in this page's source. It gets added on the way to you, and the first lock refuses it, so Refused reads one as soon as the page loads.</p>
       <p>About a minute after you press Start, Refused ticks up again. The request it caught is a POST to <code>odml.pa.googleapis.com/v1/log</code>. That's MediaPipe, the tracker, reporting usage metrics to Google on a one-minute timer. Google's documentation says the library does this, and says the metrics cover performance and usage, not your images. The page refuses it anyway, because it promised the camera stays in this tab. A site that runs this version of MediaPipe without a rule like this one sends that report.</p>
       <h2>What this doesn't prove</h2>
       <ul>
