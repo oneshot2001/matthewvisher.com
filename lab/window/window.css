@@ -1,0 +1,42 @@
+/* Lab · The Window. This page's policy allows no other origin, so the fonts the site
+   normally takes from Google are served from here (latin subset, same files). */
+@font-face { font-family: 'Public Sans'; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url(fonts/public-sans.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Newsreader'; font-style: normal; font-weight: 400 600; font-display: swap;
+  src: url(fonts/newsreader.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 400 600; font-display: swap;
+  src: url(fonts/newsreader-italic.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 500; font-display: swap;
+  src: url(fonts/jetbrains-mono.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* The stage: charcoal instrument, window on top, controls and readout below */
+.lab-window { max-width: 980px; margin: 48px auto 0; padding: 0 24px; }
+.lab-window__frame { position: relative; overflow: hidden; background: var(--charcoal); color: var(--on-dark);
+  border-radius: var(--r-md); }
+.lab-window canvas { display: block; width: 100%; aspect-ratio: 16 / 10; touch-action: pan-y; cursor: crosshair; }
+.lab-window video { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.lab-window__bar, .lab-window__readout { border-top: 1px solid color-mix(in srgb, var(--on-dark) 18%, transparent);
+  padding: var(--md) var(--lg); }
+.lab-window__bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sm) var(--lg); }
+.lab-window [hidden] { display: none; }
+.lab-window .btn--secondary { color: var(--lemon); border-color: var(--lemon); }
+.lab-window .btn--secondary:hover { background: color-mix(in oklch, var(--lemon) 8%, transparent); }
+.lab-window__status { margin: 0; font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: .02em;
+  color: var(--muted-on-dark); }
+.lab-window__readout { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sm) var(--lg);
+  font-family: var(--font-mono); font-size: 13px; line-height: 1.5; letter-spacing: .02em; }
+.lab-window__readout dt { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; line-height: 1.8; color: var(--muted-on-dark); }
+.lab-window__readout dd { margin: 0; overflow-wrap: anywhere; }
+.lab-window__readout b { font-weight: 500; color: var(--lemon); }
+.lab-window__readout b.no { color: var(--rust-on-dark); }
+.lab-window figcaption { margin-top: var(--sm); font-family: var(--font-mono); font-size: 13px; line-height: 1.5;
+  letter-spacing: .02em; color: var(--muted); text-wrap: pretty; }
+@media (max-width: 640px) {
+  .lab-window { padding: 0 17px; }
+  .lab-window__bar, .lab-window__readout { padding: var(--md); }
+  .lab-window__readout { grid-template-columns: 1fr; }
+}

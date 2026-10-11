@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Window · Lab · Matthew Visher</title>
+  <meta name="description" content="Move your head and the screen turns into a window. The page locks itself before the camera opens, and shows you how to check the lock." />
+  <link rel="canonical" href="https://matthewvisher.com/lab/window/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="The Window · Lab · Matthew Visher" />
+  <meta property="og:description" content="Move your head and the screen turns into a window. The page locks itself before the camera opens, and shows you how to check the lock." />
+  <meta property="og:url" content="https://matthewvisher.com/lab/window/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-home.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Matthew Visher · 21 years behind the badge. Now I build the tools I wished it had." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Window · Lab · Matthew Visher" />
+  <meta name="twitter:description" content="Move your head and the screen turns into a window. The page locks itself before the camera opens, and shows you how to check the lock." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-home.png" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260929c" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260903c" />
+  <link rel="stylesheet" href="/assets/css/lab.css?v=20260929a" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260929a" />
+  <link rel="stylesheet" href="/lab/window/window.css?v=20261010a" />
+  <script src="/assets/js/motion.js" defer></script>
+  <script type="module" src="/lab/window/window.js?v=20261010a"></script>
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "The Window",
+      "description": "A head-tracked window effect that locks its own network access before the camera opens, with instructions for checking the lock.",
+      "url": "https://matthewvisher.com/lab/window/"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/" aria-current="page">Lab</a>
+        <a href="/notes/">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/" aria-current="page">Lab</a>
+          <a href="/notes/">Notes</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>LAB · WINDOW</span><span class="am-no">06 / 06</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/lab/">&larr; Lab</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Experiment · Camera privacy</p>
+      <h1 class="article-title">The Window</h1>
+      <p class="article-dek">Move your head and the screen turns into a window. The page locks itself before the camera opens, and you can check the lock yourself.</p>
+      <dl class="lab-meta">
+        <div><dt>Type</dt><dd>Experiment</dd></div>
+        <div><dt>Status</dt><dd><span class="status"><span class="tick" aria-hidden="true"></span>Live</span> · runs in your browser</dd></div>
+        <div><dt>Updated</dt><dd>Oct 2026</dd></div>
+        <div><dt>Source</dt><dd><a href="/lab/window/window.js">window.js</a>, every line that touches the camera</dd></div>
+        <div><dt>Tracker</dt><dd>MediaPipe Tasks 1.0.1 · Apache-2.0</dd></div>
+      </dl>
+    </header>
+
+    <figure class="lab-window">
+      <div class="lab-window__frame">
+        <canvas role="img" aria-label="A room drawn in grid lines behind the screen, with seven discs on stalks at different depths. Moving your head or your pointer changes the angle you see it from."></canvas>
+        <video muted playsinline></video>
+        <div class="lab-window__bar">
+          <button class="btn btn--primary" type="button" data-start>Start camera</button>
+          <button class="btn btn--secondary" type="button" data-stop hidden>Stop</button>
+          <p class="lab-window__status" role="status" data-status>Camera off. Move your pointer, or drag a finger sideways, across the window.</p>
+        </div>
+        <dl class="lab-window__readout">
+          <div><dt>Lock</dt><dd data-lock>Header only. Talks to this site, nowhere else.</dd></div>
+          <div><dt>Refused</dt><dd data-refused>0</dd></div>
+          <div><dt>Kept</dt><dd data-kept>Camera off.</dd></div>
+        </dl>
+      </div>
+      <figcaption>Kept is what the page uses from your camera: where your eyes are, overwritten every frame. The frames themselves go only to the tracker running in this tab. Refused counts the requests your browser blocked.</figcaption>
+    </figure>
+
+    <article class="article-body">
+      <h2>The question</h2>
+      <p class="first reveal">On October 10, Dominik Fojcik <a href="https://x.com/_fojcik/status/2108933694190768152">posted a website</a> that turns a laptop screen into a window. The webcam follows your head, and the picture shifts so the room behind the glass has depth. The trick itself is old. Johnny Lee did it with a Wii remote in 2007. The part I kept thinking about was the question at the end of the post: how do you prove to people the camera is only used for the effect?</p>
+      <p>A privacy policy is a promise. This page doesn't ask for your trust. It locks itself, and it tells you how to check the lock.</p>
+      <h2>What this looks like off the screen</h2>
+      <p>Think of an evidence bag. An officer can tell you nobody opened it. Or you can look at the tape and the signature across the seal and see for yourself. A privacy policy is the officer's word. This page is the seal.</p>
+      <p>You'll run into this more. A website asks you to look into your camera to prove you're over 18. The front office at your kid's school photographs every visitor on a tablet. Your city asks you to register your doorbell camera with the police department's real-time crime center. You should be able to ask where the picture goes and get something better than a promise: a lock you can check, a log of what it blocked, and a straight answer about what the lock can't cover.</p>
+      <h2>Two locks</h2>
+      <p>The first lock arrives with the page. Before any of my code runs, the server tells your browser what this page may talk to: matthewvisher.com, and nothing else. No analytics, no font service, no CDN. That's why the fonts and the tracker are served from this site.</p>
+<pre class="specimen" role="figure" aria-label="The headers this page is served with">content-security-policy:
+  default-src 'none'
+  script-src  'self' 'wasm-unsafe-eval'
+  connect-src 'self'
+  style-src 'self'   font-src 'self'   img-src 'self'
+  worker-src 'none'  base-uri 'none'   form-action 'none'
+  frame-ancestors 'none'
+permissions-policy:
+  camera=(self), microphone=()
+x-dns-prefetch-control: off
+referrer-policy: no-referrer</pre>
+      <p>The second lock closes before the camera opens. When you press Start, the page loads the tracker, then adds a stricter rule: <code>default-src 'none'</code>. From then on the page can't fetch, post, or load anything from anywhere, my own server included. A browser lets a page tighten these rules but never loosen them, so there's no unlock. Reload and you get the page you started with, camera off.</p>
+      <h2>Check it yourself</h2>
+      <ol>
+        <li>Open your browser's developer tools to the Network tab and press Start. Everything arrives before the camera light comes on: the tracker, a 230 KB face model, and 11.7 MB of WebAssembly. Once the light is on, nothing new loads. About a minute in, one row shows up marked blocked. It gets its own section below.</li>
+        <li>In the Console, type <code>fetch('/')</code> before you press Start. It works. Type it again after. The browser refuses and quotes the rule that stopped it.</li>
+        <li>Turn off your Wi-Fi with the camera running. Nothing changes. The window doesn't need the internet.</li>
+        <li>Reload with the Network tab open, click the first row, and read the response headers. Those are the rules your browser held this page to from the first byte.</li>
+        <li>Check the tracker against Google's published package, <code>@mediapipe/tasks-vision@1.0.1</code> on npm. Hash the two files below from that package and from this site's <code>/lab/window/vendor/</code>. Each pair should match.</li>
+      </ol>
+<pre class="specimen" role="figure" aria-label="SHA-256 of the tracker files this page serves">wasm/vision_wasm_internal.wasm
+  8da277a733926eacd0474b8704b36742
+  d6ec3231c57a860c5b889dff8f1df886
+vision_bundle.mjs
+  d885630c297c0b20b1fe86096cb06291
+  c4c8080876f27852e724f24ac603713f</pre>
+      <h2>What the lock caught</h2>
+      <p>About a minute after you press Start, Refused ticks up by one. The request it caught is a POST to <code>odml.pa.googleapis.com/v1/log</code>. That's MediaPipe, the tracker, reporting usage metrics to Google on a one-minute timer. Google's documentation says the library does this, and says the metrics cover performance and usage, not your images. The page refuses it anyway, because it promised the camera stays in this tab. A site that runs this version of MediaPipe without a rule like this one sends that report.</p>
+      <h2>What this doesn't prove</h2>
+      <ul>
+        <li>The rules can't stop a page from navigating or opening a new window. A page that smuggled data out in an address would change an address bar you can see.</li>
+        <li>They don't cover every channel. DNS lookups can leak a few bytes in a made-up hostname, and WebRTC, the browser's peer-to-peer channel, isn't covered at all. This page turns DNS prefetching off and never opens WebRTC. Search <a href="/lab/window/window.js">window.js</a> for RTCPeerConnection.</li>
+        <li>They don't stop a page from saving data in your browser for a later, unlocked visit to send. Check the Application tab: this site stores one flag, which skips its intro animation.</li>
+        <li>I can't make you read Google's 11.7 MB of WebAssembly. That's why the room is locked before the tracker sees you.</li>
+        <li>Kept and Refused are my code reporting on my code. The checks above are yours.</li>
+        <li>It holds for this visit, in this tab, with this code. If the page changes, check it again.</li>
+      </ul>
+    </article>
+
+    <nav class="article-nav" aria-label="Lab">
+      <a rel="prev" href="/lab/commissioning-walk/"><small>Previous</small>Commissioning Walk</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:hello@matthewvisher.com">hello@matthewvisher.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>
