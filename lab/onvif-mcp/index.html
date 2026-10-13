@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>onvif-mcp · Lab · Matthew Visher</title>
-  <meta name="description" content="An MCP server that gives AI agents a governed, receipted interface to security cameras: discovery, snapshots, PTZ, commissioning. AXIS VAPIX and ONVIF under one contract." />
+  <meta name="description" content="An MCP server that gives AI agents a governed, receipted interface to security cameras: snapshots, PTZ, config drift checks, commissioning. AXIS VAPIX and ONVIF under one contract." />
   <link rel="canonical" href="https://matthewvisher.com/lab/onvif-mcp/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="onvif-mcp · Lab · Matthew Visher" />
-  <meta property="og:description" content="An MCP server that gives AI agents a governed, receipted interface to security cameras: discovery, snapshots, PTZ, commissioning. AXIS VAPIX and ONVIF under one contract." />
+  <meta property="og:description" content="An MCP server that gives AI agents a governed, receipted interface to security cameras: snapshots, PTZ, config drift checks, commissioning. AXIS VAPIX and ONVIF under one contract." />
   <meta property="og:url" content="https://matthewvisher.com/lab/onvif-mcp/" />
   <meta property="og:image" content="https://matthewvisher.com/assets/og/og-home.png" />
   <meta property="og:image:width" content="1200" />
@@ -16,7 +16,7 @@
   <meta property="og:image:alt" content="Matthew Visher · 21 years behind the badge. Now I build the tools I wished it had." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="onvif-mcp · Lab · Matthew Visher" />
-  <meta name="twitter:description" content="An MCP server that gives AI agents a governed, receipted interface to security cameras: discovery, snapshots, PTZ, commissioning. AXIS VAPIX and ONVIF under one contract." />
+  <meta name="twitter:description" content="An MCP server that gives AI agents a governed, receipted interface to security cameras: snapshots, PTZ, config drift checks, commissioning. AXIS VAPIX and ONVIF under one contract." />
   <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-home.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,7 +36,7 @@
       "description": "MCP server giving AI agents a governed, receipted interface to security cameras over AXIS VAPIX and ONVIF.",
       "url": "https://matthewvisher.com/lab/onvif-mcp/",
       "codeRepository": "https://github.com/oneshot2001/onvif-mcp",
-      "programmingLanguage": "Python",
+      "programmingLanguage": "TypeScript",
       "license": "https://opensource.org/licenses/MIT"
   }
   </script>
@@ -82,7 +82,7 @@
       <dl class="lab-meta">
         <div><dt>Type</dt><dd>Open-source tool</dd></div>
         <div><dt>Status</dt><dd><span class="status"><span class="tick" aria-hidden="true"></span>Active</span> · v0.1.0, experimental</dd></div>
-        <div><dt>Updated</dt><dd>Aug 2026</dd></div>
+        <div><dt>Updated</dt><dd>Oct 2026</dd></div>
         <div><dt>Repo</dt><dd><a href="https://github.com/oneshot2001/onvif-mcp">github.com/oneshot2001/onvif-mcp</a></dd></div>
         <div><dt>License</dt><dd>MIT</dd></div>
       </dl>
@@ -94,23 +94,23 @@
       <h2>Why the usual answers fail</h2>
       <p>ONVIF is the industry standard, and it is a swamp of SOAP, profiles, and vendor quirks. The quick fix is a thin wrapper that hands a model the raw camera API and puts the policy in the prompt. That leaves two holes. The agent can do anything the credential can do. And the check that stopped it lives nowhere. A gate that fires without leaving a record can't prove it ever fired.</p>
       <h2>What I built</h2>
-      <p>An MCP server over stdio. The tools are list_cameras, get_snapshot, ptz_move, ptz_preset, get_receipts, and commission_plan / apply / verify. Policy is per agent and fails closed: a tool allowlist, a camera allowlist, and PTZ step bounds. An agent the policy doesn't name gets nothing. No secrets are written to disk; credentials are resolved at startup from a local store.</p>
+      <p>An MCP server over stdio. The tools are list_cameras, get_snapshot, ptz_move, ptz_preset, get_receipts, commission_plan / apply / verify, and config_baseline / drift / remediate. Policy is per agent and fails closed: a tool allowlist, a camera allowlist, PTZ step and zoom limits, per-minute rate limits, and config-write grants with a hard denylist. An agent the policy doesn't name gets nothing. No secrets are written to disk; credentials are resolved at startup from a local store.</p>
       <h2>How it works</h2>
-      <p>Every call, allowed or denied, appends a receipt to a JSONL file. Each receipt carries the hash of the one before it and an ed25519 signature. Frames are content-hashed, so a snapshot can be tied to the receipt that produced it. Running with <code>--verify</code> walks the chain, and if one byte has changed it names the exact sequence number. This is what a denied call looks like on disk:</p>
-<pre class="specimen" role="figure" aria-label="onvif-mcp denied-call receipt">{
-  "seq":       41,
-  "ts":        "2026-08-20T21:04:17.512Z",
-  "agent":     "agent:research-bot",
-  "tool":      "ptz_move",
-  "camera":    "yard",
+      <p>Every call, allowed or denied, appends a receipt to a JSONL file. Each receipt carries the hash of the one before it and an ed25519 signature. Frames are content-hashed, so a snapshot can be tied to the receipt that produced it. Running with <code>--verify</code> walks the chain, and if one byte has changed it names the exact sequence number. It also catches deleted receipts and checks the signed handoffs. This is receipt 223 from the repo&#x27;s own chain, trimmed: an agent asked to swing a camera 90° when its policy allows 30°.</p>
+<pre class="specimen" role="figure" aria-label="onvif-mcp denied-call receipt, seq 223">{
+  "seq":       223,
+  "ts":        "2026-09-18T21:40:36.626Z",
+  "principal": {"role": "agent", "id": "claude-main"},
+  "action":    {"tool": "ptz_move",
+                "params": {"camera": "q6358", "pan": 90}},
   "decision":  <b class="no">"deny"</b>,
-  "reason":    "camera not in allowlist",
-  "prev":      "sha256:…c04d",
-  "sig":       "ed25519:…8Qf1"
+  "detail":    "step exceeds policy maxStep 30°",
+  "prev":      "a2155062…bb68b",
+  "sig":       "4WpvGtYq…R77Bw=="
 }</pre>
-      <p>Since August 15 the receipts are wire-conformant with <a href="/lab/aar/">Agent Action Receipts</a>, and AAR's independent verifier checks them. Under the one tool contract there are two transports, AXIS VAPIX over HTTP CGI and ONVIF SOAP, picked per camera. The SOAP is hand-authored. I claim no ONVIF conformance.</p>
+      <p>Since August 15, snapshot and preset calls also write receipts in the <a href="/lab/aar/">Agent Action Receipts</a> wire format, which AAR&#x27;s verifier accepts. The main chain uses AAR&#x27;s vocabulary but is not wire-conformant. Under the one tool contract there are two transports, AXIS VAPIX over HTTP CGI and ONVIF SOAP, picked per camera. The SOAP is hand-authored. I claim no ONVIF conformance.</p>
       <h2>Where it stands</h2>
-      <p>Version 0.1.0, experimental, tested against the three AXIS cameras on my own bench. Two things I measured rather than read: on AXIS OS 12.9.57 the admin account works for ONVIF over digest auth, while older 12.x firmware needs a separate ONVIF account. RelativeMove pan maps to degrees divided by 360 exactly; tilt and zoom are approximate. No non-AXIS hardware has been tried. The server signs with one key, not one per agent. It went out on Show HN on August 20, 2026.</p>
+      <p>Version 0.1.0, experimental, tested against the three AXIS cameras on my own bench. Two things I measured rather than read: on AXIS OS 12.9.57 the admin account works for ONVIF over digest auth, while older 12.x firmware needs a separate ONVIF account. RelativeMove pan maps to degrees divided by 360 exactly; tilt and zoom are approximate. No non-AXIS hardware has been tried. The server signs with one key, not one per agent. I posted it to Hacker News on August 20, 2026. Since then it has gained config drift tools, optional certificate pinning (live on one camera), event checks during commissioning, rate limits, and 434 tests that run offline.</p>
       <h2>What's next</h2>
       <p>Per-agent signing keys and a signed policy file, clip export, non-AXIS ONVIF hardware, and alignment with the MCP 2026-07-28 stateless revision. A side-ship came out of this work: <a href="https://github.com/oneshot2001/vapix-openapi">vapix-openapi</a>, an MIT-licensed OpenAPI description of the fifteen VAPIX paths I needed.</p>
       <ul>

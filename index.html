@@ -162,14 +162,10 @@
             <h3>onvif-mcp</h3>
             <p class="hm-cell__lead">AI agents can't talk to security cameras. Now they can.</p>
             <div class="hm-links"><a class="hm-go" href="https://github.com/oneshot2001/onvif-mcp">View on GitHub</a><a class="hm-go" href="/lab/onvif-mcp/">In the Lab</a></div>
-<pre class="hm-spec" role="figure" aria-label="onvif-mcp terminal transcript">$ onvif-mcp list_cameras
-  lobby   AXIS P3285-LVE   192.168.1.19   ok
-  gate    AXIS Q6325-LE    192.168.1.32   ok  ptz
-  yard    AXIS Q6358-LE    192.168.1.33   ok  ptz
-$ onvif-mcp ptz_preset yard --name dock
-  yard &rarr; preset "dock"   <b>device_acknowledged</b>
-$ onvif-mcp --verify
-  <b>chain OK</b> &middot; 3 receipts, sigs valid</pre>
+<pre class="hm-spec" role="figure" aria-label="onvif-mcp chain check, Oct 12 2026">$ bun index.ts --verify
+  <b>chain OK</b> &mdash; 299 receipts, every hash
+  linked + signature valid; 59 handoff
+  signatures valid, heads present</pre>
           </article>
           <article class="hm-cell hm-cell--light reveal" style="--i:1">
             <span class="hm-mono">Open-source spec + tool &middot; Active</span>

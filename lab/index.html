@@ -88,29 +88,29 @@
           <li class="card card--feature reveal" style="--i:0">
             <div>
               <div class="card__meta">
-                <span>Open-source tool</span><span class="status"><span class="tick" aria-hidden="true"></span>Active</span><span>Updated Aug 2026</span>
+                <span>Open-source tool</span><span class="status"><span class="tick" aria-hidden="true"></span>Active</span><span>Updated Oct 2026</span>
               </div>
               <h2><a class="link" href="/lab/onvif-mcp/">onvif-mcp</a></h2>
-              <p>AI agents can't talk to security cameras. ONVIF is the industry standard, and it's a swamp of SOAP, profiles, and vendor quirks. onvif-mcp is an MCP server that gives an agent a working camera interface: discovery, streams, PTZ, events. Every call, allowed or denied, leaves a signed receipt.</p>
+              <p>AI agents can't talk to security cameras. ONVIF is the industry standard, and it's a swamp of SOAP, profiles, and vendor quirks. onvif-mcp is an MCP server that gives an agent a working camera interface: snapshots, PTZ, config drift checks, commissioning. Every call, allowed or denied, leaves a signed receipt.</p>
               <p class="aud">For anyone wiring agents into camera infrastructure.</p>
-              <p class="ev"><a class="link" href="https://github.com/oneshot2001/onvif-mcp">GitHub</a> &middot; Launched on Show HN, Aug 2026</p>
+              <p class="ev"><a class="link" href="https://github.com/oneshot2001/onvif-mcp">GitHub</a> &middot; Posted to Hacker News, Aug 2026</p>
             </div>
-<pre class="specimen" role="figure" aria-label="onvif-mcp denied-call receipt">{
-  "seq":       41,
-  "ts":        "2026-08-20T21:04:17.512Z",
-  "agent":     "agent:research-bot",
-  "tool":      "ptz_move",
-  "camera":    "yard",
+<pre class="specimen" role="figure" aria-label="onvif-mcp denied-call receipt, seq 223">{
+  "seq":       223,
+  "ts":        "2026-09-18T21:40:36.626Z",
+  "principal": {"role": "agent", "id": "claude-main"},
+  "action":    {"tool": "ptz_move",
+                "params": {"camera": "q6358", "pan": 90}},
   "decision":  <b class="no">"deny"</b>,
-  "reason":    "camera not in allowlist",
-  "prev":      "sha256:…c04d",
-  "sig":       "ed25519:…8Qf1"
+  "detail":    "step exceeds policy maxStep 30°",
+  "prev":      "a2155062…bb68b",
+  "sig":       "4WpvGtYq…R77Bw=="
 }</pre>
           </li>
 
           <li class="card reveal" style="--i:1">
             <div class="card__meta">
-              <span>Open-source spec + tool</span><span class="status"><span class="tick" aria-hidden="true"></span>Active</span><span>Updated Sep 2026</span>
+              <span>Open-source spec + tool</span><span class="status"><span class="tick" aria-hidden="true"></span>Active</span><span>Updated Oct 2026</span>
             </div>
             <h2><a class="link" href="/lab/aar/">Agent Action Receipts</a></h2>
             <p>When an AI agent acts on your systems, there's no evidence trail you could hand to an auditor. AAR is a spec and tooling for signed, replayable receipts of agent actions. Chain-of-custody thinking, applied to agents.</p>
@@ -130,7 +130,7 @@
 
           <li class="card reveal" style="--i:3">
             <div class="card__meta">
-              <span>Prototype</span><span class="status"><span class="tick" aria-hidden="true"></span>Beta</span><span>Updated Aug 2026</span>
+              <span>Prototype</span><span class="status"><span class="tick" aria-hidden="true"></span>Beta</span><span>Updated Oct 2026</span>
             </div>
             <h2><a class="link" href="/lab/camspec/">camspec</a></h2>
             <p>Camera installs get signed off on "it shows a picture." camspec turns the spec into code: a YAML desired state, a read-only plan, an approved and verified apply, and a PASS/FAIL handoff someone can sign.</p>
@@ -140,7 +140,7 @@
 
           <li class="card reveal" style="--i:4">
             <div class="card__meta">
-              <span>Experiment</span><span class="status"><span class="tick" aria-hidden="true"></span>Measuring</span><span>Updated Aug 2026</span>
+              <span>Experiment</span><span class="status"><span class="tick" aria-hidden="true"></span>Measuring</span><span>Updated Oct 2026</span>
             </div>
             <h2><a class="link" href="/lab/commissioning-walk/">Commissioning Walk</a></h2>
             <p>Wireless camera links fail in ways a laptop speed test doesn't catch. This experiment measures what a camera actually needs to hold a stream, day and night, and turns it into installer pass/fail thresholds.</p>
