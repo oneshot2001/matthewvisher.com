@@ -108,7 +108,7 @@
   "prev":      "a2155062…bb68b",
   "sig":       "4WpvGtYq…R77Bw=="
 }</pre>
-      <p>Since August 15, snapshot and preset calls also write receipts in the <a href="/lab/aar/">Agent Action Receipts</a> wire format, which AAR&#x27;s verifier accepts. The main chain uses AAR&#x27;s vocabulary but is not wire-conformant. Under the one tool contract there are two transports, AXIS VAPIX over HTTP CGI and ONVIF SOAP, picked per camera. The SOAP is hand-authored. I claim no ONVIF conformance.</p>
+      <p>Since August 15, snapshot and preset calls also write receipts in the <a href="/lab/aar/">Agent Action Receipts</a> wire format as it stood that week, before AAR v0.2.0. The pre-release verifier pinned in this repo accepts them; the released verifiers reject them, so the producer needs updating. The main chain uses AAR&#x27;s vocabulary but is not wire-conformant. Under the one tool contract there are two transports, AXIS VAPIX over HTTP CGI and ONVIF SOAP, picked per camera. The SOAP is hand-authored. I claim no ONVIF conformance.</p>
       <h2>Where it stands</h2>
       <p>Version 0.1.0, experimental, tested against the three AXIS cameras on my own bench. Two things I measured rather than read: on AXIS OS 12.9.57 the admin account works for ONVIF over digest auth, while older 12.x firmware needs a separate ONVIF account. RelativeMove pan maps to degrees divided by 360 exactly; tilt and zoom are approximate. No non-AXIS hardware has been tried. The server signs with one key, not one per agent. I posted it to Hacker News on August 20, 2026. Since then it has gained config drift tools, optional certificate pinning (live on one camera), event checks during commissioning, rate limits, and 434 tests that run offline.</p>
       <h2>What's next</h2>

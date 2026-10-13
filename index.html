@@ -172,15 +172,15 @@
             <h3>Agent Action Receipts</h3>
             <p class="hm-cell__lead">Signed, replayable proof of what an AI agent actually did.</p>
             <div class="hm-links"><a class="hm-go" href="https://github.com/oneshot2001/aar">View on GitHub</a><a class="hm-go" href="/lab/aar/">In the Lab</a></div>
-<pre class="hm-spec" role="figure" aria-label="Agent Action Receipt, JSON">{
-  "action":      "ptz_preset",
-  "target":      "yard &middot; AXIS Q6358-LE",
-  "principal":   "agent:claude-main",
-  "result_hash": "sha256:&hellip;9f2a",
-  "decision":    "allow",
-  "sig":         "cose_es256:&hellip;Q3kR",
-  "verified":    <b>true</b>
-}</pre>
+<pre class="hm-spec" role="figure" aria-label="A dispatch receipt from the AAR test bundle, CBOR shown as JSON, trimmed">{
+  "v":     2,
+  "kind":  <b>"dispatch"</b>,
+  "body":  {"attempt_id":    "a0909ad8&hellip;fa70",
+            "dispatched_at": 1735689708,
+            "target_status": 202},
+  "legal": {"purpose_id":      "incident-response",
+            "jurisdiction_id": "US-CO"}
+}  &middot; COSE_Sign1 &middot; ES256</pre>
           </article>
           <article class="hm-cell hm-cell--wide reveal">
             <div>
