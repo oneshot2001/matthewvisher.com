@@ -106,7 +106,7 @@ Lemon pills are rationed to one per view: nav, hero, closing band. Everything el
 | 3 | `.hm-thesis` | parchment; one serif sentence `clamp(34px, 6.2vw, 100px)`, ends on the lemon full stop |
 | 4 | `.hm-chapter` | EdgeProof on `--deep`; steps Lens / Archive / Courtroom left, `.hm-rig` (track + readout + dial) right |
 | 5 | `.hm-work` | `.hm-bento`: onvif-mcp (charcoal cell) + AAR (parchment cell) two-up, commissioning cell full width. Radius 28 |
-| 6 | `.hm-notes` | parchment; the three newest notes as `.hm-card` with typographic `.hm-cover` (charcoal, lemon, paper in that order). **Hand-maintained**: `publish-note.py` does not touch `/` |
+| 6 | `.hm-notes` | parchment; the three newest notes as `.hm-card` with typographic `.hm-cover` (charcoal, lemon, paper in that order). Rebuilt by `publish-note.py` from the three newest note pages on every publish; `--refresh-home` rebuilds it alone |
 | 7 | `.hm-about` | photograph + one-line bio, then `.hm-path` four-step progression (last dot lemon) |
 | 8 | `.hm-close` | charcoal; one question, one lemon pill |
 

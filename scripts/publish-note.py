@@ -3,11 +3,12 @@
 
   publish-note.py --no 14 --kit "~/Desktop/Posts & Social/POST-KIT-article-no-14-xxx" [--date 2026-09-22]
                   [--kicker "A · B"] [--dek "..."] [--linkedin URL] [--dry-run]
+  publish-note.py --refresh-home [--dry-run]
 
 Reads article-no-NN-*.txt (series line, title, body, Sources block, Checked line), kicker + dek from
 cover-NN-site.html in the kit (or flags), clones the newest existing notes/no-*/index.html as the
 template, writes notes/no-NN/index.html, adds rel=next to the previous page, inserts the feature card
-on notes/index.html, updates sitemap.xml. Deploy (wrangler) is a separate step.
+on notes/index.html, rebuilds the homepage Notes row, updates sitemap.xml. Deploy (wrangler) is a separate step.
 """
 import argparse, datetime, html, os, pathlib, re, sys
 
@@ -45,13 +46,72 @@ def prev_note(no):
     nums = sorted(int(p.name[3:]) for p in (SITE/"notes").glob("no-*") if p.name[3:].isdigit() and int(p.name[3:]) < no)
     return nums[-1] if nums else None
 
+def home_block(h, tag, cls):
+    tokens = list(re.finditer(rf'<(/?){tag}\b[^>]*>', h))
+    starts = []
+    for i, m in enumerate(tokens):
+        attr = re.search(r'''\bclass=(["'])(.*?)\1''', m.group())
+        if not m.group(1) and attr and cls in attr.group(2).split(): starts.append(i)
+    if len(starts) != 1: sys.exit(f"index.html must contain exactly one {cls} {tag} block")
+    start = starts[0]; depth = 0
+    for m in tokens[start:]:
+        depth += -1 if m.group(1) else 1
+        if depth == 0: return tokens[start].start(), m.end()
+    sys.exit(f"index.html has an unclosed {cls} {tag} block")
+
+def home_fields(page, path):
+    fields = []
+    for name, pattern in (("title", r'<h1 class="article-title">(.*?)</h1>'),
+                          ("dek", r'<meta name="description" content="(.*?)" />'),
+                          ("long date", r'<span>([A-Z][a-z]+ \d{1,2}, \d{4})</span>')):
+        m = re.search(pattern, page, re.S)
+        if not m or not m.group(1): sys.exit(f"{path.relative_to(SITE)}: missing {name}")
+        fields.append(m.group(1))
+    return fields
+
+def rebuild_home(pending=None):
+    home = SITE/"index.html"
+    if not home.is_file(): sys.exit("index.html is missing")
+    h = home.read_bytes().decode("utf-8")
+    s, e = home_block(h, "section", "hm-notes")
+    start, end = home_block(h[s:e], "div", "hm-cards")
+    pages = {p: None for p in (SITE/"notes").glob("no-*") if p.name[3:].isdigit() and (p/"index.html").is_file()}
+    if pending: pages[pending[0].parent] = pending[1]
+    newest = sorted(pages, key=lambda p: int(p.name[3:]), reverse=True)[:3]
+    if len(newest) < 3: sys.exit("home row needs at least three note pages")
+    cards = []; nums = []
+    for i, p in enumerate(newest):
+        page = pages[p] if pages[p] is not None else (p/"index.html").read_text()
+        title, dek, date_long = home_fields(page, p/"index.html")
+        try: iso = datetime.datetime.strptime(date_long, "%B %d, %Y").date().isoformat()
+        except ValueError: sys.exit(f"{p.relative_to(SITE)}/index.html: invalid long date {date_long!r}")
+        no = int(p.name[3:]); nums.append(f"NO. {no:02d}")
+        style = f' style="--i:{i}"' if i else ""
+        cover = ("", " hm-cover--lemon", " hm-cover--paper")[i]
+        cards.append(f'          <a class="hm-card reveal" href="/notes/{p.name}/"{style}>\n'
+                     f'            <div class="hm-cover{cover}"><div class="hm-cover__top"><span>Notes from the Field</span><b>NO. {no:02d}</b></div><strong>{title}</strong></div>\n'
+                     f'            <time datetime="{iso}">{date_long}</time>\n'
+                     f'            <p>{dek}</p>\n'
+                     '          </a>\n')
+    block = '<div class="hm-cards">\n' + "".join(cards) + '        </div>'
+    return (h[:s+start] + block + h[s+end:]).encode("utf-8"), ", ".join(nums)
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--no", type=int, required=True); ap.add_argument("--kit", required=True)
+    ap.add_argument("--no", type=int); ap.add_argument("--kit")
     ap.add_argument("--date", default=datetime.date.today().isoformat())
     ap.add_argument("--kicker"); ap.add_argument("--dek"); ap.add_argument("--linkedin")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--refresh-home", action="store_true")
     a = ap.parse_args()
+    if a.refresh_home:
+        home, row = rebuild_home()
+        if a.dry_run: print(f"  dry run: index.html (home row: {row})")
+        else:
+            (SITE/"index.html").write_bytes(home)
+            print(f"  updated index.html (home row: {row})")
+        return
+    if a.no is None or a.kit is None: ap.error("--no and --kit are required unless --refresh-home is given")
     k = read_kit(a.kit, a.no)
     kicker = a.kicker or k["kicker"]; dek = a.dek or k["dek"]
     if not kicker or not dek: sys.exit("need --kicker and --dek (no cover-NN-site.html in kit)")
@@ -62,10 +122,8 @@ def main():
     out = SITE/f"notes/no-{no:02d}/index.html"
     if out.exists() and not a.dry_run: sys.exit(f"{out} exists; remove it to republish")
     tpl_path = SITE/f"notes/no-{prev:02d}/index.html"; tpl = tpl_path.read_text()
-    p_title = re.search(r'<h1 class="article-title">(.*?)</h1>', tpl).group(1)
-    p_meta = re.search(r'<meta name="description" content="(.*?)" />', tpl).group(1)
+    p_title, p_meta, p_date = home_fields(tpl, tpl_path)
     p_kick = re.search(r'<p class="article-kicker">(.*?)</p>', tpl).group(1)
-    p_date = re.search(r'<span>([A-Z][a-z]+ \d{1,2}, \d{4})</span>', tpl).group(1)
     p_read = re.search(r'(\d+ min read)', tpl).group(1)
     words = sum(len(p.split()) for p in k["paras"]); mins = max(1, round(words/230))
     h = tpl
@@ -102,10 +160,13 @@ def main():
     x = re.sub(rf'(<loc>https://matthewvisher.com/notes/no-{prev:02d}/</loc><lastmod>)[\d-]+(</lastmod></url>\n)',
                lambda m: m.group(1)+a.date+m.group(2)+f'  <url><loc>https://matthewvisher.com/notes/no-{no:02d}/</loc><lastmod>{a.date}</lastmod></url>\n', x)
     x = re.sub(r'(<loc>https://matthewvisher.com/notes/</loc><lastmod>)[\d-]+', lambda m: m.group(1)+a.date, x)
+    home, row = rebuild_home((out, h))  # validate before any writes; include the in-memory page on dry runs
     print(f"NO. {no:02d} · {k['title']}\n  {len(k['paras'])} paras · {words} words · {mins} min · {len(k['srcs'])} sources · prev = NO. {prev:02d}\n  kicker: {kicker}\n  dek: {dek}")
     if a.dry_run:
-        pathlib.Path("/tmp/publish-note-dryrun.html").write_text(h); print("  dry run: page → /tmp/publish-note-dryrun.html"); return
+        pathlib.Path("/tmp/publish-note-dryrun.html").write_text(h); print(f"  dry run: page → /tmp/publish-note-dryrun.html\n  dry run: index.html (home row: {row})"); return
     out.parent.mkdir(exist_ok=True); out.write_text(h); tpl_path.write_text(t); idx.write_text(ix); sm.write_text(x)
     print(f"  wrote {out.relative_to(SITE)}, updated no-{prev:02d}, notes/index.html, sitemap.xml")
+    (SITE/"index.html").write_bytes(home)
+    print(f"  updated index.html (home row: {row})")
 
 if __name__ == "__main__": main()
