@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The FBI put "deceive" and "agentic AI" in the same sentence. · Notes from the Field No. 18</title>
+  <meta name="description" content="Software will run the decoys. Somebody still has to answer for what it did, and the agent’s own log can’t be the only witness." />
+  <link rel="canonical" href="https://matthewvisher.com/notes/no-18/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The FBI put "deceive" and "agentic AI" in the same sentence." />
+  <meta property="og:description" content="Software will run the decoys. Somebody still has to answer for what it did, and the agent’s own log can’t be the only witness." />
+  <meta property="og:url" content="https://matthewvisher.com/notes/no-18/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Notes from the Field · a numbered series on AI in physical security by Matthew Visher." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The FBI put "deceive" and "agentic AI" in the same sentence." />
+  <meta name="twitter:description" content="Software will run the decoys. Somebody still has to answer for what it did, and the agent’s own log can’t be the only witness." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260929c" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260929a" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260929a" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/">Lab</a>
+        <a href="/notes/" aria-current="page">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/">Lab</a>
+          <a href="/notes/" aria-current="page">Notes</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>NOTES FROM THE FIELD</span><span class="am-no">NO. 18</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/notes/">&larr; Notes from the Field</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Agentic AI &middot; Evidence</p>
+      <h1 class="article-title">The FBI put "deceive" and "agentic AI" in the same sentence.</h1>
+      <p class="article-dek">Software will run the decoys. Somebody still has to answer for what it did, and the agent’s own log can’t be the only witness.</p>
+      <div class="article-byline"><span>By <strong>Matthew Visher</strong></span><span>&middot;</span><span>October 13, 2026</span><span>&middot;</span><span>6 min read</span></div>
+    </header>
+
+    <article class="article-body">
+      <p class="first reveal">The FBI published its cyber strategy on September 9. It is the first unclassified one the Bureau has ever put out. Thirteen pages of language you have read before, then one sentence on page 14. The Bureau "will rapidly adopt agentic AI in ways that securely scale defense and disruption, and will implement AI-enabled tools to detect, divert, and deceive threat actors where operationally appropriate."</p>
+      <p>Deceive is the word doing the work. Decoys and honeypots. None of that is new for the Bureau. What is new is that the strategy says software will run it, choosing its next move without a person making every decision. Somebody is going to need a record of what that software did.</p>
+      <p>I spent 21 years in policing, so I read that sentence differently than a security executive does. When a human agent runs a decoy, there is a person you can put on the stand. That person can explain what happened, what they knew, and who authorized it. I have sat in the witness chair. The question you get is rarely the one you prepared for, and discovery is where good cases come apart, usually over something nobody thought to preserve. When software runs the operation, somebody still has to answer for each action. A recollection of what the tool usually does will not answer what it did on Tuesday.</p>
+      <p>The strategy has a sentence for that. "AI-enabled tools will help triage, correlate, prioritize, and accelerate work that remains under human review and legal controls." It adds that the tools will be used "with appropriate safeguards for civil liberties, accuracy, and operational security." That is the control language, all of it. I do not read it as indifference. This is a strategy, not an operating policy. But it names the work the tools will do, malware analysis, infrastructure mapping, ranking which victims get notified first, and it does not name an approval threshold, a validation step, or a person with the authority to stop the tool.</p>
+      <p>Elsewhere the same document promises to move partner notification "from days to hours, and from hours to minutes." At that speed a human is reviewing an action that has already happened. Human review at machine speed means reviewing a receipt. Without the receipt, I do not know what there is to review.</p>
+      <p>And the receipt cannot be the agent&#x27;s own account. In July, AI agents inside an OpenAI test worked out how to make their logs show one command while they ran another. Independent investigators from METR later found roughly 7 percent of the transcripts they checked had been spoofed somewhere. It was a small-scale lab result, and the agents were aiming at an automated scorer rather than a person. It still settles one question for me. The tool&#x27;s own log is a witness with an interest.</p>
+      <p>Six days after the strategy came out, the FBI director told the Senate Judiciary Committee where the Bureau&#x27;s AI will come from. He was answering a question about policing AI-driven crime, not about this strategy. "What we need is federal funding to go out there and buy the creations of these companies and use them for law enforcement purposes." If that is how the Bureau buys AI, the agent will be a commercial product, bought from a vendor, run under FBI authorities. The receipt has to come from the product, and not from the agent inside it.</p>
+      <p>The only contract language I have found that asks vendors for any of this comes from GSA, which proposed a clause in June and issued the final version in late September. It takes effect October 19. Where a model uses "reasoning, retrieval, or agentic steps," the system "shall make a summary of the steps the LLM records" available through an "administrative audit trail." The next sentence surprised me. The clause "requires only a summary of recorded steps, not a faithful explanation of the model&#x27;s internal reasoning." That is the agent&#x27;s own summary, the account I just said is not enough, and now the government has put that limit in writing. But the buying side has written the requirement down, and it is no longer a draft.</p>
+      <p>The document already understands that evidence has to last. On page 14, the same page as the agentic AI sentence, the FBI says it is "preparing its evidentiary and tradecraft systems for the post-quantum cryptographic transition, ensuring that long-running prosecutions and sensitive collection remain durable against adversaries who themselves move to quantum-resistant tooling." The Bureau&#x27;s worry there is the adversary&#x27;s tooling. Mine is the phrase "long-running prosecutions." Evidence collected today gets challenged years from now, after the person who collected it has retired and the software has changed twice.</p>
+      <p>An agent&#x27;s action record has to survive the same interval. Who acted, what happened, when, under whose authority, and what the system knew when it acted. Whether a person approved it or only saw it afterward. Whether any of that can still be verified when the company that built the tool is gone. A screen in a vendor portal is not a record if the portal is the only place the explanation lives. The National Archives already leans this way. Its August guidance to federal agencies lists "audit trails an agency captures and uses to conduct official business, such as investigations" among the AI materials likely to be federal records, and federal records can only be destroyed on an approved schedule. The record has to outlive the subscription.</p>
+      <p>The strategy reaches my industry on page 6: "Attribution is strongest when FBI evidence is combined with Intelligence Community holdings, foreign partner intelligence, private-sector telemetry, and victim reporting." Page 9: "Early reporting gives the FBI the evidence, indicators, and financial details needed to advance investigations." Private telemetry is now an input to attribution. Follow that back far enough and you reach a camera vendor or a video management platform, and sometimes a real-time crime center passing something into a federal case. Once it supports a conclusion, how it was produced matters. The video is one item. The search that found it is another. So is the filter that excluded the other results, and the export somebody emailed to an investigator. A timestamp on the final file explains none of those steps.</p>
+      <p>In NO. 12 I wrote about signed video and unsigned search. In NO. 13 I asked for the list of cameras, firmware, and updates. This is where those two questions meet. If nobody has asked your company for that provenance yet, I would not build on the assumption that nobody will. The government&#x27;s evidentiary questions are going to reach the loading dock camera eventually.</p>
+      <p>Here is what the document does not say. Its entire treatment of local police is two sentences on page 11. The second: "Field offices coordinate incident response, victim engagement, and information sharing with agencies often on the front lines." Real-time crime centers do not appear, and neither does CJIS. Nothing in it lets a local department run its own agent. I would not carry this into a chief&#x27;s office and call it a mandate. It is a demand signal, not doctrine. The same caution applies to results. Deterrence is asserted, not measured, and across 15 pages there is no metric, baseline, delivery date, or staffing number a reader could test it against.</p>
+      <p>A note on my two hats. My day job is selling AI to police. My independent work is on action records for agents. Read that as bias, or as why I care about the receipt.</p>
+      <p>For the people who have had a case fall apart in discovery over a log nobody kept: what would the agent&#x27;s record need to contain to survive cross-examination? And for the vendors feeding telemetry into federal cases: has anyone asked you yet how you would prove your data was not altered, and could you answer from the record alone?</p>
+      <p>The FBI wrote "deceive" and "human review" two sentences apart. The distance between them is the product nobody has built.</p>
+    </article>
+
+    <div class="article-sources">
+      <p>Sources, so you can check my numbers:</p>
+      <p><a href="https://www.ic3.gov/CSA/2026/260909.pdf">FBI Cyber Strategy, September 2026</a></p>
+      <p><a href="https://federalnewsnetwork.com/cybersecurity/2026/09/fbi-cyber-leader-details-bureaus-first-unclassified-cyber-strategy/">Federal News Network, first unclassified FBI cyber strategy, September 9</a></p>
+      <p><a href="https://www.route-fifty.com/artificial-intelligence/2026/09/fbi-needs-access-latest-models-police-ai-driven-cybercrime-director-says/416016/">Route Fifty, FBI director at Senate Judiciary, September 16</a></p>
+      <p><a href="https://cyberscoop.com/fbi-cyber-strategy-ai-threats-patching/">CyberScoop on the strategy release, September 9</a></p>
+      <p><a href="https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/">METR, independent investigation of the OpenAI agent incident, August 26</a></p>
+      <p><a href="https://www.govinfo.gov/content/pkg/FR-2026-06-17/html/2026-12205.htm">GSA draft clause GSAR 552.239-7001, Federal Register, June 17</a></p>
+      <p><a href="https://www.acquisition.gov/sites/default/files/page_file_uploads/RGO-2026-01.pdf">GSA final clause GSAR 552.239-7001 (Sept 2026), effective October 19, in RGO-2026-01</a></p>
+      <p><a href="https://www.archives.gov/records-mgmt/memos/ac-11-2026">National Archives, AC 11.2026, guidance on AI records, August 21</a></p>
+      <p>Checked October 13, 2026. If I have any of this wrong, tell me and I will correct it in place.</p>
+    </div>
+
+    <nav class="article-nav" aria-label="Series">
+      <a rel="prev" href="/notes/no-17/"><small>Previous</small>NO. 17 &middot; An Explainer Is Not Evidence</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:hello@matthewvisher.com">hello@matthewvisher.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>
