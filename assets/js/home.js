@@ -1,11 +1,12 @@
 /* Home page motion (DESIGN.md › Home motion). Loaded on / only, after motion.js.
-   1. Halftone field: dot size carries tone, rings travel out from behind the portrait, dots swell under
-      the pointer, and a patch periodically coheres into a bracketed read. The figure mask keeps dots off the portrait.
-   2. Thesis line inks in word by word with scroll.
-   3. Flagship chapter: scroll position picks the step; the dial flips the readout to its failed state.
-   4. Specimen lines type in on first view.
+   1. Halftone field: dot size carries tone, rings travel out from behind the hero card, dots swell under
+      the pointer, and a patch periodically coheres into a bracketed read. The opaque card covers the dots behind it.
+   2. Hero card: scroll scrubs the "Into the Lens" clip from the stare to the look-up while the card pins.
+   3. Thesis line inks in word by word with scroll.
+   4. Flagship chapter: scroll position picks the step; the dial flips the readout to its failed state.
+   5. Specimen lines type in on first view.
    Nothing is hidden without JS. Reduced motion (also when switched on mid-visit): one still field frame, no brackets,
-   everything at its end state. If the figure mask fails to load the hero field does not run. */
+   the card shows the look-up still, everything at its end state. If a figure mask fails to load its field does not run. */
 (function () {
   var motion = matchMedia('(prefers-reduced-motion: reduce)'), calm = motion.matches, onCalm = [];
   motion.addEventListener('change', function () { calm = motion.matches; onCalm.forEach(function (f) { f(); }); });
@@ -21,10 +22,10 @@
     var ptr = null, running = false, raf = 0, t0 = performance.now(), box = null, nextBox = 5.5;
 
     function imageRect() {
-      var hb = host.getBoundingClientRect();
-      if (!o.img) return { x: 0, y: 0, w: hb.width, h: hb.height };
-      var b = o.img.getBoundingClientRect(), x = b.left - hb.left, y = b.top - hb.top;
-      if (getComputedStyle(o.img).objectFit !== 'cover') return { x: x, y: y, w: b.width, h: b.height };
+      var hb = host.getBoundingClientRect(), el = o.img || o.anchor;
+      if (!el) return { x: 0, y: 0, w: hb.width, h: hb.height };
+      var b = el.getBoundingClientRect(), x = b.left - hb.left, y = b.top - hb.top;
+      if (!o.img || getComputedStyle(o.img).objectFit !== 'cover') return { x: x, y: y, w: b.width, h: b.height };
       var iw = o.img.naturalWidth, ih = o.img.naturalHeight;
       var s = Math.max(b.width / iw, b.height / ih), dw = iw * s, dh = ih * s;
       return { x: x + (b.width - dw), y: y + (b.height - dh) / 2, w: dw, h: dh };   // object-position: right center
@@ -53,7 +54,7 @@
     }
     function freeSpot() {
       var hb = host.getBoundingClientRect();
-      var blocks = [].map.call(host.querySelectorAll('h1, h2, p, a'), function (el) {
+      var blocks = [].map.call(host.querySelectorAll('h1, h2, p, a, figure'), function (el) {
         var b = el.getBoundingClientRect();
         return { l: b.left - hb.left - 16, t: b.top - hb.top - 16, r: b.right - hb.left + 16, b: b.bottom - hb.top + 16 };
       });
@@ -146,9 +147,57 @@
   }
 
   var hero = document.querySelector('.hm-hero .hm-field');
-  if (hero) field(hero, { img: document.querySelector('.hm-hero__art img'), mask: '/assets/img/figure-mask.png', focal: [0.78, 0.34], alpha: 0.9, rMin: 0.35, rMax: 3.1, brackets: true, ink: INK });
+  if (hero) field(hero, { anchor: document.querySelector('.hm-lens__frame'), focal: [0.5, 0.3], alpha: 0.9, rMin: 0.35, rMax: 3.1, brackets: true, ink: INK });
   var close = document.querySelector('.hm-close .hm-field');
   if (close) field(close, { focal: [0.5, 1.15], alpha: 0.5, rMin: 0.3, rMax: 2.6, brackets: false, ink: ON_DARK });
+
+  // Hero card — while the card pins, scroll scrubs the clip from the stare to the look-up.
+  // Side by side: the whole hero is the track and the stage pins. Stacked: .hm-lens is the track and the card pins.
+  var heroEl = document.querySelector('.hm-hero'), lens = heroEl && heroEl.querySelector('.hm-lens');
+  if (lens && CSS.supports('overflow', 'clip')) {   // without clip the sticky pin fails, so the still stays
+    var vid = lens.querySelector('video'), sideBySide = matchMedia('(min-width: 900px) and (min-aspect-ratio: 11/10)');
+    var FPS = 24, KNOTS = [[0, 0], [0.28, 24], [0.31, 29], [0.52, 64], [0.85, 136], [1, 154]];   // scroll → frame; the 4-frame whip passes in 3%
+    var shown = 0, onScreen = false, broken = false, loop = 0;
+    var frameAt = function (p) {
+      for (var i = 1; i < KNOTS.length - 1 && p > KNOTS[i][0]; i++);
+      var a = KNOTS[i - 1], b = KNOTS[i];
+      return a[1] + (b[1] - a[1]) * Math.min(1, Math.max(0, (p - a[0]) / (b[0] - a[0])));
+    };
+    var tick = function () {
+      loop = 0;
+      if (!heroEl.classList.contains('scrub')) return;   // a frame queued before reduced motion switched on
+      var r = (sideBySide.matches ? heroEl : lens).getBoundingClientRect(), span = r.height - (innerHeight - 52);
+      var target = frameAt(span > 0 ? Math.min(1, Math.max(0, -(r.top - 52) / span)) : 0);
+      shown += (target - shown) * 0.2;
+      if (Math.abs(target - shown) < 0.05) shown = target;
+      var t = Math.min((Math.round(shown) + 0.5) / FPS, vid.duration - 0.01);
+      var behind = vid.readyState >= 1 && Math.abs(vid.currentTime - t) > 0.5 / FPS;
+      if (behind && !vid.seeking) vid.currentTime = t;
+      if (shown !== target || behind) loop = requestAnimationFrame(tick);   // until the frame on screen is the target
+    };
+    var kick = function () { if (heroEl.classList.contains('scrub') && onScreen && !loop) loop = requestAnimationFrame(tick); };
+    var load = function () {
+      if (calm || broken || vid.getAttribute('src')) return;
+      vid.preload = 'auto';
+      vid.src = '/assets/video/into-the-lens-' + (sideBySide.matches ? '1080' : '720') + '.mp4';
+    };
+    var sync = function () {
+      var on = !calm && !broken;
+      heroEl.classList.toggle('scrub', on);
+      if (!on && vid.getAttribute('src')) { vid.removeAttribute('src'); vid.load(); }   // stop the download; motion back on reloads it
+      if (document.readyState === 'complete') load();
+      kick();
+    };
+    vid.addEventListener('loadeddata', function () {   // iOS paints seeked frames only once a muted video has played
+      var p = vid.play();
+      if (p) p.then(function () { vid.pause(); kick(); }, kick); else kick();
+    });
+    vid.addEventListener('seeked', kick);
+    vid.addEventListener('error', function () { broken = true; vid.hidden = true; sync(); });   // the look-up still stands in
+    new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; kick(); }).observe(heroEl);
+    addEventListener('scroll', kick, { passive: true }); addEventListener('resize', kick);
+    addEventListener('load', load); onCalm.push(sync); sideBySide.addEventListener('change', kick); sync();
+  } else if (lens) lens.querySelector('video').hidden = true;
 
   // Thesis — words ink in with scroll
   var thesis = document.querySelector('.hm-thesis'), line = thesis && thesis.querySelector('p');

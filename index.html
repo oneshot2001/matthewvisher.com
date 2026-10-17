@@ -18,18 +18,18 @@
   <meta name="twitter:title" content="Matthew Visher · Physical Security Tools" />
   <meta name="twitter:description" content="Verification and commissioning tools for physical security, built by a 21-year law enforcement veteran." />
   <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-home.png" />
-  <link rel="preload" as="image" type="image/avif" href="/assets/img/portrait-engraved.avif" media="(min-width: 900px)" />
-  <link rel="preload" as="image" type="image/avif" href="/assets/img/portrait-engraved-sm.avif" media="(max-width: 899px)" />
+  <link rel="preload" as="image" href="/assets/video/into-the-lens-start.jpg" />
+  <noscript><style>.hm-lens video { display: none; }</style></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
   <link rel="stylesheet" href="/assets/css/styles.css?v=20260929c" />
   <link rel="stylesheet" href="/assets/css/motion.css?v=20260929a" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=20260929d" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=20261017a" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
   <script src="/assets/js/motion.js" defer></script>
-  <script src="/assets/js/home.js?v=20260929c" defer></script>
+  <script src="/assets/js/home.js?v=20261017a" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -77,21 +77,25 @@
   <main id="main">
 
     <section class="hero hm-hero">
-      <picture class="hm-hero__art">
-        <source type="image/avif" media="(min-width: 900px)" srcset="/assets/img/portrait-engraved.avif" />
-        <source type="image/avif" srcset="/assets/img/portrait-engraved-sm.avif" />
-        <source type="image/webp" media="(min-width: 900px)" srcset="/assets/img/portrait-engraved.webp" />
-        <source type="image/webp" srcset="/assets/img/portrait-engraved-sm.webp" />
-        <img src="/assets/img/portrait-engraved.jpg" alt="Matthew Visher, engraved portrait on kraft paper" width="1800" height="1112" fetchpriority="high" decoding="async" />
-      </picture>
-      <canvas class="hm-field" aria-hidden="true"></canvas>
-      <div class="hero-shutter" aria-hidden="true"></div>
-      <div class="hm-hero__copy">
-        <h1>21 years behind the badge. Now I build the tools I wished it had.</h1>
-        <p class="hm-hero__lead">Verification and commissioning tools for physical security.</p>
-        <div class="hm-hero__actions">
-          <a class="btn btn--primary btn--lg" href="/lab/">Explore the Lab</a>
-          <a class="hm-go" href="/about/">About me</a>
+      <div class="hm-hero__stage">
+        <canvas class="hm-field" aria-hidden="true"></canvas>
+        <div class="hero-shutter" aria-hidden="true"></div>
+        <div class="hm-hero__copy">
+          <h1>21 years behind the badge. Now I build the tools I wished it had.</h1>
+          <p class="hm-hero__lead">Verification and commissioning tools for physical security.</p>
+          <div class="hm-hero__actions">
+            <a class="btn btn--primary btn--lg" href="/lab/">Explore the Lab</a>
+            <a class="hm-go" href="/about/">About me</a>
+          </div>
+        </div>
+        <div class="hm-lens">
+          <figure class="hm-lens__card">
+            <div class="hm-lens__frame">
+              <img src="/assets/video/into-the-lens-end.jpg" alt="Matthew in a parking garage at night, looking straight up into the camera on the ceiling" width="720" height="1280" decoding="async" />
+              <video muted playsinline preload="none" poster="/assets/video/into-the-lens-start.jpg" aria-hidden="true"></video>
+            </div>
+            <figcaption class="hm-mono">AI-generated, my likeness</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -194,7 +198,7 @@
       </div>
     </section>
 
-    <!-- Notes row: the three newest notes. Update by hand when a note publishes (publish-note.py does not touch this page). -->
+    <!-- Notes row: the three newest notes. Rebuilt by scripts/publish-note.py on every note publish (--refresh-home rebuilds it alone). -->
     <section class="hm-notes">
       <div class="hm-wrap">
         <div class="hm-head reveal"><h2>Notes from the Field</h2><a class="hm-go" href="/notes/">All notes</a></div>
