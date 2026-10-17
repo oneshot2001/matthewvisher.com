@@ -157,7 +157,7 @@
   if (lens && CSS.supports('overflow', 'clip')) {   // without clip the sticky pin fails, so the still stays
     var vid = lens.querySelector('video'), sideBySide = matchMedia('(min-width: 900px) and (min-aspect-ratio: 11/10)');
     var FPS = 24, KNOTS = [[0, 0], [0.28, 24], [0.31, 29], [0.52, 64], [0.85, 136], [1, 154]];   // scroll → frame; the 4-frame whip passes in 3%
-    var shown = 0, onScreen = false, broken = false, loop = 0;
+    var shown = 0, onScreen = false, broken = false, loop = 0, clip = '', fetching = false;
     var frameAt = function (p) {
       for (var i = 1; i < KNOTS.length - 1 && p > KNOTS[i][0]; i++);
       var a = KNOTS[i - 1], b = KNOTS[i];
@@ -176,15 +176,22 @@
       if (shown !== target || behind) loop = requestAnimationFrame(tick);   // until the frame on screen is the target
     };
     var kick = function () { if (heroEl.classList.contains('scrub') && onScreen && !loop) loop = requestAnimationFrame(tick); };
-    var load = function () {
-      if (calm || broken || vid.getAttribute('src')) return;
-      vid.preload = 'auto';
-      vid.src = '/assets/video/into-the-lens-' + (sideBySide.matches ? '1080' : '720') + '.mp4';
+    var fail = function () { broken = true; vid.hidden = true; sync(); };   // the look-up still stands in
+    var load = function () {   // the whole clip as a Blob, so seeking works even where the host ignores byte ranges (pages.dev)
+      if (calm || broken || clip || fetching) return;
+      fetching = true;
+      fetch('/assets/video/into-the-lens-' + (sideBySide.matches ? '1080' : '720') + '.mp4')
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.blob(); })
+        .then(function (b) {
+          fetching = false;
+          if (calm || broken) return;   // reduced motion switched on mid-download
+          clip = URL.createObjectURL(b); vid.preload = 'auto'; vid.src = clip;
+        }, function () { fetching = false; fail(); });
     };
     var sync = function () {
       var on = !calm && !broken;
       heroEl.classList.toggle('scrub', on);
-      if (!on && vid.getAttribute('src')) { vid.removeAttribute('src'); vid.load(); }   // stop the download; motion back on reloads it
+      if (!on && clip) { vid.removeAttribute('src'); vid.load(); URL.revokeObjectURL(clip); clip = ''; }   // motion back on reloads it
       if (document.readyState === 'complete') load();
       kick();
     };
@@ -193,7 +200,7 @@
       if (p) p.then(function () { vid.pause(); kick(); }, kick); else kick();
     });
     vid.addEventListener('seeked', kick);
-    vid.addEventListener('error', function () { broken = true; vid.hidden = true; sync(); });   // the look-up still stands in
+    vid.addEventListener('error', function () { if (clip) fail(); });   // ignore the empty-src reset in sync()
     new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; kick(); }).observe(heroEl);
     addEventListener('scroll', kick, { passive: true }); addEventListener('resize', kick);
     addEventListener('load', load); onCalm.push(sync); sideBySide.addEventListener('change', kick); sync();

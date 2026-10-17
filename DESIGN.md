@@ -160,10 +160,11 @@ Tokens (`:root` in motion.css): `--ease-out: cubic-bezier(.23,1,.32,1)` · `--ea
     Placement rejects the card (`figure`) and any hero text or link.
   - *Into the Lens* (hero card): `.scrub` makes a track (side by side: the hero, 200vh past the stage, stage sticky at 52; stacked: `.hm-lens`,
     170vh, card sticky at 68). Scroll progress maps to a frame through knots 0→0, .28→24 (stare), .31→29 (4-frame whip), .52→64 (red),
-    .85→136 (bloom and rise), 1→154 (look-up hold); seeks lerp .2 and never stack on a seek in flight. Clip loads after `window` load:
-    `into-the-lens-1080.mp4` side by side, `-720` stacked (H.264, GOP 4, no B-frames, faststart; poster = frame 0). The `<img>` under the
-    video is frame 154, the end state: reduced motion, no JS, no `overflow: clip` support, or a video error all show it and load no clip.
-    Seeking needs byte ranges: Cloudflare serves them; `wrangler pages dev` and `python -m http.server` don't (test locally with `npx serve`).
+    .85→136 (bloom and rise), 1→154 (look-up hold); seeks lerp .2 and never stack on a seek in flight. Clip is fetched whole as a Blob after
+    `window` load: `into-the-lens-1080.mp4` side by side, `-720` stacked (H.264, GOP 4, no B-frames, faststart; poster = frame 0). Blob, not
+    a plain `src`, because `*.pages.dev` (previews) and `wrangler pages dev` ignore byte ranges and a ranged-less `src` can't seek (Safari won't
+    even play it); the custom domain does serve 206. The `<img>` under the video is frame 154, the end state: reduced motion, no JS, no
+    `overflow: clip` support, or a fetch/decode error all show it and load no clip.
   - *Thesis* words ink in with scroll (opacity .13 → 1); the full stop pops last.
   - *Chapter* ≥900 the section is 300vh with a sticky inner; scroll progress sets `data-step` 1 → 2 → 3, which lights the step, fills the track and
     reveals readout rows. Otherwise and under reduced motion: not pinned, step 3, everything shown. The dial is always visible and focusable; it toggles `.tampered` (rust readout) and announces
