@@ -29,7 +29,7 @@
 Spacing `--xxs`4 `--xs`8 `--sm`12 `--md`17 `--lg`24 `--xl`32 `--xxl`48 `--section`80.
 Radius `--r-none`0 `--r-sm`8 `--r-md`11 (pearl) `--r-lg`18 (cards) `--r-pill`.
 Motion tokens live in `motion.css` (see Motion).
-No shadows except `--shadow-photo` on the About portrait; no gradients.
+No shadows except `--shadow-photo` on the About portrait; no gradients. One exception: over the home reel's video, the scrim, edge feather and text shadow exist only to keep type legible on moving footage.
 
 ## Type
 
@@ -101,18 +101,16 @@ Lemon pills are rationed to one per view: nav, hero, closing band. Everything el
 
 | Order | Section | Notes |
 |---|---|---|
-| 1 | `.hero.hm-hero` | kraft ground; `.hm-hero__stage` holds field, copy and the "Into the Lens" card (`.hm-lens`). Side by side: stage full height (`100svh − 52`), copy ≤56% wide, 9:16 card on the right of the 1200 axis at 78% of the stage height. Stacked: copy block, then the card centred. Card radius 22, charcoal behind the media, caption "AI-generated, my likeness" in ink mono (the disclosure; `--muted` fails on kraft). H1 `clamp(38px, 6vw, 88px)` / 1.0 / −0.028em |
-| 2 | `.hm-proof` | four credentials, 4-col ≥900, 2×2 below; mono label + tick, 500 statement |
-| 3 | `.hm-thesis` | parchment; one serif sentence `clamp(34px, 6.2vw, 100px)`, ends on the lemon full stop |
-| 4 | `.hm-chapter` | EdgeProof on `--deep`; steps Lens / Archive / Courtroom left, `.hm-rig` (track + readout + dial) right |
+| 1–3 | `.hm-reel` | the "Into the Lens" clip is the background of the opening; rows 1–3 scroll over it. `.hm-reel__bg` is a sticky stage (`100vh − 52`, top 52, negative bottom margin so the sections start under it) on `--deep`, with a bottom scrim. Portrait screens (aspect < 4:5): the clip covers the stage. Wider: the clip is centred full height, its sides feathered (mask 22%) into `.hm-reel__glow`, the current frame squeezed into a 48×27 canvas, blurred 36px at half brightness. Disclosure "AI-generated, my likeness": mono pill top right, frosted charcoal so it reads over any frame. Reel text is `--on-dark` (`.hm-dark`); `--hairline` is redefined as on-dark 18% |
+| 1 | `.hero.hm-hero` | first screen (`100svh − 52`), copy at the bottom of the 1200 axis; H1 `clamp(38px, 6vw, 88px)` / 1.0 / −0.028em, ≤56% wide ≥900, soft shadow |
+| 2 | `.hm-proof` | 60vh below the hero, so it crosses the red; four credentials in one frosted charcoal strip (radius 18), 4-col ≥900, 2×2 below; mono label + tick, 500 statement |
+| 3 | `.hm-thesis` | 70vh below the proof strip, 30vh after it, so it inks in during the look-up hold; one serif sentence `clamp(34px, 6.2vw, 100px)` centred, ends on the lemon full stop. Aspect ≥4:5: left-aligned, ≤11ch, `clamp(34px, 5vw, 76px)`, beside his face rather than across it |
 | 5 | `.hm-work` | `.hm-bento`: onvif-mcp (charcoal cell) + AAR (parchment cell) two-up, commissioning cell full width. Radius 28 |
 | 6 | `.hm-notes` | parchment; the three newest notes as `.hm-card` with typographic `.hm-cover` (charcoal, lemon, paper in that order). Rebuilt by `publish-note.py` from the three newest note pages on every publish; `--refresh-home` rebuilds it alone |
 | 7 | `.hm-about` | photograph + one-line bio, then `.hm-path` four-step progression (last dot lemon) |
 | 8 | `.hm-close` | charcoal; one question, one lemon pill |
 
 Lemon means verified or primary action. Rust means failed or denied. Never swap them.
-Hero side-by-side layout applies at ≥900 wide **and** aspect ≥11:10; taller viewports stack (copy block, then the card) so the card never sits under the copy.
-`.hm-hero` uses `overflow: clip`, not `hidden`: hidden makes it a scroll container and the sticky stage and card stop pinning.
 The chapter pins at ≥900 wide **and** ≥780 tall. `.hm-go` carries a 44px hit area through `::before`. Inactive steps dim to .62, never lower (4.5:1 on `--deep`).
 Home radii: 14 specimen, 22 rig / photo / phone cell, 28 cell. Home gold: `.hm-spec b` on paper, `.hm-cover--paper` number. Dots ring with `outline`, not `box-shadow`.
 Print rules use literal `#000`, as the `styles.css` print block does.
@@ -151,26 +149,24 @@ Tokens (`:root` in motion.css): `--ease-out: cubic-bezier(.23,1,.32,1)` · `--ea
   view() leaves anything already in the viewport at its end state.
 - **Hero** shutter (ink, 550ms `cubic-bezier(.7,0,.2,1)`, starts 0ms) plays once per session: motion.js sets `html.mv-first` when
   `sessionStorage.mv_seen` is unset.
-- **Home motion** (`home.js`): the printed halftone is alive, and the hero card answers the scroll.
-  - *Field* `<canvas class="hm-field">` in the hero and, fainter, in the closing band. Lemon dots on a 13px grid (11 <640) rotated 32°; dot radius
-    carries the tone. Rings travel outward from a focal point (hero: `anchor` = the card frame, focal 0.5/0.3, about the face), dots swell within 150px of the pointer. One fill path per frame.
-    The opaque card sits above the canvas, so the hero needs no mask (`figure-mask.png` is left over from the engraved portrait).
-    Runs only while its section is on screen and the tab is visible.
-  - *Verified read* (hero only): every 3–6s a patch of dots coheres, ink corner brackets draw, a mono label types in, then it dissolves.
-    Placement rejects the card (`figure`) and any hero text or link.
-  - *Into the Lens* (hero card): `.scrub` makes a track (side by side: the hero, 200vh past the stage, stage sticky at 52; stacked: `.hm-lens`,
-    170vh, card sticky at 68). Scroll progress maps to a frame through knots 0→0, .28→24 (stare), .31→29 (4-frame whip), .52→64 (red),
-    .85→136 (bloom and rise), 1→154 (look-up hold); seeks lerp .2 and never stack on a seek in flight. Clip is fetched whole as a Blob after
-    `window` load: `into-the-lens-1080.mp4` side by side, `-720` stacked (H.264, GOP 4, no B-frames, faststart; poster = frame 0). Blob, not
-    a plain `src`, because `*.pages.dev` (previews) and `wrangler pages dev` ignore byte ranges and a ranged-less `src` can't seek (Safari won't
-    even play it); the custom domain does serve 206. The `<img>` under the video is frame 154, the end state: reduced motion, no JS, no
-    `overflow: clip` support, or a fetch/decode error all show it and load no clip.
-  - *Thesis* words ink in with scroll (opacity .13 → 1); the full stop pops last.
+- **Home motion** (`home.js`): the opening is a scroll-scrubbed film, and the closing band's halftone is alive.
+  - *Into the Lens* (`.hm-reel`): the stage pins for the whole reel while the hero, proof strip and thesis scroll over it. Reel progress
+    (scroll past the stage ÷ reel height − stage height) maps to a frame through knots 0→0, .28→24 (stare), .31→29 (4-frame whip),
+    .52→64 (red), .85→136 (bloom and rise), 1→154 (look-up hold); seeks lerp .2 and never stack on a seek in flight. Each `seeked` frame is
+    also drawn into the glow canvas. The clip, `into-the-lens-1080.mp4` for every screen (it fills a phone, so no smaller cut; H.264, GOP 4,
+    no B-frames, faststart), is fetched whole as a Blob after `window` load. Blob, not a plain `src`, because `*.pages.dev` (previews) and
+    `wrangler pages dev` ignore byte ranges and a ranged-less `src` can't seek (Safari won't even play it); the custom domain does serve 206.
+    The `<img>` under the video and the poster are frame 0, the stare: reduced motion, no JS, or a fetch/decode error show it and load no clip.
+  - *Thesis* words ink in with scroll (opacity .13 → 1) from 90% to 60% of the viewport, so on phones the line completes under his face
+    during the look-up hold; the full stop pops last.
+  - *Field* `<canvas class="hm-field">` in the closing band: lemon dots on a 13px grid (11 <640) rotated 32°; dot radius carries the tone.
+    Rings travel outward from a focal point (0.5/1.15), dots swell within 150px of the pointer. One fill path per frame. Runs only while its
+    section is on screen and the tab is visible.
   - *Chapter* ≥900 the section is 300vh with a sticky inner; scroll progress sets `data-step` 1 → 2 → 3, which lights the step, fills the track and
     reveals readout rows. Otherwise and under reduced motion: not pinned, step 3, everything shown. The dial is always visible and focusable; it toggles `.tampered` (rust readout) and announces
     the result through a `role="status"` line.
   - *Specimens* `.hm-spec` lines type in on first view (90ms stagger).
-  - No JS: every section renders at its end state; the field is simply absent and the card shows the look-up still.
+  - No JS: every section renders at its end state; the field is simply absent and the reel shows the stare still.
 - **View transitions** (`styles.css`): `@view-transition { navigation: auto }`, `nameplate` on `.site-nav__name`, `mark` on `.site-nav .mark`,
   root crossfade 220ms. Exactly one element per name per page.
 - **Ticks** `.tick` (lemon dot + ink check): spring pop 400ms `--ease-spring` via the `scale` property.
@@ -178,7 +174,7 @@ Tokens (`:root` in motion.css): `--ease-out: cubic-bezier(.23,1,.32,1)` · `--ea
   Copy button swaps in `<span class="tick">Copied`; article signoff tick pops with its reveal.
 - **Hover** pills `translateY(-1px)` + lemon −6%; secondary fills 8%; cards hairline → ink; `.link` lemon underline grows in. All `--dur-ui --ease-out`.
 - **Reduced motion** (`prefers-reduced-motion: reduce`): reveals opacity-only 300ms, no transform; shutter off; home field draws one still frame,
-  no brackets, thesis fully inked, chapter unpinned, hero card shows the look-up still and loads no clip; ticks static; `scroll-behavior: auto` (smooth only under `no-preference`); view-transition pseudo animations `none`.
+  thesis fully inked, chapter unpinned, the reel shows the stare still and loads no clip; ticks static; `scroll-behavior: auto` (smooth only under `no-preference`); view-transition pseudo animations `none`.
 - Print (`styles.css`) forces `.reveal` visible and `animation: none`.
 
 ## Do / Don't

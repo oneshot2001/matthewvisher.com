@@ -19,17 +19,17 @@
   <meta name="twitter:description" content="Verification and commissioning tools for physical security, built by a 21-year law enforcement veteran." />
   <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-home.png" />
   <link rel="preload" as="image" href="/assets/video/into-the-lens-start.jpg" />
-  <noscript><style>.hm-lens video { display: none; }</style></noscript>
+  <noscript><style>.hm-reel video { display: none; }</style></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
   <link rel="stylesheet" href="/assets/css/styles.css?v=20260929c" />
   <link rel="stylesheet" href="/assets/css/motion.css?v=20260929a" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=20261017a" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=20261017c" />
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
   <script src="/assets/js/motion.js" defer></script>
-  <script src="/assets/js/home.js?v=20261017b" defer></script>
+  <script src="/assets/js/home.js?v=20261017c" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -76,9 +76,17 @@
 
   <main id="main">
 
-    <section class="hero hm-hero">
-      <div class="hm-hero__stage">
-        <canvas class="hm-field" aria-hidden="true"></canvas>
+    <div class="hm-reel hm-dark">
+      <div class="hm-reel__bg">
+        <canvas class="hm-reel__glow" width="48" height="27" aria-hidden="true"></canvas>
+        <div class="hm-reel__media">
+          <img src="/assets/video/into-the-lens-start.jpg" alt="Matthew standing in a parking garage at night, facing the camera" width="1080" height="1920" />
+          <video muted playsinline preload="none" poster="/assets/video/into-the-lens-start.jpg" aria-hidden="true"></video>
+        </div>
+        <p class="hm-reel__note hm-mono">AI-generated, my likeness</p>
+      </div>
+
+      <section class="hero hm-hero">
         <div class="hero-shutter" aria-hidden="true"></div>
         <div class="hm-hero__copy">
           <h1>21 years behind the badge. Now I build the tools I wished it had.</h1>
@@ -88,35 +96,26 @@
             <a class="hm-go" href="/about/">About me</a>
           </div>
         </div>
-        <div class="hm-lens">
-          <figure class="hm-lens__card">
-            <div class="hm-lens__frame">
-              <img src="/assets/video/into-the-lens-end.jpg" alt="Matthew in a parking garage at night, looking straight up into the camera on the ceiling" width="720" height="1280" decoding="async" />
-              <video muted playsinline preload="none" poster="/assets/video/into-the-lens-start.jpg" aria-hidden="true"></video>
-            </div>
-            <figcaption class="hm-mono">AI-generated, my likeness</figcaption>
-          </figure>
+      </section>
+
+      <section class="hm-proof" aria-label="Background">
+        <div class="hm-wrap">
+          <ul>
+            <li><span class="hm-mono"><span class="tick" aria-hidden="true"></span>Practitioner</span><b>21 years sworn law enforcement</b></li>
+            <li><span class="hm-mono"><span class="tick" aria-hidden="true"></span>Day job</span><b>Director of LE business development, AI video analytics</b></li>
+            <li><span class="hm-mono"><span class="tick" aria-hidden="true"></span>Builder</span><b>onvif-mcp, Agent Action Receipts, EdgeProof</b></li>
+            <li><span class="hm-mono"><span class="tick" aria-hidden="true"></span>Author</span><b>Notes from the Field</b></li>
+          </ul>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="hm-proof" aria-label="Background">
-      <div class="hm-wrap">
-        <ul>
-          <li><span class="hm-mono"><span class="tick" aria-hidden="true"></span>Practitioner</span><b>21 years sworn law enforcement</b></li>
-          <li><span class="hm-mono"><span class="tick" aria-hidden="true"></span>Day job</span><b>Director of LE business development, AI video analytics</b></li>
-          <li><span class="hm-mono"><span class="tick" aria-hidden="true"></span>Builder</span><b>onvif-mcp, Agent Action Receipts, EdgeProof</b></li>
-          <li><span class="hm-mono"><span class="tick" aria-hidden="true"></span>Author</span><b>Notes from the Field</b></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="hm-thesis">
-      <div class="hm-wrap">
-        <span class="hm-mono">The standard I build to</span>
-        <p>If it can't survive a challenge, it isn't evidence<i aria-hidden="true"></i></p>
-      </div>
-    </section>
+      <section class="hm-thesis">
+        <div class="hm-wrap">
+          <span class="hm-mono">The standard I build to</span>
+          <p>If it can't survive a challenge, it isn't evidence<i aria-hidden="true"></i></p>
+        </div>
+      </section>
+    </div>
 
     <section class="hm-chapter hm-dark" data-step="3">
       <div class="hm-chapter__pin">

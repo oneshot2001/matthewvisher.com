@@ -28,49 +28,54 @@
 }
 .hm-head .hm-go { white-space: nowrap; }
 
-/* ---------- Hero — copy, then the "Into the Lens" card; scroll scrubs the card's clip (home.js adds .scrub) ---------- */
-.hm-hero { background: var(--kraft); overflow: clip; }   /* clip, not hidden: hidden would break the sticky stage and card */
-.hm-hero__stage { position: relative; }
-.hm-hero__copy { position: relative; z-index: 2; padding: 56px var(--lg) var(--xxl); }
+/* ---------- Hero reel — the "Into the Lens" clip is the background; the hero, proof strip and thesis scroll over it.
+   The stage pins for the whole reel while scroll scrubs the clip from the stare to the look-up (home.js).
+   Portrait screens fill with the clip; wider ones centre it full height, edges feathered into a blurred glow of the same frame. */
+.hm-reel { position: relative; background: var(--deep); --hairline: color-mix(in srgb, var(--on-dark) 18%, transparent); }
+.hm-reel > section { position: relative; }   /* paint above the pinned stage */
+.hm-reel__bg { position: sticky; top: 52px; height: calc(100vh - 52px); margin-bottom: calc(52px - 100vh); overflow: hidden; }
+.hm-reel__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(0 0 0 / 0.72), rgb(0 0 0 / 0.3) 62%); }   /* never clear: copy crosses the ceiling lights */
+.hm-reel__glow { display: none; }
+.hm-reel__media { position: absolute; inset: 0; }
+.hm-reel__media img, .hm-reel__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hm-reel__note {
+  position: absolute; z-index: 1; top: 14px; right: 16px; padding: 5px 10px; border-radius: var(--r-pill);
+  background: rgb(20 19 16 / 0.62); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+@media (min-aspect-ratio: 4/5) {
+  .hm-reel__glow { display: block; position: absolute; inset: -10%; width: 120%; height: 120%; filter: blur(36px) brightness(0.5) saturate(1.2); }
+  .hm-reel__media {
+    right: auto; left: 50%; translate: -50% 0; aspect-ratio: 9 / 16;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent);
+  }
+  .hm-reel__bg::after { background: linear-gradient(to top, rgb(0 0 0 / 0.6), rgb(0 0 0 / 0.25) 55%), linear-gradient(90deg, rgb(0 0 0 / 0.45), transparent 55%); }
+}
+
+.hm-hero { min-height: calc(100svh - 52px); display: flex; align-items: flex-end; }
+.hm-hero__copy { width: 100%; max-width: 1200px; margin-inline: auto; padding: 56px var(--lg) var(--xxl); }
 .hm-hero h1 {
   font-family: var(--font-serif); font-weight: 500;
   font-size: clamp(38px, 6vw, 88px); line-height: 1; letter-spacing: -0.028em;
 }
+.hm-hero__copy, .hm-thesis { text-shadow: 0 1px 3px rgb(0 0 0 / 0.6), 0 2px 28px rgb(0 0 0 / 0.45); }   /* edge contrast over bright frames */
+.hm-hero .btn { text-shadow: none; }
 .hm-hero__lead { font-size: clamp(20px, 1.9vw, 26px); line-height: 1.3; margin-top: var(--lg); max-width: 30ch; }
 .hm-hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 28px; margin-top: 36px; }
 .hm-field { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-.hm-lens { position: relative; z-index: 2; padding: 16px 20px 56px; }
-.hm-lens__card { margin: 0 auto; width: min(100%, calc((100svh - 52px - 104px) * 9 / 16)); }
-.hm-lens__frame { position: relative; aspect-ratio: 9 / 16; border-radius: 22px; overflow: hidden; background: var(--charcoal); }
-.hm-lens__frame img, .hm-lens__frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.hm-lens figcaption { margin-top: 10px; text-align: center; color: var(--ink); }   /* --muted is 2.3:1 on kraft; ink is 7:1 */
-/* Stacked: the card pins below the header while 170vh of scroll plays the clip */
-.hm-hero.scrub .hm-lens { height: calc(100svh - 52px + 170vh); }
-.hm-hero.scrub .hm-lens__card { position: sticky; top: 68px; }
-/* Side by side needs a landscape-ish viewport; tall ones stack so the card never sits under the copy */
-@media (min-width: 900px) and (min-aspect-ratio: 11/10) {
-  .hm-hero__stage { min-height: calc(100svh - 52px); display: flex; align-items: center; }
-  .hm-hero__copy { width: 100%; max-width: 1200px; margin-inline: auto; padding-block: var(--section); }
-  .hm-hero__copy > * { max-width: 56%; }
-  .hm-hero__copy > .hm-hero__lead { max-width: 30ch; }
-  .hm-lens {
-    position: absolute; inset-block: 0; right: max(var(--lg), (100% - 1200px) / 2 + var(--lg));
-    display: flex; align-items: center; padding: 0;
-  }
-  /* 78% of the stage height, but never wider than the 44% column the copy leaves (tall desktops would overlap the H1) */
-  .hm-lens__card { width: min((100svh - 52px) * 0.78 * 9 / 16, (min(100vw, 1200px) - 2 * var(--lg)) * 0.44 - 32px); }
-  /* The whole hero is the track: the stage pins while 200vh of scroll plays the clip */
-  .hm-hero.scrub { height: calc(100svh - 52px + 200vh); }
-  .hm-hero.scrub .hm-hero__stage { position: sticky; top: 52px; height: calc(100svh - 52px); }
-  .hm-hero.scrub .hm-lens { height: auto; }
-  .hm-hero.scrub .hm-lens__card { position: static; }
+@media (min-width: 900px) {
+  .hm-hero__copy > h1 { max-width: 56%; }
 }
 
 /* ---------- Proof strip ---------- */
-.hm-proof { border-bottom: 1px solid var(--hairline); }
-.hm-proof ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
+.hm-proof { padding-top: 60vh; }   /* crosses the red; a frosted strip so it reads over any frame */
+.hm-proof ul {
+  list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr);
+  background: rgb(20 19 16 / 0.6); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border: 1px solid var(--hairline); border-radius: var(--r-lg);
+}
 .hm-proof li { padding: 28px var(--lg) 30px; border-left: 1px solid var(--hairline); }
-.hm-proof li:first-child { border-left: 0; padding-left: 0; }
+.hm-proof li:first-child { border-left: 0; }
 .hm-proof b { display: block; font-weight: 500; line-height: 1.3; margin-top: var(--xs); }
 @media (max-width: 899px) {
   .hm-proof ul { grid-template-columns: 1fr 1fr; }
@@ -79,7 +84,7 @@
 }
 
 /* ---------- Thesis ---------- */
-.hm-thesis { background: var(--parchment); padding: clamp(88px, 13vw, 200px) 0; text-align: center; }
+.hm-thesis { padding: 70vh 0 30vh; text-align: center; }   /* fully inked as the look-up lands, below his face */
 .hm-thesis .hm-mono { display: block; margin-bottom: var(--xl); }
 .hm-thesis p {
   font-family: var(--font-serif); font-weight: 500;
@@ -93,6 +98,10 @@
 }
 .hm-thesis .w { transition: opacity 160ms linear; }
 .hm-thesis.live i:not(.on) { scale: 0; }
+@media (min-aspect-ratio: 4/5) {   /* beside the look-up, not across his face */
+  .hm-thesis { text-align: left; }
+  .hm-thesis p { margin-inline: 0; max-width: 11ch; font-size: clamp(34px, 5vw, 76px); }
+}
 
 /* ---------- Flagship chapter — pins ≥900, scroll picks the step ---------- */
 .hm-chapter { background: var(--deep); --line: color-mix(in srgb, var(--on-dark) 16%, transparent); }
@@ -262,21 +271,21 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hm-lens video { display: none; }   /* the look-up still stands in for the clip */
+  .hm-reel video { display: none; }   /* the stare still stands in for the clip */
   .hm-spec.typed .ln { transform: none; transition: opacity 300ms; transition-delay: 0s; }
   .hm-track::after, .hm-steps li, .hm-readout div, .hm-thesis i, .hm-cover { transition: none; }
 }
 
 @media print {
-  .hm-field, .hm-lens video, .hm-rig__foot, .hm-close { display: none !important; }
-  .hm-hero, .hm-chapter, .hm-cell--dark, .hm-cover { background: none !important; color: #000 !important; min-height: 0; }
-  .hm-hero.scrub, .hm-hero.scrub .hm-lens { height: auto; }
-  .hm-hero.scrub .hm-hero__stage, .hm-hero.scrub .hm-lens__card { position: static; height: auto; }
+  .hm-field, .hm-reel__bg, .hm-rig__foot, .hm-close { display: none !important; }
+  .hm-reel, .hm-hero, .hm-chapter, .hm-cell--dark, .hm-cover { background: none !important; color: #000 !important; min-height: 0; }
+  .hm-proof, .hm-thesis { padding-block: 24px; }
+  .hm-proof ul { background: none; }
+  .hm-reel *, .hm-chapter, .hm-chapter *, .hm-cell--dark *, .hm-cover * { color: #000 !important; text-shadow: none !important; }
   .hm-chapter.pinned { height: auto; }
   .hm-chapter.pinned .hm-chapter__pin { position: static; height: auto; }
   .hm-spec .ln, .hm-readout div, .hm-steps li, .hm-thesis .w { opacity: 1 !important; transform: none !important; }
   .hm-thesis i { scale: 1 !important; }
-  .hm-chapter, .hm-chapter *, .hm-cell--dark *, .hm-cover * { color: #000 !important; }
   .hm-chapter .bad { display: none !important; }
   .hm-chapter .ok { display: inline !important; }
 }
