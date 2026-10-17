@@ -106,6 +106,10 @@
           fetching = false;
           if (calm || broken) return;   // reduced motion switched on mid-download
           clip = URL.createObjectURL(b); vid.preload = 'auto'; vid.src = clip;
+          // play at once: iOS stops loading at metadata (a seek then never lands) and paints seeked frames only once
+          // a muted video has played
+          var p = vid.play();
+          if (p) p.then(function () { vid.pause(); kick(); }, kick); else kick();
         }, function () { fetching = false; fail(); });
     };
     var sync = function () {
@@ -115,10 +119,6 @@
       if (document.readyState === 'complete') load();
       kick();
     };
-    vid.addEventListener('loadeddata', function () {   // iOS paints seeked frames only once a muted video has played
-      var p = vid.play();
-      if (p) p.then(function () { vid.pause(); kick(); }, kick); else kick();
-    });
     vid.addEventListener('seeked', function () { paint(vid); kick(); });
     vid.addEventListener('error', function () { if (clip) fail(); });   // ignore the empty-src reset in sync()
     new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; kick(); }).observe(reel);
