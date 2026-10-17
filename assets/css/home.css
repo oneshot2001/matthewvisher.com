@@ -31,7 +31,8 @@
 /* ---------- Hero reel — the "Into the Lens" clip is the background; the hero, proof strip and thesis scroll over it.
    The stage pins for the whole reel while scroll scrubs the clip from the stare to the look-up (home.js).
    Portrait screens fill with the clip; wider ones centre it full height, edges feathered into a blurred glow of the same frame. */
-.hm-reel { position: relative; background: var(--deep); --hairline: color-mix(in srgb, var(--on-dark) 18%, transparent); }
+.hm-reel { position: relative; overflow: clip; background: var(--deep); --hairline: color-mix(in srgb, var(--on-dark) 18%, transparent); }
+/* clip, not hidden (hidden breaks sticky): the stage's negative margin keeps it pinned a screen past the reel, over the next section */
 .hm-reel > section { position: relative; }   /* paint above the pinned stage */
 .hm-reel__bg { position: sticky; top: 52px; height: calc(100vh - 52px); margin-bottom: calc(52px - 100vh); overflow: hidden; }
 .hm-reel__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(0 0 0 / 0.72), rgb(0 0 0 / 0.3) 62%); }   /* never clear: copy crosses the ceiling lights */
