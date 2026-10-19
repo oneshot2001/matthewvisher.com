@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>72 Visible, Wrong Car · Lab · Matthew Visher</title>
+<meta name="description" content="One dial, one tracked vehicle: TAPNext++ follows 72 points on a blue SUV, loses it behind the trees, finds it in a gap, then puts 68 of the 72 on a red car going the other way. Live specimen.">
+<link rel="canonical" href="https://matthewvisher.com/lab/wrong-car/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="72 Visible, Wrong Car · Lab · Matthew Visher">
+<meta property="og:description" content="One dial, one tracked vehicle: TAPNext++ follows 72 points on a blue SUV, loses it behind the trees, finds it in a gap, then puts 68 of the 72 on a red car going the other way. Live specimen.">
+<meta property="og:url" content="https://matthewvisher.com/lab/wrong-car/">
+<meta property="og:image" content="https://matthewvisher.com/assets/og/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="72 Visible, Wrong Car · Lab · Matthew Visher">
+<meta name="twitter:description" content="One dial, one tracked vehicle: TAPNext++ follows 72 points on a blue SUV, loses it behind the trees, finds it in a gap, then puts 68 of the 72 on a red car going the other way. Live specimen.">
+<meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-home.png">
+<link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg">
+<script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:#FAF8F3; --parchment:#F1EDE3; --ink:#1C1B18; --charcoal:#24221E; --hairline:#DAD3C4; --muted:#6B665C;
+    --lemon:#FFD60A; --gold:#6A5600; --rust:#E8744A; --on-dark:#F4F1EA; --muted-on-dark:#CFC9BC;
+    --font-sans:"Public Sans",system-ui,sans-serif; --font-serif:"Newsreader",Georgia,serif; --font-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { background:var(--paper); color:var(--ink); font:400 17px/1.47 var(--font-sans); }
+  .wrap { max-width:1200px; margin:0 auto; padding:48px 16px 80px; }
+  .back { display:inline-block; margin-bottom:24px; font:500 13px/1.4 var(--font-mono); color:var(--muted); text-decoration:none; }
+  .back:hover { color:var(--ink); }
+  .kicker { font:500 12px/1.4 var(--font-mono); letter-spacing:.08em; text-transform:uppercase; color:var(--gold); }
+  h1 { font:500 clamp(30px,4.5vw,60px)/1.05 var(--font-serif); letter-spacing:-.02em; text-wrap:balance; margin:8px 0 12px; }
+  .dek { font:400 clamp(18px,2vw,24px)/1.3 var(--font-sans); color:var(--muted); max-width:62ch; text-wrap:pretty; }
+  .grid { display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:24px; margin-top:32px; }
+  @media (max-width:900px) { .grid { grid-template-columns:1fr; } }
+  .card { background:var(--paper); border:1px solid var(--hairline); border-radius:18px; padding:16px; }
+  .card--dark { background:var(--charcoal); color:var(--on-dark); border-color:var(--charcoal); }
+  .scene { position:relative; aspect-ratio:16/9; border-radius:11px; overflow:hidden; background:var(--charcoal); }
+  .scene video, .scene canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .pill { position:absolute; left:12px; top:12px; font:500 13px/1 var(--font-mono); letter-spacing:.02em; padding:9px 12px; border-radius:999px; background:var(--lemon); color:var(--ink); }
+  .pill[data-state="lost"] { background:var(--charcoal); color:var(--on-dark); }
+  .pill[data-state="wrong car"] { background:var(--rust); color:var(--ink); }
+  .pill[data-state="occluded"] { background:var(--parchment); color:var(--ink); }
+  .dial { display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center; margin-top:12px; font:400 13px/1.4 var(--font-mono); color:var(--muted); }
+  input[type=range] { width:100%; accent-color:var(--lemon); }
+  .readout { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
+  .stat { border:1px solid var(--hairline); border-radius:11px; padding:12px; }
+  .stat .lbl { font:400 12px/1.4 var(--font-mono); letter-spacing:.02em; color:var(--muted); }
+  .stat .val { font:500 40px/1.1 var(--font-serif); margin-top:4px; }
+  .stat .val small { font:400 17px/1 var(--font-sans); color:var(--muted); }
+  .gauge { height:10px; border-radius:999px; background:var(--parchment); margin-top:10px; overflow:hidden; }
+  .gauge i { display:block; height:100%; background:var(--lemon); width:0; }
+  .lens { aspect-ratio:1; width:100%; border-radius:11px; overflow:hidden; background:var(--charcoal); display:block; }
+  .steps { list-style:none; display:grid; gap:8px; margin-top:12px; }
+  .steps li { display:grid; grid-template-columns:28px 1fr auto; gap:10px; align-items:baseline; font-size:15px; padding:8px 10px; border-radius:11px; border:1px solid var(--hairline); }
+  .steps li b { font:500 13px/1 var(--font-mono); color:var(--muted); }
+  .steps li span:last-child { font:400 12px/1.4 var(--font-mono); color:var(--muted); }
+  .steps li.on { border-color:var(--ink); }
+  .steps li.on b { color:var(--gold); }
+  .curve-wrap { margin-top:24px; }
+  .curve-wrap h2, .receipt h2 { font:500 30px/1.2 var(--font-serif); margin-bottom:8px; }
+  .curve-wrap p, .receipt p { color:var(--muted); max-width:70ch; text-wrap:pretty; }
+  svg.curve { width:100%; height:auto; display:block; margin-top:12px; }
+  .receipt { margin-top:48px; }
+  .receipt .hd { display:flex; justify-content:space-between; font:400 12px/1.4 var(--font-mono); letter-spacing:.02em; color:var(--muted-on-dark); margin-bottom:8px; }
+  .receipt .hd .pin { color:var(--lemon); }
+  .receipt pre { font:400 13px/1.5 var(--font-mono); white-space:pre-wrap; color:var(--on-dark); }
+  .receipt mark { background:transparent; color:var(--lemon); font-weight:500; }
+  .receipt .lab { margin-top:16px; padding-top:12px; border-top:1px solid color-mix(in srgb, var(--on-dark) 20%, transparent); }
+  .receipt .lab .tag { font:400 12px/1.4 var(--font-mono); color:var(--muted-on-dark); }
+  .foot { margin-top:48px; font:400 12px/1.6 var(--font-mono); color:var(--muted); max-width:80ch; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="back" href="/lab/">&larr; Lab · Matthew Visher</a>
+  <p class="kicker">Lab specimen · 2026-10-02</p>
+  <h1>72 visible, wrong car.</h1>
+  <p class="dek">Google DeepMind's TAPNext++ follows 72 points on a blue SUV from a single frame of my own camera. Turn the dial. Watch it hold through a pole, lose the SUV behind the trees, find it again in a gap, then put 68 of its 72 points on a red car going the other way.</p>
+
+  <div class="grid">
+    <section class="card">
+      <div class="scene">
+        <video id="v" src="seg-540-intra.mp4" muted playsinline preload="auto"></video>
+        <canvas id="c" width="960" height="540"></canvas>
+        <div class="pill" id="pill" data-state="tracked">1 · TRACKED</div>
+      </div>
+      <div class="dial">
+        <span>frame</span>
+        <input id="dial" type="range" min="60" max="151" value="60" step="1" aria-label="frame">
+        <span id="fno">60</span>
+      </div>
+      <div class="readout">
+        <div class="stat">
+          <div class="lbl">visible points</div>
+          <div class="val"><span id="vis">72</span><small> / 72</small></div>
+          <div class="gauge"><i id="gauge"></i></div>
+        </div>
+        <div class="stat">
+          <div class="lbl">centroid of visible points</div>
+          <div class="val" id="cen" style="font-size:24px">x 1000 · y 554</div>
+          <div class="lbl" id="lane" style="margin-top:8px">on the blue SUV, near lane, moving right</div>
+        </div>
+      </div>
+    </section>
+    <aside class="card">
+      <canvas id="lens" class="lens" width="340" height="340" aria-label="close-up of the visible points"></canvas>
+      <ol class="steps" id="steps"></ol>
+    </aside>
+  </div>
+
+  <section class="curve-wrap">
+    <h2>The curve gives it away</h2>
+    <p>Visible points per frame. Behind the trees the count drops to a handful, then flickers back, up to 13 points on the SUV where it shows between the trees. Then it climbs to 72 of 72. Sixty-eight of those are on a red car in the far lane going the other way. The other four are grid points sitting on the road.</p>
+    <svg class="curve" id="curve" viewBox="0 0 1200 300" role="img" aria-label="visible points per frame"></svg>
+  </section>
+
+  <section class="receipt card card--dark">
+    <h2 style="color:var(--on-dark)">Receipt</h2>
+    <p style="color:var(--muted-on-dark)">The functions below are the ones drawing this page, printed from the running code. The phase pill is computed by the state machine, not placed by hand.</p>
+    <div class="hd" style="margin-top:16px"><span>tapnext-trail / specimen / <b>specimen.js</b></span><span class="pin" id="pin">@ 54eb839</span></div>
+    <pre id="src"></pre>
+    <div class="lab">
+      <div class="tag">track.py · stdout, verbatim</div>
+      <pre>72 points x 152 frames in 6.3s on mps -&gt; tracks-blue.json</pre>
+      <div class="tag" style="margin-top:8px">node verify.mjs · stdout, verbatim</div>
+      <pre id="verify">tracked    60-69  (10 frames)
+occluded   70-73  (4 frames)
+lost       74-82  (9 frames)
+in the gap 83-90  (8 frames)
+lost       91-91  (1 frames)
+in the gap 92-97  (6 frames)
+lost       98-103  (6 frames)
+wrong car  104-132  (29 frames)
+lost       133-151  (19 frames)
+second peak [ 110, 72 ] centroid [ 1125, 467, 72 ]</pre>
+    </div>
+  </section>
+
+  <p class="foot">Footage: AXIS Q6358-LE on my own LAN, 2026-10-02, 1080p25 over RTSP, six-second cut; the camera's own analytics border is burned into the stream. Model: TAPNext++ PyTorch checkpoint (google-deepmind/tapnet @ 730cda1, Apache-2.0) on Apple MPS, 72 query points in a 12×6 grid on frame 60, tracked online one frame at a time. Trails draw only across consecutive frames the model marked visible. Derived data: the phase ranges and centroids are computed from the exported tracks by the printed functions.</p>
+</main>
+<script src="tracks.js"></script>
+<script src="specimen.js"></script>
+<script>
+  const FPS = T.fps, v = document.getElementById("v"), c = document.getElementById("c"), ctx = c.getContext("2d");
+  const lens = document.getElementById("lens"), lctx = lens.getContext("2d");
+  const sx = 960 / T.width, sy = 540 / T.height;
+  const PH = phases(), NAMES = { tracked: "TRACKED", occluded: "BEHIND THE POLE", lost: "LOST", "in the gap": "IN THE GAP", "wrong car": "WRONG CAR" };
+  const WHERE = { tracked: "on the blue SUV, near lane, moving right", occluded: "on the SUV as it goes behind the pole and trees", lost: "fewer than 8 points left, too few to hold a vehicle", "in the gap": "back on the SUV where it shows between the trees", "wrong car": "on a red car in the far lane, moving left" };
+  const steps = document.getElementById("steps");
+  PH.forEach((p, i) => { const li = document.createElement("li"); li.innerHTML = `<b>${i + 1}</b><span>${NAMES[p.name]}</span><span>${p.from}–${p.to}</span>`; steps.appendChild(li); });
+
+  // curve, built once
+  const svg = document.getElementById("curve"), L = 60, R = 1180, TOP = 20, BOT = 260, span = 151 - 60;
+  const X = f => L + (f - 60) / span * (R - L), Y = n => BOT - n / 72 * (BOT - TOP);
+  const fill = { tracked: "#FFD60A", occluded: "#F1EDE3", lost: "#DAD3C4", "in the gap": "#FFD60A", "wrong car": "#E8744A" };
+  let bands = PH.map(p => `<rect x="${X(p.from)}" y="${TOP}" width="${X(p.to + 1) - X(p.from)}" height="${BOT - TOP}" fill="${fill[p.name]}" opacity=".35"/>`).join("");
+  let path = "M" + Array.from({ length: 92 }, (_, i) => `${X(60 + i)},${Y(visibleCount(60 + i))}`).join(" L");
+  svg.innerHTML = bands + `<line x1="${L}" y1="${BOT}" x2="${R}" y2="${BOT}" stroke="#1C1B18"/><line x1="${L}" y1="${TOP}" x2="${L}" y2="${BOT}" stroke="#1C1B18"/>
+    <text x="${L - 8}" y="${Y(72) + 4}" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="#6B665C">72</text>
+    <text x="${L - 8}" y="${BOT + 4}" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="#6B665C">0</text>
+    <text x="${X(60)}" y="${BOT + 20}" font-family="JetBrains Mono" font-size="12" fill="#6B665C">frame 60</text>
+    <text x="${X(151)}" y="${BOT + 20}" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="#6B665C">151</text>
+    <path d="${path}" fill="none" stroke="#1C1B18" stroke-width="2"/>
+    <circle cx="${X(110)}" cy="${Y(72)}" r="16" fill="none" stroke="#E8744A" stroke-width="2"/>
+    <text x="${X(110) + 22}" y="${Y(72) + 4}" font-family="JetBrains Mono" font-size="12" fill="#E8744A">72 visible · 68 on the red car</text>
+    <circle id="dot" cx="${X(60)}" cy="${Y(72)}" r="6" fill="#FFD60A" stroke="#1C1B18" stroke-width="2"/>`;
+
+  function render(frame) {
+    ctx.clearRect(0, 0, 960, 540); drawTrails(ctx, frame, sx, sy);
+    const n = visibleCount(frame), cen = centroid(frame), ph = PH.find(p => frame >= p.from && frame <= p.to);
+    document.getElementById("fno").textContent = frame;
+    document.getElementById("vis").textContent = n;
+    document.getElementById("gauge").style.width = (n / 72 * 100) + "%";
+    document.getElementById("cen").textContent = cen ? `x ${Math.round(cen[0])} · y ${Math.round(cen[1])}` : "—";
+    document.getElementById("lane").textContent = n ? WHERE[ph.name] : "no visible points";
+    const pill = document.getElementById("pill"); pill.dataset.state = ph.name; pill.textContent = `${PH.indexOf(ph) + 1} · ${NAMES[ph.name]}`;
+    [...steps.children].forEach((li, i) => li.classList.toggle("on", PH[i] === ph));
+    document.getElementById("dot").setAttribute("cx", X(frame)); document.getElementById("dot").setAttribute("cy", Y(n));
+    // lens: 3x crop of the frame around the visible centroid (or the last tracked position), with the dots
+    const last = cen || centroid(lastSeen(frame)) || [T.width / 2, T.height / 2];
+    const cw = 180, ch = 180; // crop half-size in track px (360 px square → 340 px lens)
+    lctx.fillStyle = "#24221E"; lctx.fillRect(0, 0, 340, 340);
+    lctx.drawImage(v, (last[0] - cw) * sx, (last[1] - ch) * sy, cw * 2 * sx, ch * 2 * sy, 0, 0, 340, 340);
+    lctx.save(); lctx.translate(-(last[0] - cw) * (340 / (cw * 2)), -(last[1] - ch) * (340 / (ch * 2))); lctx.scale(340 / (cw * 2), 340 / (ch * 2));
+    drawTrails(lctx, frame, 1, 1, 12); lctx.restore();
+  }
+  function lastSeen(frame) { for (let f = frame; f >= Q; f--) if (visibleCount(f) > 0) return f; return Q; }
+
+  const dial = document.getElementById("dial");
+  let pending = null;
+  function seekTo(frame) { v.currentTime = (frame + 0.5) / FPS; pending = frame; }
+  v.addEventListener("seeked", () => { if (pending !== null) { render(pending); pending = null; } });
+  dial.addEventListener("input", () => seekTo(+dial.value));
+  // play at once, then pause: iOS stops loading at metadata (loadeddata never fires) and paints seeked frames only once a muted video has played
+  const p = v.play(), first = () => seekTo(+dial.value); // the dial, not 60: the reader may have moved it already
+  if (p) p.then(() => { v.pause(); first(); }, first); else first();
+
+  // receipt: print the running functions, dial variable marked
+  const esc = s => s.replace(/[&<>]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[ch]));
+  document.getElementById("src").innerHTML = [phases, movedPoints, visibleCount, centroid, drawTrails].map(fn => esc(fn.toString()).replace(/\bframe\b|\bf\b/g, m => `<mark>${m}</mark>`)).join("\n\n");
+</script>
+</body>
+</html>
