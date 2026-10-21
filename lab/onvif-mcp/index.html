@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://matthewvisher.com/assets/og/og-home.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Matthew Visher · 21 years behind the badge. Now I build the tools I wished it had." />
+  <meta property="og:image:alt" content="Matthew Visher · 20 years behind the badge. Now I build the tools I wished it had." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="onvif-mcp · Lab · Matthew Visher" />
   <meta name="twitter:description" content="An MCP server that gives AI agents a governed, receipted interface to security cameras: snapshots, PTZ, config drift checks, commissioning. AXIS VAPIX and ONVIF under one contract." />
@@ -90,7 +90,7 @@
 
     <article class="article-body">
       <h2>The problem in the field</h2>
-      <p class="first reveal">Most of what I learned about video evidence comes down to one question: can you prove where it came from and that nobody touched it? For twenty-one years that question was about footage. Now agents are reaching for the cameras themselves. An agent that can pull a snapshot or swing a PTZ head is an operator, and the record of what an agent did is usually a log line inside the same system that did it. Edit the log and nothing notices.</p>
+      <p class="first reveal">Most of what I learned about video evidence comes down to one question: can you prove where it came from and that nobody touched it? For twenty years that question was about footage. Now agents are reaching for the cameras themselves. An agent that can pull a snapshot or swing a PTZ head is an operator, and the record of what an agent did is usually a log line inside the same system that did it. Edit the log and nothing notices.</p>
       <h2>Why the usual answers fail</h2>
       <p>ONVIF is the industry standard, and it is a swamp of SOAP, profiles, and vendor quirks. The quick fix is a thin wrapper that hands a model the raw camera API and puts the policy in the prompt. That leaves two holes. The agent can do anything the credential can do. And the check that stopped it lives nowhere. A gate that fires without leaving a record can't prove it ever fired.</p>
       <h2>What I built</h2>
