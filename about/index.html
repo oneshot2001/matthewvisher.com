@@ -22,11 +22,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260929c" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261021a" />
   <link rel="stylesheet" href="/assets/css/motion.css?v=20260929a" />
-  <link rel="stylesheet" href="/assets/css/pages.css?v=20260929e" />
+  <link rel="stylesheet" href="/assets/css/pages.css?v=20261021a" />
+  <link rel="preload" as="image" href="/assets/video/standing-post-start.jpg" />
+  <noscript><style>.pg-about-reel video { display: none; }</style></noscript>
   <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
   <script src="/assets/js/motion.js" defer></script>
+  <script src="/assets/js/about.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -80,7 +83,18 @@
   <main id="main">
     <p class="print-only">Matthew Visher · hello@matthewvisher.com · matthewvisher.com · Salt Lake City, Utah</p>
 
-    <section class="tile tile--light pg-about-head">
+    <section class="tile tile--dark pg-about-head">
+      <div class="pg-about-reel">
+        <img class="pg-about-reel__glow" src="/assets/video/standing-post-start.jpg" alt="" width="1080" height="1920" />
+        <div class="pg-about-reel__media">
+          <img src="/assets/video/standing-post-start.jpg" alt="Matthew standing still on a downtown sidewalk in late sun while passers-by blur past him" width="1080" height="1920" />
+          <video muted playsinline loop preload="none" poster="/assets/video/standing-post-start.jpg" aria-hidden="true"></video>
+        </div>
+        <div class="pg-about-reel__bar">
+          <button class="pg-about-reel__pill pg-mono" type="button" hidden>Pause clip</button>
+          <p class="pg-about-reel__pill pg-mono">AI-generated, my likeness</p>
+        </div>
+      </div>
       <div class="tile__inner tile__inner--prose about-band">
         <div>
           <h1>About</h1>
@@ -92,11 +106,6 @@
             <a class="btn btn--secondary" href="/Matthew-Visher-Resume.pdf" download>Download PDF résumé</a>
           </div>
         </div>
-        <picture class="about-band__art">
-          <source type="image/avif" srcset="/assets/img/portrait-head-wide-1120.avif 1120w, /assets/img/portrait-head-wide-2240.avif 2240w" sizes="(min-width: 834px) 576px, 100vw" />
-          <source type="image/webp" srcset="/assets/img/portrait-head-wide-1120.webp 1120w, /assets/img/portrait-head-wide-2240.webp 2240w" sizes="(min-width: 834px) 576px, 100vw" />
-          <img src="/assets/img/portrait-head-wide.jpg" alt="Matthew Visher" width="2400" height="1920" fetchpriority="high" decoding="async" />
-        </picture>
       </div>
     </section>
 

@@ -12,7 +12,7 @@
 | `--parchment` | #F1EDE3 | alternating tile, header (86% frosted), footer, mobile menu |
 | `--ink` | #1C1B18 | all text on light; secondary-button outline; card hover border |
 | `--charcoal` | #24221E | the one dark tile (`.tile--dark`, `-2`, `-3` all resolve here) |
-| `--deep` | #141310 | home flagship chapter ground only (`.hm-chapter`) |
+| `--deep` | #141310 | ground for the home flagship chapter (`.hm-chapter`) and the two video stages (`.hm-reel`, About `.pg-about-head`) only |
 | `--kraft` | #B9A27A | home hero ground at every width |
 | `--hairline` | #DAD3C4 | 1px borders: header, cards, rows, footer rule, pearl button |
 | `--muted` | #6B665C | captions, meta, legal, definition labels |
@@ -24,12 +24,11 @@
 | `--ink-print` | #1A1917 | `.article-body` colour |
 | `--on-dark` | #F4F1EA | text on charcoal |
 | `--muted-on-dark` | #CFC9BC | leads/proof on charcoal |
-| `--shadow-photo` | `0 24px 60px -24px ink@45%` | the ONE shadow — About portrait only |
 
 Spacing `--xxs`4 `--xs`8 `--sm`12 `--md`17 `--lg`24 `--xl`32 `--xxl`48 `--section`80.
 Radius `--r-none`0 `--r-sm`8 `--r-md`11 (pearl) `--r-lg`18 (cards) `--r-pill`.
 Motion tokens live in `motion.css` (see Motion).
-No shadows except `--shadow-photo` on the About portrait; no gradients. One exception: over the home reel's video, the scrim, edge feather and text shadow exist only to keep type legible on moving footage.
+No shadows, no gradients. One exception: over the home reel's and the About head's video, the scrim, edge feather and text shadow exist only to keep type legible on moving footage.
 
 ## Type
 
@@ -125,7 +124,10 @@ Print rules use literal `#000`, as the `styles.css` print block does.
   The newest note (`.card--feature`) is the charcoal cover: radius 28, title `clamp(36px, 4.8vw, 68px)`, date in lemon.
   Styled entirely from the markup `scripts/publish-note.py` writes; do not change `<ul class="grid grid--3">` or the feature `<li>` opening tag.
 - **Lab specimens**: a denied or failed value is `<b class="no">` and reads `--rust-on-dark` (`lab.css`). Plain `<b>` stays lemon = verified.
-- **About**: head band on the 1200 axis · `.pg-story` prose left, `.pg-quote` right (lemon rule) · `.pg-work` 2×2 parchment cells with Lab links ·
+- **About**: head band = the "Standing Post" clip looping behind the copy on the home reel's stage (`.pg-about-reel`: first screen on `--deep`,
+  bottom scrim, phone covers, wider centres the clip full height with feathered sides over a blurred glow of the still, same disclosure pill
+  with a "Pause clip" pill beside it while the clip is loaded),
+  copy at the bottom of the 1200 axis in the left half ≥834 · `.pg-story` prose left, `.pg-quote` right (lemon rule) · `.pg-work` 2×2 parchment cells with Lab links ·
   `<dl class="pg-path">` four-step progression (same figure as Home's `.hm-path`, full wording, numerals from a CSS counter) ·
   `.pg-record` timeline left, `.pg-rail` (operating principles, disclosure) right ≥1000.
   Story DOM order is paragraph, quote, paragraph; the grid moves the quote to the right column. In-text links in `.pg-work` show their underline at rest.
@@ -167,6 +169,10 @@ Tokens (`:root` in motion.css): `--ease-out: cubic-bezier(.23,1,.32,1)` · `--ea
     the result through a `role="status"` line.
   - *Specimens* `.hm-spec` lines type in on first view (90ms stagger).
   - No JS: every section renders at its end state; the field is simply absent and the reel shows the stare still.
+- **About motion** (`about.js`): *Standing Post*, a 10 s loop (start frame = end frame) of `standing-post-1080.mp4` (H.264, faststart,
+  no audio), fetched whole as a Blob after `window` load for the same byte-range reason as the reel, plays only while on screen.
+  It loops on its own, so it carries a pause button (WCAG 2.2.2); a pause holds until the visitor presses play.
+  The `<img>`, the poster and the glow are frame 0: reduced motion, no JS, or a fetch/decode error show it and load no clip.
 - **View transitions** (`styles.css`): `@view-transition { navigation: auto }`, `nameplate` on `.site-nav__name`, `mark` on `.site-nav .mark`,
   root crossfade 220ms. Exactly one element per name per page.
 - **Ticks** `.tick` (lemon dot + ink check): spring pop 400ms `--ease-spring` via the `scale` property.
@@ -174,11 +180,11 @@ Tokens (`:root` in motion.css): `--ease-out: cubic-bezier(.23,1,.32,1)` · `--ea
   Copy button swaps in `<span class="tick">Copied`; article signoff tick pops with its reveal.
 - **Hover** pills `translateY(-1px)` + lemon −6%; secondary fills 8%; cards hairline → ink; `.link` lemon underline grows in. All `--dur-ui --ease-out`.
 - **Reduced motion** (`prefers-reduced-motion: reduce`): reveals opacity-only 300ms, no transform; shutter off; home field draws one still frame,
-  thesis fully inked, chapter unpinned, the reel shows the stare still and loads no clip; ticks static; `scroll-behavior: auto` (smooth only under `no-preference`); view-transition pseudo animations `none`.
+  thesis fully inked, chapter unpinned, the reel shows the stare still and loads no clip; the About head shows its still and loads no clip; ticks static; `scroll-behavior: auto` (smooth only under `no-preference`); view-transition pseudo animations `none`.
 - Print (`styles.css`) forces `.reveal` visible and `animation: none`.
 
 ## Do / Don't
 
 - Do: one accent (lemon), gold only in the three named places, ink outlines for secondary actions.
 - Do: `?v=YYYYMMDD` bump on every stylesheet link on every page when CSS changes (4h edge cache); `home.css` / `home.js` carry their own `?v=`.
-- Don't: inline hex/rgba, a dark beyond charcoal and the home chapter's `--deep`, weight 300, shadows, Inter/Saira/SF Pro, `.global-nav`/`.sub-nav`.
+- Don't: inline hex/rgba, a dark beyond charcoal and `--deep` (home chapter and the video stages), weight 300, shadows, Inter/Saira/SF Pro, `.global-nav`/`.sub-nav`.

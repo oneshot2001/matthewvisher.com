@@ -19,7 +19,6 @@
   --ink-print: #1A1917;
   --on-dark: #F4F1EA;
   --muted-on-dark: #CFC9BC;
-  --shadow-photo: 0 24px 60px -24px color-mix(in oklch, var(--ink) 45%, transparent);
 
   /* Spacing */
   --xxs: 4px; --xs: 8px; --sm: 12px; --md: 17px;
@@ -177,13 +176,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .tile--light .specimen { background: var(--charcoal); color: var(--on-dark); border-color: color-mix(in oklch, var(--on-dark) 18%, transparent); }
 .tile--light .specimen b { color: var(--lemon); }
 
-/* ---------- About band — copy left, portrait right at natural aspect ---------- */
+/* ---------- About band — copy in the left half ≥834; the clip behind it is in pages.css ---------- */
 .about-band { display: grid; gap: var(--xl); align-items: center; }
 .about-band > .t-hero { margin-bottom: var(--md); }
 .about-band .prose p { margin-top: var(--lg); }
 .about-band .actions { margin-top: var(--xl); }
-.about-band__art img { border-radius: var(--r-lg); box-shadow: var(--shadow-photo); }
-@media (max-width: 833px) { .about-band__art { order: -1; } }
 @media (min-width: 834px) { .about-band { grid-template-columns: 1fr 1fr; gap: var(--xxl); } }
 
 /* ---------- Utility card grid ---------- */
@@ -396,7 +393,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   h1, h2 { break-after: avoid; }
   .rows > div { break-inside: avoid; padding: 6pt 0; }
   .print-only { display: block; font-family: var(--font-mono); font-size: 9pt; letter-spacing: 0.02em; margin: 0 0 8pt; }
-  .about-band picture, .about-band .actions { display: none !important; }
+  .about-band .actions { display: none !important; }
   .about-band { display: block; }
   .about-band .prose p, .prose p { margin-top: 6pt; }
   .prose ul { margin-top: 6pt; }
