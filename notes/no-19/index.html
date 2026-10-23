@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>72 Visible, Wrong Car · Notes from the Field No. 19</title>
+  <meta name="description" content="An AI tracker lost a blue SUV behind the trees on my street. When all 72 points came back, 68 were on a red car going the other way." />
+  <link rel="canonical" href="https://matthewvisher.com/notes/no-19/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="72 Visible, Wrong Car" />
+  <meta property="og:description" content="An AI tracker lost a blue SUV behind the trees on my street. When all 72 points came back, 68 were on a red car going the other way." />
+  <meta property="og:url" content="https://matthewvisher.com/notes/no-19/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Notes from the Field · a numbered series on AI in physical security by Matthew Visher." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="72 Visible, Wrong Car" />
+  <meta name="twitter:description" content="An AI tracker lost a blue SUV behind the trees on my street. When all 72 points came back, 68 were on a red car going the other way." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261021a" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20260929a" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260929a" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/">Lab</a>
+        <a href="/notes/" aria-current="page">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/">Lab</a>
+          <a href="/notes/" aria-current="page">Notes</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>NOTES FROM THE FIELD</span><span class="am-no">NO. 19</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/notes/">&larr; Notes from the Field</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Video AI &middot; Tracking</p>
+      <h1 class="article-title">72 Visible, Wrong Car</h1>
+      <p class="article-dek">An AI tracker lost a blue SUV behind the trees on my street. When all 72 points came back, 68 were on a red car going the other way.</p>
+      <div class="article-byline"><span>By <strong>Matthew Visher</strong></span><span>&middot;</span><span>October 20, 2026</span><span>&middot;</span><span>4 min read</span></div>
+    </header>
+
+    <article class="article-body">
+      <p class="first reveal">On October 2 I pointed one of my own cameras at the street and gave an AI point tracker one job. Follow a blue SUV.</p>
+      <p>The tracker was TAPNext++, from Google DeepMind. It&#x27;s open source, and it&#x27;s good. You pick points on something in one frame, and it follows those points through the video and tells you, frame by frame, whether it can still see each one. I put a grid of 72 points over the SUV. Six of them, along the edges of the grid, landed on the road instead.</p>
+      <p>The SUV passed a light pole and went behind a row of trees. The count fell from 72 to 21, then to a handful. Fair enough. The tracker marked most of its points as gone, and they were.</p>
+      <p>Then it started getting them back. Where the SUV showed through gaps in the trees, points came back on it. Up to 13 at once, on and off, for about half a second. That&#x27;s the re-detection DeepMind built it for, and it worked.</p>
+      <p>Then the SUV went behind the next tree, and the count climbed again. 31 points. For one frame, all 72 marked visible. Sixty-eight of them were on a red car in the far lane going the other way. The other four were edge points sitting on the road. Two dozen or more rode that car for most of a second.</p>
+      <p>Wrong color, wrong lane, wrong direction. Each point carried the same flag it had carried on the SUV. Visible. The flag is yes or no, and it read the same on the red car as it had in the gap, when the model was right.</p>
+      <p>Re-detection is one of the three things DeepMind says this version does better. The README says it "shows strong re-detection capabilities." To their credit, their own project page shows it losing a ball under a cup, then finding it when the cup lifts.</p>
+      <p>So before writing this I ran the same clip through DeepMind&#x27;s higher-resolution checkpoint. Same design, fine-tuned to take four times the pixels.</p>
+      <p>It didn&#x27;t take the red car. It also never found the SUV again, not even in the gap where the first run had it. It marked the SUV&#x27;s points gone, and all but two stayed gone. The few points it still called visible were mostly the edge points sitting on the road, and it was right about those.</p>
+      <p>If I had to pick, I&#x27;d take the tracker that says it lost the car over the one that hands me a different car.</p>
+      <p>A point tracker&#x27;s job is to follow the same spot on the same surface. In the first run it did that right and then wrong, less than a second apart, and both times it handed back the same flag. Visible. Underneath that flag the model keeps a score, and the score did fall once the SUV went behind the trees. But it fell just as far when the model was right, in the gap, as when it was wrong, on the red car. The video shows the difference. The score doesn&#x27;t. The mistake that would be mine is reading a returned point as the same vehicle without looking.</p>
+      <p>I spent 21 years in policing, and some of that was surveillance work. Losing the target happens. Getting it back is where people get careful, because the car that comes out from behind the building isn&#x27;t automatically the car that went in. Somebody looks at it and confirms before anybody says it out loud.</p>
+      <p>A trail on a screen tells you the opposite. A line that runs clean across the frame looks like nobody ever lost sight of anything.</p>
+      <p>My day job is selling AI to police. This ran on my own camera and my own equipment, because I&#x27;d rather find out where the line breaks on my street than in a courtroom.</p>
+      <p>Video tools do some version of this every day now. Follow this vehicle. Show me where it went. Stitch the cameras together. I&#x27;m not saying any of them make this mistake. I&#x27;d want to know before a report leans on it, and these are the questions I&#x27;d ask.</p>
+      <p>Does it show you where it lost the vehicle?</p>
+      <p>When you export the path, is the gap still in it?</p>
+      <p>When it says it has the vehicle again, what is that based on, and does it show you how sure it is?</p>
+      <p>Who confirmed it&#x27;s the same vehicle, and how? A plate, damage, a roof rack, something a person checked.</p>
+      <p>I built a page where you can watch the first run happen. Turn the dial past the trees and you can watch it find the SUV in the gap, lose it again, and then put 68 points on the red car. The code that draws the page is printed on the page, so you can check my work: https://matthewvisher.com/lab/wrong-car/</p>
+      <p>Limits. One camera, one clip, six seconds, 72 points in a grid I chose, six of them on the road, two checkpoints. It isn&#x27;t a benchmark, and the higher-resolution checkpoint never took the wrong car. A model built to recognize vehicles might never make this mistake. I don&#x27;t know, and that&#x27;s the reason to ask.</p>
+      <p>For the people who worked surveillance: what did your team call it when you lost the target, and what did it take before anybody said you had it back?</p>
+      <p>The points came back. Nothing in them said which car.</p>
+      <p>Lab: AXIS Q6358-LE on my own network, October 2, 2026, 1080p at 25 frames per second, six-second clip. TAPNext++ (google-deepmind/tapnet at 730cda1, Apache-2.0), standard 256 checkpoint and 512 checkpoint, on Apple silicon. Second run October 17, 2026.</p>
+    </article>
+
+    <div class="article-sources">
+      <p>Sources, so you can check my numbers:</p>
+      <p><a href="https://github.com/google-deepmind/tapnet/tree/730cda1c730877cfedbe01bf87fb1cadb78a565d">Google DeepMind, tapnet README (TAPNext++)</a></p>
+      <p><a href="https://tap-next-plus-plus.github.io/">TAPNext++ project page</a></p>
+      <p><a href="https://matthewvisher.com/lab/wrong-car/">The live specimen</a></p>
+      <p>Checked October 17, 2026. If I have any of this wrong, tell me and I will correct it in place.</p>
+    </div>
+
+    <nav class="article-nav" aria-label="Series">
+      <a rel="prev" href="/notes/no-18/"><small>Previous</small>NO. 18 &middot; The FBI put "deceive" and "agentic AI" in the same sentence.</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:hello@matthewvisher.com">hello@matthewvisher.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>
