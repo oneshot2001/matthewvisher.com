@@ -64,6 +64,12 @@
 .note-film figcaption { margin-top: var(--sm); font-family: var(--font-mono); font-size: 13px; line-height: 1.5;
   letter-spacing: .02em; color: var(--muted); text-wrap: pretty; }
 
+/* Note figure: an image inside the prose column (NO. 20's custody sheets) */
+.note-fig { margin: 8px 0 34px; }
+.note-fig img { display: block; width: 100%; height: auto; border: 1px solid var(--hairline); border-radius: var(--r-md); }
+.note-fig figcaption { margin-top: var(--sm); font-family: var(--font-mono); font-size: 13px; line-height: 1.5;
+  letter-spacing: .02em; color: var(--muted); }
+
 @media print {
   @page { margin: 18mm; }
   .site-nav, .footer, .btn, .skip-link, .am-dot, .article-back, .article-nav { display: none !important; }

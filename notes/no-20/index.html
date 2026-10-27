@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Signature Covers the File · Notes from the Field No. 20</title>
+  <meta name="description" content="I turned on signing on my own camera and checked a clip. Every frame it could check came back clean. The camera’s clock was 9 minutes 44 seconds fast." />
+  <link rel="canonical" href="https://matthewvisher.com/notes/no-20/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The Signature Covers the File" />
+  <meta property="og:description" content="I turned on signing on my own camera and checked a clip. Every frame it could check came back clean. The camera’s clock was 9 minutes 44 seconds fast." />
+  <meta property="og:url" content="https://matthewvisher.com/notes/no-20/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Notes from the Field · a numbered series on AI in physical security by Matthew Visher." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Signature Covers the File" />
+  <meta name="twitter:description" content="I turned on signing on my own camera and checked a clip. Every frame it could check came back clean. The camera’s clock was 9 minutes 44 seconds fast." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261021a" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20261027a" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260929a" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/">Lab</a>
+        <a href="/notes/" aria-current="page">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/">Lab</a>
+          <a href="/notes/" aria-current="page">Notes</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>NOTES FROM THE FIELD</span><span class="am-no">NO. 20</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/notes/">&larr; Notes from the Field</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Video Evidence &middot; Custody</p>
+      <h1 class="article-title">The Signature Covers the File</h1>
+      <p class="article-dek">I turned on signing on my own camera and checked a clip. Every frame it could check came back clean. The camera’s clock was 9 minutes 44 seconds fast.</p>
+      <div class="article-byline"><span>By <strong>Matthew Visher</strong></span><span>&middot;</span><span>October 27, 2026</span><span>&middot;</span><span>4 min read</span></div>
+    </header>
+
+    <article class="article-body">
+      <p class="first reveal">On October 23, going into IACP, SoundThinking announced GoSecure, a coming feature for its PlateRanger Edge Max cameras and cameras "powered by Axis Agent." It "will cryptographically authenticate video at the point of capture," to help "investigators and prosecutors establish confidence in its integrity."</p>
+      <p>Good. More cameras should do that. Some already can. The Axis camera I tested on has it built in. It ships switched off. Axis&#x27;s own documentation says so, and on my camera it was off.</p>
+      <p>GoSecure isn&#x27;t out yet, so none of what follows is a test of it.</p>
+      <p>On October 5 I turned it on for one ten-second clip, pointed the camera at my other camera on the side of my house, and checked what the signature would tell me and what it wouldn&#x27;t.</p>
+      <p>What it told me was good. Every frame it could check came back clean. The check traced the key back to Axis&#x27;s root certificate and named the maker, the firmware version and the serial number. Then I built a six-still exhibit, the kind that ends up in a case file, and checked each still against the frame it claimed to come from. Six of six matched, pixel for pixel. When I swapped one still for the very next frame, a fifteenth of a second later and almost identical to the eye, the check caught it.</p>
+      <p>Then came the parts it couldn&#x27;t vouch for.</p>
+      <p><strong>The clock.</strong> The camera&#x27;s clock was 9 minutes 44 seconds fast. The signature locked that time in. Nobody can change it now without the check catching it, and it&#x27;s still wrong.</p>
+      <p><strong>The end of the clip.</strong> The last 27 frames, almost two seconds, couldn&#x27;t be checked at all. The camera sends each signature after the frames it covers, and my clip ended before the last one arrived. If the moment that matters is at the end of an export, it may be the part you can&#x27;t verify.</p>
+      <p><strong>The frames after a bad one.</strong> I flipped one byte in one frame on a copy. The check flagged that frame and only that frame. But a still I&#x27;d pulled from eight frames later came out different too, and its own data was untouched. Video frames are drawn from the frames before them, so a frame is only as clean as everything it was drawn from.</p>
+      <p><strong>Who handled it.</strong> I exported the file, hashed it, built the exhibit, checked it and re-hashed it three days later. Me, every time, with Claude Code running the commands on my own machine. The signature can&#x27;t tell you that, and it can&#x27;t tell you who else had the file.</p>
+      <p>I spent 20 years as a sworn officer. Nobody I worked with mistook the evidence tape for the chain of custody. The tape tells you the seal wasn&#x27;t broken. The custody log tells you whose hands it was in, when, and why, and every handoff gets a name, a date and a time.</p>
+      <p>Signed video is evidence tape for the file, and it&#x27;s good tape. Somebody still has to keep the log.</p>
+      <p>So I built one. It&#x27;s a one-page Video Evidence Custody Sheet with eight sections:</p>
+      <p>01 Source camera, including a clock check against real time.</p>
+      <p>02 Export: who, how, when, and the file&#x27;s hash.</p>
+      <p>03 Signature check, with a box that says what it proves and what it doesn&#x27;t.</p>
+      <p>04 Made from it: every copy or exhibit, with the exact recipe so anyone can remake it and compare.</p>
+      <p>05 Custody: every hand the file passed through, with a hash check at each one.</p>
+      <p>06 Stop rules: if this happens, do this.</p>
+      <p>07 Not settled here: what the sheet doesn&#x27;t show.</p>
+      <p>08 Re-check by someone else.</p>
+      <p>I filled one out from the real clip, real times and real hashes. It shows a five-minute gap between the export and the first hash, because that&#x27;s what happened. Section 08 on my copy says, in yellow: "Not done yet. One person made and checked everything above." That&#x27;s where my lab stands.</p>
+      <figure class="note-fig">
+        <a href="/notes/no-20/custody-sheet-filled.png"><img src="/notes/no-20/custody-sheet-filled.png" width="2160" height="2700" loading="lazy" alt="Video Evidence Custody Sheet filled out for the October 5, 2026 lab clip: source camera with the clock 9 minutes 44 seconds fast, export, signature check with pictures 0 to 123 verified and 124 to 150 not checkable, the exhibit made from it, three custody rows, stop rules, what the sheet does not settle, and section 08 marked not done yet." /></a>
+        <figcaption>Filled from my real signed clip, October 5, 2026.</figcaption>
+      </figure>
+      <p>There&#x27;s a blank copy further down. Take it, mark it up, tell me what&#x27;s wrong with it.</p>
+      <p>It isn&#x27;t a property form. Your agency&#x27;s form already carries the case number, the evidence tag, the legal authority, the signatures and the disposition. This rides along with it, for the video. It&#x27;s an example, not legal advice or agency policy. One camera, one clip, ten seconds, one person. It hasn&#x27;t been through a real case or a real property room.</p>
+      <p>My day job is selling AI to police, and before that I worked for Axis. This ran on my own cameras, on my own network.</p>
+      <p>If your cameras sign video, or a vendor tells you theirs will, these are the questions I&#x27;d ask.</p>
+      <p>Is it on by default, or does someone have to turn it on?</p>
+      <p>Does the export keep the signatures, including the one for the last few seconds?</p>
+      <p>Does the check tell you which frames verified, by number?</p>
+      <p>What does it say about the camera&#x27;s clock?</p>
+      <p>Who re-checks it besides the person who made it?</p>
+      <p>For the people who worked in a property room or ran one: what&#x27;s the field on your form that would have saved you the most trouble on video?</p>
+      <p>The signature covers the file. A person covers the rest.</p>
+      <figure class="note-fig">
+        <a href="/notes/no-20/custody-sheet-blank.png"><img src="/notes/no-20/custody-sheet-blank.png" width="2160" height="2700" loading="lazy" alt="Blank Video Evidence Custody Sheet with eight sections: source camera, export, signature check, made from it, custody, stop rules, not settled here, and re-check by someone else." /></a>
+        <figcaption>Blank. Take it. <a href="/notes/no-20/custody-sheet-blank.png" download>Download the full-size sheet</a>.</figcaption>
+      </figure>
+      <p>This is the first issue of Notes from the Field as a LinkedIn newsletter. Earlier issues are at <a href="/notes/">matthewvisher.com/notes</a>.</p>
+      <p>Lab: AXIS Q6358-LE (AXIS OS 12.9.57) on my own network, October 5, 2026. Ten seconds, 1080p at 15 frames per second, signing on for the capture and off after. Checked with Axis&#x27;s open-source Signed Video Framework 2.3.5, through a small checker written for this test, and ffmpeg 8.1.2. Re-hashed October 8, 2026. Built and checked with Claude Code.</p>
+    </article>
+
+    <div class="article-sources">
+      <p>Sources, so you can check my numbers:</p>
+      <p><a href="https://ir.soundthinking.com/news-events/press-releases/detail/343/soundthinking-advances-responsible-license-plate">SoundThinking, PlateRanger and GoSecure release, October 23, 2026</a></p>
+      <p><a href="https://developer.axis.com/video-streaming-and-recording/signed-video/">Axis developer documentation, Signed video</a></p>
+      <p><a href="https://developer.axis.com/vapix/network-video/signed-video/">Axis VAPIX, Signed Video parameter (default "no")</a></p>
+      <p><a href="https://github.com/AxisCommunications/signed-video-framework">Axis Signed Video Framework (MIT license)</a></p>
+      <p>Checked October 26, 2026. If I have any of this wrong, tell me and I will correct it in place.</p>
+    </div>
+
+    <nav class="article-nav" aria-label="Series">
+      <a rel="prev" href="/notes/no-19/"><small>Previous</small>NO. 19 &middot; 72 Visible, Wrong Car</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:hello@matthewvisher.com">hello@matthewvisher.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>
