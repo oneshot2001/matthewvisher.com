@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Restored to Zero · Notes from the Field No. 21</title>
+  <meta name="description" content="I bet that a proof tool finds what a second reader doesn’t, and ran it twice on my own camera tools. Same code, one pass with the prover, one without. Count the bugs." />
+  <link rel="canonical" href="https://matthewvisher.com/notes/no-21/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Restored to Zero" />
+  <meta property="og:description" content="I bet that a proof tool finds what a second reader doesn’t, and ran it twice on my own camera tools. Same code, one pass with the prover, one without. Count the bugs." />
+  <meta property="og:url" content="https://matthewvisher.com/notes/no-21/" />
+  <meta property="og:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Notes from the Field · a numbered series on AI in physical security by Matthew Visher." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Restored to Zero" />
+  <meta name="twitter:description" content="I bet that a proof tool finds what a second reader doesn’t, and ran it twice on my own camera tools. Same code, one pass with the prover, one without. Count the bugs." />
+  <meta name="twitter:image" content="https://matthewvisher.com/assets/og/og-notes.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261021a" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20261027a" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260929a" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/">Lab</a>
+        <a href="/notes/" aria-current="page">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/">Lab</a>
+          <a href="/notes/" aria-current="page">Notes</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>NOTES FROM THE FIELD</span><span class="am-no">NO. 21</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/notes/">&larr; Notes from the Field</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Proof Tools &middot; Code Review</p>
+      <h1 class="article-title">Restored to Zero</h1>
+      <p class="article-dek">I bet that a proof tool finds what a second reader doesn’t, and ran it twice on my own camera tools. Same code, one pass with the prover, one without. Count the bugs.</p>
+      <div class="article-byline"><span>By <strong>Matthew Visher</strong></span><span>&middot;</span><span>October 31, 2026</span><span>&middot;</span><span>6 min read</span></div>
+    </header>
+
+    <article class="article-body">
+      <p class="first reveal">Both AI reviewers caught the same bug. If a camera answers a position query with blank values, the code I was testing reads blank as zero. It moves the camera, then "restores" it to pan zero, tilt zero, zoom zero, and signs a record saying the restore was verified. The camera is now pointed wherever zero is, zoomed all the way out, nowhere near where it started. The record says verified.</p>
+      <p>I found that while settling a bet about proof tools.</p>
+      <p>On September 22, Boris Cherny at Anthropic posted that he had used Claude "to formally verify the Claude Agent SDK using Lean," a proof assistant, and added that "TLA+ also works well." By the next day he had narrowed it himself. "&#x27;Verify&#x27; is a little loose yeah," he told one reader, and he explained to the formal-methods people that the hairiest parts of the code were being modeled and checked for counterexamples, not the whole thing proved. Fair. The work looked real, and three AI models I had read the thread said the same. But the experiment nobody had run was still the plain one. Same code, same day, one pass with a proof tool and one without. Count the bugs.</p>
+      <p>For my last years on the job I was the sergeant reading other people&#x27;s reports. The template never caught what I caught, because the template only asked the questions its author thought to ask. A proof is the strictest template there is. It checks exactly what it was told to check, about a model of the thing. The second reader checks the thing. So the bet was really this: does a proof tool find what a second reader doesn&#x27;t?</p>
+      <p>I wrote the prediction down that night, let it slip five weeks, and on October 30 ran it twice.</p>
+      <p>The first test used a tool I maintain for talking to my own cameras. One loop, about 650 lines: plan a change, apply it, read the camera back, roll back if it doesn&#x27;t match. The formal pass wrote a TLA+ specification of that loop, ran the TLA+ model checker over every sequence of lost replies, rejected writes, crashes and a second writer it could explore, then replayed 43 real runs from my cameras&#x27; receipt log through the model. The control was the same AI model in a fresh window with the same code, allowed to read the tests and run probes, and one prompt: find races, stuck states, and double-guard bugs. No spec. My rule: a finding counted only if a test failed on the untouched code and passed on a small fix.</p>
+      <p>The formal pass found seven bugs. The review found all seven, plus nine more. The formal pass&#x27;s one unique find was a real violation of a rule I&#x27;d written down, with no clean fix. By the rule I wrote in September it would have held, by one. I&#x27;d added the fix requirement the day before the run, and that&#x27;s what dropped it. Under the rule I registered, the prediction failed.</p>
+      <p>The formal pass wasn&#x27;t worthless. It showed that a handful of properties held under every sequence it explored, which a reviewer can never say. And its replay found five signed handoff files already in the repository claiming a rollback that never happened. Review found the same bug. Only the replay found the files it had already touched.</p>
+      <p>Then I changed the reader instead of the method. I gave the same code to a model from a different company, OpenAI&#x27;s Codex, with the requirements and the spec, and none of the findings. Codex had worked on this code before, in overnight build runs, which makes what came back more interesting, not less: seven more bugs neither pass had seen, and one I&#x27;d thrown out that it argued back in. Twenty-four, on one commit of a tool I&#x27;d used for months.</p>
+      <p>The second test was designed to Codex&#x27;s rules. It had said my fix requirement punished the structural bugs a proof tool is good at, and that "the prover is overhead" was more than my data showed. It wrote the rule it would accept: reproduce the failure on the untouched code, judged by someone who built neither arm, no fix required. I registered that rule and its prediction before anything ran, and picked code neither model had seen in this study: the part of my open-source evidence project that moves a camera to a preset, polls it, restores it, and survives a crash halfway through. About 700 lines. Codex had built it, in July.</p>
+      <p>This time the reader stayed the same and the method changed. Two fresh copies of one model, same brief except for the method, two hours each. The formal arm finished in 18 minutes, the review arm in ten and a half. Codex judged every candidate on the untouched code and ran each probe twice.</p>
+      <p>Ten bugs. Six found both ways. One by review alone, because the model&#x27;s clock was a tick counter and the code&#x27;s clock was the wall. Three by the formal arm alone. Two of those it noticed while writing the spec, not from the checker, and one of the two is serious: a stalled credential lookup leaves the camera off its position with no restore. The one the checker itself produced was real and reproduced, and it can only happen through a test transport. The shipped network path can&#x27;t trigger it. Low severity.</p>
+      <p>The prediction held, by one, and that&#x27;s how narrow the one is.</p>
+      <p>The blank-to-zero bug came from both arms. Either reader alone would have caught it. Here is the stake. After an operator pans a camera, the restore is what puts it back on its post. With this bug the camera watches the wrong scene for as long as nobody looks, and a signed record says it&#x27;s back. That&#x27;s the footage a detective goes looking for, and the record a defense attorney reads aloud.</p>
+      <p>What one day and two runs taught me, as judgment and not as a ranking: changing who read the code moved the count more than changing how. A second pass found nine. A blind reader from another company found seven. The checker found none under my rule, then one under its own. Writing the spec made its author a careful reader, and two of the formal arm&#x27;s three unique finds came from the writing. The checker itself gave me guarantees about what it explored and one narrow catch, at half again the time.</p>
+      <p>If you&#x27;re buying a system that keeps records a court will see, ask the vendor who outside the build team reads the code, and whether you can see what they found.</p>
+      <p>Who ran all of it? Me, every time, with Claude Code writing the specifications, the probes and the tests on my own machine, and Codex reading blind.</p>
+      <p>My day job is selling AI to police, and before that I worked for Axis, whose cameras both of these tools drive. Both tools are open-source projects I maintain, worked on my own time. The first test replayed receipts from my own cameras on my own network. The second touched no camera at all.</p>
+      <p>For the people who run an evidence or records system: when did your vendor last show you what a second reader found?</p>
+      <p>The record said verified. Nobody had asked what the code did with a blank.</p>
+      <p>Lab: Test 1 on onvif-mcp commit fa37745, test 2 on aar commit ae909f7, both October 30, 2026. TLA+ with TLC 2.19. Claude wrote both specifications and ran both review passes in fresh windows (Claude Opus 5.5 for both arms of test 2). OpenAI Codex (GPT-6 Astra) ran the blind pass on test 1 and judged test 2. Requirements, predictions, spec files, model-checker traces, probes and both judges&#x27; write-ups are in my working notes. Built and checked with Claude Code.</p>
+    </article>
+
+    <div class="article-sources">
+      <p>Sources, so you can check my numbers:</p>
+      <p><a href="https://x.com/bcherny/status/2102543349102338309">Boris Cherny, September 22, 2026</a></p>
+      <p><a href="https://x.com/bcherny/status/2102803868837126172">Boris Cherny, "&#x27;Verify&#x27; is a little loose," September 23, 2026</a></p>
+      <p><a href="https://x.com/bcherny/status/2102898067133595992">Boris Cherny, "More details for the formal methods people," September 23, 2026</a></p>
+      <p><a href="https://lamport.azurewebsites.net/tla/tla.html">TLA+ (Leslie Lamport)</a></p>
+      <p><a href="https://github.com/tlaplus/tlaplus/releases">TLA+ tools releases (TLC)</a></p>
+      <p><a href="https://lean-lang.org">Lean</a></p>
+      <p><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></p>
+      <p><a href="https://github.com/oneshot2001/aar">aar</a></p>
+      <p>Checked October 31, 2026. If I have any of this wrong, tell me and I will correct it in place.</p>
+    </div>
+
+    <nav class="article-nav" aria-label="Series">
+      <a rel="prev" href="/notes/no-20/"><small>Previous</small>NO. 20 &middot; The Signature Covers the File</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:hello@matthewvisher.com">hello@matthewvisher.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>
