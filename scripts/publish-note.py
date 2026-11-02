@@ -3,12 +3,12 @@
 
   publish-note.py --no 14 --kit "~/Desktop/Posts & Social/POST-KIT-article-no-14-xxx" [--date 2026-09-22]
                   [--kicker "A · B"] [--dek "..."] [--linkedin URL] [--dry-run]
-  publish-note.py --refresh-home [--dry-run]
+  publish-note.py [--refresh-home] [--refresh-feed] [--dry-run]
 
 Reads article-no-NN-*.txt (series line, title, body, Sources block, Checked line), kicker + dek from
 cover-NN-site.html in the kit (or flags), clones the newest existing notes/no-*/index.html as the
 template, writes notes/no-NN/index.html, adds rel=next to the previous page, inserts the feature card
-on notes/index.html, rebuilds the homepage Notes row, updates sitemap.xml. Deploy (wrangler) is a separate step.
+on notes/index.html, rebuilds the homepage Notes row, updates sitemap.xml and feed.xml. Deploy (wrangler) is a separate step.
 """
 import argparse, datetime, html, os, pathlib, re, sys
 
@@ -96,6 +96,25 @@ def rebuild_home(pending=None):
     block = '<div class="hm-cards">\n' + "".join(cards) + '        </div>'
     return (h[:s+start] + block + h[s+end:]).encode("utf-8"), ", ".join(nums)
 
+def build_feed(pending=None):
+    X = lambda s: html.escape(html.unescape(s))
+    pages = {p: None for p in (SITE/"notes").glob("no-*") if p.name[3:].isdigit() and (p/"index.html").is_file()}
+    if pending: pages[pending[0].parent] = pending[1]
+    items = []
+    for p in sorted(pages, key=lambda p: int(p.name[3:]), reverse=True):
+        page = pages[p] if pages[p] is not None else (p/"index.html").read_text()
+        title, dek, date_long = home_fields(page, p/"index.html")
+        d = datetime.datetime.strptime(date_long, "%B %d, %Y")
+        url = f"https://matthewvisher.com/notes/{p.name}/"
+        items.append(f'    <item>\n      <title>NO. {int(p.name[3:]):02d} · {X(title)}</title>\n      <link>{url}</link>\n'
+                     f'      <guid isPermaLink="true">{url}</guid>\n      <pubDate>{d:%a, %d %b %Y} 12:00:00 GMT</pubDate>\n'
+                     f'      <description>{html.escape(dek)}</description>\n    </item>\n')
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n'
+            '    <title>Notes from the Field · Matthew Visher</title>\n    <link>https://matthewvisher.com/notes/</link>\n'
+            '    <atom:link href="https://matthewvisher.com/feed.xml" rel="self" type="application/rss+xml" />\n'
+            '    <description>A numbered series on AI in physical security.</description>\n    <language>en-us</language>\n'
+            + "".join(items) + '  </channel>\n</rss>\n')
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--no", type=int); ap.add_argument("--kit")
@@ -103,6 +122,7 @@ def main():
     ap.add_argument("--kicker"); ap.add_argument("--dek"); ap.add_argument("--linkedin")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--refresh-home", action="store_true")
+    ap.add_argument("--refresh-feed", action="store_true")
     a = ap.parse_args()
     if a.refresh_home:
         home, row = rebuild_home()
@@ -110,8 +130,14 @@ def main():
         else:
             (SITE/"index.html").write_bytes(home)
             print(f"  updated index.html (home row: {row})")
-        return
-    if a.no is None or a.kit is None: ap.error("--no and --kit are required unless --refresh-home is given")
+    if a.refresh_feed:
+        feed = build_feed()
+        if a.dry_run: print(f"  dry run: feed.xml ({feed.count('<item>')} items)")
+        else:
+            (SITE/"feed.xml").write_text(feed)
+            print(f"  updated feed.xml ({feed.count('<item>')} items)")
+    if a.refresh_home or a.refresh_feed: return
+    if a.no is None or a.kit is None: ap.error("--no and --kit are required unless --refresh-home or --refresh-feed is given")
     k = read_kit(a.kit, a.no)
     kicker = a.kicker or k["kicker"]; dek = a.dek or k["dek"]
     if not kicker or not dek: sys.exit("need --kicker and --dek (no cover-NN-site.html in kit)")
@@ -161,6 +187,7 @@ def main():
                lambda m: m.group(1)+a.date+m.group(2)+f'  <url><loc>https://matthewvisher.com/notes/no-{no:02d}/</loc><lastmod>{a.date}</lastmod></url>\n', x)
     x = re.sub(r'(<loc>https://matthewvisher.com/notes/</loc><lastmod>)[\d-]+', lambda m: m.group(1)+a.date, x)
     home, row = rebuild_home((out, h))  # validate before any writes; include the in-memory page on dry runs
+    feed = build_feed((out, h))
     print(f"NO. {no:02d} · {k['title']}\n  {len(k['paras'])} paras · {words} words · {mins} min · {len(k['srcs'])} sources · prev = NO. {prev:02d}\n  kicker: {kicker}\n  dek: {dek}")
     if a.dry_run:
         pathlib.Path("/tmp/publish-note-dryrun.html").write_text(h); print(f"  dry run: page → /tmp/publish-note-dryrun.html\n  dry run: index.html (home row: {row})"); return
@@ -168,5 +195,7 @@ def main():
     print(f"  wrote {out.relative_to(SITE)}, updated no-{prev:02d}, notes/index.html, sitemap.xml")
     (SITE/"index.html").write_bytes(home)
     print(f"  updated index.html (home row: {row})")
+    (SITE/"feed.xml").write_text(feed)
+    print(f"  updated feed.xml ({feed.count('<item>')} items)")
 
 if __name__ == "__main__": main()

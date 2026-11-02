@@ -11,7 +11,7 @@ for u in "notes/no-$NN/" "notes/" ; do c=$(curl -s -o /dev/null -w '%{http_code}
 curl -s "https://matthewvisher.com/notes/" | grep -q "Read NO. $NN" || { echo "index card not live"; exit 1; }
 curl -s -H 'Cache-Control: no-cache' https://matthewvisher.com/ | grep -q "/notes/no-$NN/" || { echo "home row not live"; exit 1; }
 TITLE=$(sed -n '3p' "$KIT"/article-no-$NN*.txt | head -1)
-git add notes sitemap.xml index.html
+git add notes sitemap.xml index.html feed.xml
 git commit -q -m "notes: add NO. $NN ($TITLE); index card, home row, series nav, sitemap
 
 Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"

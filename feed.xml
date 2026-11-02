@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notes from the Field · Matthew Visher</title>
+    <link>https://matthewvisher.com/notes/</link>
+    <atom:link href="https://matthewvisher.com/feed.xml" rel="self" type="application/rss+xml" />
+    <description>A numbered series on AI in physical security.</description>
+    <language>en-us</language>
+    <item>
+      <title>NO. 21 · Restored to Zero</title>
+      <link>https://matthewvisher.com/notes/no-21/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-21/</guid>
+      <pubDate>Sat, 31 Oct 2026 12:00:00 GMT</pubDate>
+      <description>I bet that a proof tool finds what a second reader doesn’t, and ran it twice on my own camera tools. Same code, one pass with the prover, one without. Count the bugs.</description>
+    </item>
+    <item>
+      <title>NO. 20 · The Signature Covers the File</title>
+      <link>https://matthewvisher.com/notes/no-20/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-20/</guid>
+      <pubDate>Tue, 27 Oct 2026 12:00:00 GMT</pubDate>
+      <description>I turned on signing on my own camera and checked a clip. Every frame it could check came back clean. The camera’s clock was 9 minutes 44 seconds fast.</description>
+    </item>
+    <item>
+      <title>NO. 19 · 72 Visible, Wrong Car</title>
+      <link>https://matthewvisher.com/notes/no-19/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-19/</guid>
+      <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
+      <description>An AI tracker lost a blue SUV behind the trees on my street. When all 72 points came back, 68 were on a red car going the other way.</description>
+    </item>
+    <item>
+      <title>NO. 18 · The FBI put &quot;deceive&quot; and &quot;agentic AI&quot; in the same sentence.</title>
+      <link>https://matthewvisher.com/notes/no-18/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-18/</guid>
+      <pubDate>Tue, 13 Oct 2026 12:00:00 GMT</pubDate>
+      <description>Software will run the decoys. Somebody still has to answer for what it did, and the agent’s own log can’t be the only witness.</description>
+    </item>
+    <item>
+      <title>NO. 17 · An Explainer Is Not Evidence</title>
+      <link>https://matthewvisher.com/notes/no-17/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-17/</guid>
+      <pubDate>Tue, 06 Oct 2026 12:00:00 GMT</pubDate>
+      <description>Courts call it an illustrative aid, and it is not evidence. An AI-made explainer is the same thing. Ask for the record.</description>
+    </item>
+    <item>
+      <title>NO. 16 · The Tests Passed. The Camera Disagreed.</title>
+      <link>https://matthewvisher.com/notes/no-16/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-16/</guid>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+      <description>A Sunday bench test: an AI agent on three live cameras, field-tech rules around it, and two things only the hardware could tell me.</description>
+    </item>
+    <item>
+      <title>NO. 15 · The Seal Was Intact</title>
+      <link>https://matthewvisher.com/notes/no-15/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-15/</guid>
+      <pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+      <description>The AI had to prove it followed the law. It did. Then one word in the law changed meaning, and the game still won.</description>
+    </item>
+    <item>
+      <title>NO. 14 · A Standing Man Is a Vertical Line</title>
+      <link>https://matthewvisher.com/notes/no-14/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-14/</guid>
+      <pubDate>Tue, 22 Sep 2026 12:00:00 GMT</pubDate>
+      <description>Keep time, and give it a place on the screen. The camera view is the floor, time goes up, and whoever stops becomes a post you can spot from across the room. Tested on my own cameras. It worked, and it broke.</description>
+    </item>
+    <item>
+      <title>NO. 13 · The camera you bought in 2019 is the breach you will have in 2027.</title>
+      <link>https://matthewvisher.com/notes/no-13/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-13/</guid>
+      <pubDate>Tue, 15 Sep 2026 12:00:00 GMT</pubDate>
+      <description>Every booth at GSX says it runs on your existing cameras. 14,500 of the existing cameras were just taken with a 2021 bug. Nobody is keeping the list.</description>
+    </item>
+    <item>
+      <title>NO. 12 · The cameras signed the video. Nobody signed the search.</title>
+      <link>https://matthewvisher.com/notes/no-12/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-12/</guid>
+      <pubDate>Tue, 08 Sep 2026 12:00:00 GMT</pubDate>
+      <description>ONVIF just shipped a standard that lets a camera prove its footage is untouched. The record of who searched that footage is still a plain text row the vendor keeps.</description>
+    </item>
+    <item>
+      <title>NO. 11 · The AI attacked the audit log first. Nobody trained it to.</title>
+      <link>https://matthewvisher.com/notes/no-11/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-11/</guid>
+      <pubDate>Thu, 03 Sep 2026 12:00:00 GMT</pubDate>
+      <description>A frontier lab just measured what a reward-seeking agent does to the record of its own actions. Every RTCC platform I know of has one on the roadmap.</description>
+    </item>
+    <item>
+      <title>NO. 10 · Chandler didn&#x27;t cancel because of a protest. It cancelled because the audit log worked.</title>
+      <link>https://matthewvisher.com/notes/no-10/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-10/</guid>
+      <pubDate>Tue, 01 Sep 2026 12:00:00 GMT</pubDate>
+      <description>Two cities, one month, both walked away because someone finally read the log. The vendor should ship the brakes. The community should set the speed limit.</description>
+    </item>
+    <item>
+      <title>NO. 09 · Seven days is the best thing that ever happened to real-time crime centers.</title>
+      <link>https://matthewvisher.com/notes/no-09/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-09/</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:00 GMT</pubDate>
+      <description>If the value of your crime center depends on 30 days of stored plates, is it a crime center, or a records room with better lighting?</description>
+    </item>
+    <item>
+      <title>NO. 08 · Your drone program has a new price tag and thirteen days to read it</title>
+      <link>https://matthewvisher.com/notes/no-08/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-08/</guid>
+      <pubDate>Fri, 21 Aug 2026 12:00:00 GMT</pubDate>
+      <description>A 100 percent tariff on the exact machines drone-as-first-responder programs buy, and four moves that redraw the whole procurement picture.</description>
+    </item>
+    <item>
+      <title>NO. 07 · Write it into the contract</title>
+      <link>https://matthewvisher.com/notes/no-07/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-07/</guid>
+      <pubDate>Fri, 21 Aug 2026 12:00:00 GMT</pubDate>
+      <description>Thirty days redrew what separates one plate reader vendor from another. It isn&amp;#x27;t camera count or price anymore. It&amp;#x27;s governance, and it belongs in the contract.</description>
+    </item>
+    <item>
+      <title>NO. 06 · The bug was old enough to rent a car. The camera on your wall is running older code than that.</title>
+      <link>https://matthewvisher.com/notes/no-06/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-06/</guid>
+      <pubDate>Tue, 18 Aug 2026 12:00:00 GMT</pubDate>
+      <description>An AI model found a 17-year-old root exploit for under two thousand dollars. The camera on your wall is running older code than that.</description>
+    </item>
+    <item>
+      <title>NO. 04 · Both of them typed a reason. The system wrote it down.</title>
+      <link>https://matthewvisher.com/notes/no-04/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-04/</guid>
+      <pubDate>Tue, 18 Aug 2026 12:00:00 GMT</pubDate>
+      <description>Two license plate cases, eight days apart. Both officers entered a justification. A required reason field is an attestation, not a fact.</description>
+    </item>
+    <item>
+      <title>NO. 02 · We taught agents to act. We didn&#x27;t teach them to leave a receipt.</title>
+      <link>https://matthewvisher.com/notes/no-02/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-02/</guid>
+      <pubDate>Tue, 11 Aug 2026 12:00:00 GMT</pubDate>
+      <description>When an AI agent takes an action inside a physical security system, what record does it leave behind? I went looking. I don&amp;#x27;t think I can finish this alone.</description>
+    </item>
+    <item>
+      <title>NO. 01 · A camera company just treated an AI agent as its user.</title>
+      <link>https://matthewvisher.com/notes/no-01/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-01/</guid>
+      <pubDate>Fri, 07 Aug 2026 12:00:00 GMT</pubDate>
+      <description>Rhombus gave Claude Code the keys to its camera platform: a site map, tool docs, credentials, and permission to work. The first vendor to design for an agent as the user.</description>
+    </item>
+  </channel>
+</rss>
