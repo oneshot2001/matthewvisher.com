@@ -8,12 +8,23 @@
 Reads article-no-NN-*.txt (series line, title, body, Sources block, Checked line), kicker + dek from
 cover-NN-site.html in the kit (or flags), clones the newest existing notes/no-*/index.html as the
 template, writes notes/no-NN/index.html, adds rel=next to the previous page, inserts the feature card
-on notes/index.html, rebuilds the homepage Notes row, updates sitemap.xml and feed.xml. Deploy (wrangler) is a separate step.
+on notes/index.html, rebuilds the homepage Notes row, updates sitemap.xml and feed.xml, and points the page's preview meta at notes/no-NN/og.png
+(render it with og-note.py). Deploy (wrangler) is a separate step.
 """
 import argparse, datetime, html, os, pathlib, re, sys
 
 SITE = pathlib.Path(__file__).resolve().parent.parent
 E = lambda s: html.escape(s, quote=False).replace("'", "&#x27;")
+A = lambda s: html.escape(s)  # attribute values: quotes too
+
+def card_meta(h, no, title):
+    """Point the page's link preview at its own card (notes/no-NN/og.png, made by og-note.py) and set the title attributes."""
+    img = f"https://matthewvisher.com/notes/no-{no:02d}/og.png"
+    for attr, name, value in (("property", "og:title", A(title)), ("name", "twitter:title", A(title)), ("property", "og:image", img),
+                              ("name", "twitter:image", img), ("property", "og:image:alt", A(f"Notes from the Field No. {no:02d}: {title}"))):
+        h, n = re.subn(rf'(<meta {attr}="{name}" content=")[^\n]*?(" />)', lambda m: m.group(1) + value + m.group(2), h)
+        if n != 1: sys.exit(f"NO. {no:02d}: expected one {name} meta, found {n}")
+    return h
 
 def read_kit(kit, no):
     kit = pathlib.Path(os.path.expanduser(kit))
@@ -155,10 +166,11 @@ def main():
     h = tpl
     h = re.sub(r'\n    <figure class="note-film.*?</figure>\n', "", h, flags=re.S)  # a film belongs to its own note only
     h = h.replace(p_title, E(k["title"]))
-    h = h.replace(p_meta, E(dek))
+    h = h.replace(p_meta, A(dek))
     h = h.replace(f"/notes/no-{prev:02d}/", f"/notes/no-{no:02d}/")
     h = h.replace(f"No. {prev:02d}", f"No. {no:02d}").replace(f"NO. {prev:02d}</span>", f"NO. {no:02d}</span>")
     h = h.replace(p_kick, kicker_html).replace(p_date, date_long).replace(p_read, f"{mins} min read")
+    h = card_meta(h, no, k["title"])
     body = "\n".join(('      <p class="first reveal">' if i == 0 else '      <p>') + E(p) + "</p>" for i, p in enumerate(k["paras"]))
     h = re.sub(r'(<article class="article-body">\n).*?(\n    </article>)', lambda m: m.group(1)+body+m.group(2), h, flags=re.S)
     s = '      <p>Sources, so you can check my numbers:</p>\n' + "\n".join(f'      <p><a href="{u}">{E(n)}</a></p>' for n, u in k["srcs"]) + f'\n      <p>{E(k["checked"])}</p>'

@@ -4,10 +4,13 @@ set -euo pipefail
 NO=$1; KIT=$2; DATE=${3:-$(date +%F)}; LI=${4:-}
 SITE="$(cd "$(dirname "$0")/.." && pwd)"; cd "$SITE"
 NN=$(printf %02d "$NO")
+# card first, from the dry-run page: a render failure leaves only an untracked og.png, so the publish can simply be rerun
+python3 scripts/publish-note.py --no "$NO" --kit "$KIT" --date "$DATE" ${LI:+--linkedin "$LI"} --dry-run >/dev/null
+uv run -q --with playwright python3 scripts/og-note.py "$NO" --page /tmp/publish-note-dryrun.html
 python3 scripts/publish-note.py --no "$NO" --kit "$KIT" --date "$DATE" ${LI:+--linkedin "$LI"}
 npx wrangler pages deploy . --project-name matthewvisher-com --branch master --commit-dirty=true 2>&1 | grep -E "Deployment complete" || { echo "DEPLOY FAILED"; exit 1; }
 sleep 8
-for u in "notes/no-$NN/" "notes/" ; do c=$(curl -s -o /dev/null -w '%{http_code}' -H 'Cache-Control: no-cache' "https://matthewvisher.com/$u"); echo "$c $u"; [ "$c" = 200 ] || { echo "VERIFY FAILED"; exit 1; }; done
+for u in "notes/no-$NN/" "notes/" "notes/no-$NN/og.png" ; do c=$(curl -s -o /dev/null -w '%{http_code}' -H 'Cache-Control: no-cache' "https://matthewvisher.com/$u"); echo "$c $u"; [ "$c" = 200 ] || { echo "VERIFY FAILED"; exit 1; }; done
 curl -s "https://matthewvisher.com/notes/" | grep -q "Read NO. $NN" || { echo "index card not live"; exit 1; }
 curl -s -H 'Cache-Control: no-cache' https://matthewvisher.com/ | grep -q "/notes/no-$NN/" || { echo "home row not live"; exit 1; }
 TITLE=$(sed -n '3p' "$KIT"/article-no-$NN*.txt | head -1)
