@@ -7,6 +7,13 @@
     <description>A numbered series on AI in physical security.</description>
     <language>en-us</language>
     <item>
+      <title>NO. 23 · The Label Is Not the Maker</title>
+      <link>https://matthewvisher.com/notes/no-23/</link>
+      <guid isPermaLink="true">https://matthewvisher.com/notes/no-23/</guid>
+      <pubDate>Tue, 17 Nov 2026 12:00:00 GMT</pubDate>
+      <description>Every copy of a copied dataset passed its hash check. A hash proves the bytes match. It doesn’t tell you who made them, and camera buyers have the same problem in a box with a logo on it.</description>
+    </item>
+    <item>
       <title>NO. 22 · The First Hour: ARTEX and Our Open Doors</title>
       <link>https://matthewvisher.com/notes/no-22/</link>
       <guid isPermaLink="true">https://matthewvisher.com/notes/no-22/</guid>

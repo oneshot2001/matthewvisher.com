@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Label Is Not the Maker · Notes from the Field No. 23</title>
+  <meta name="description" content="Every copy of a copied dataset passed its hash check. A hash proves the bytes match. It doesn’t tell you who made them, and camera buyers have the same problem in a box with a logo on it." />
+  <link rel="canonical" href="https://matthewvisher.com/notes/no-23/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The Label Is Not the Maker" />
+  <meta property="og:description" content="Every copy of a copied dataset passed its hash check. A hash proves the bytes match. It doesn’t tell you who made them, and camera buyers have the same problem in a box with a logo on it." />
+  <meta property="og:url" content="https://matthewvisher.com/notes/no-23/" />
+  <meta property="og:image" content="https://matthewvisher.com/notes/no-23/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Notes from the Field No. 23: The Label Is Not the Maker" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Label Is Not the Maker" />
+  <meta name="twitter:description" content="Every copy of a copied dataset passed its hash check. A hash proves the bytes match. It doesn’t tell you who made them, and camera buyers have the same problem in a box with a logo on it." />
+  <meta name="twitter:image" content="https://matthewvisher.com/notes/no-23/og.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/mark.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261021a" />
+  <link rel="stylesheet" href="/assets/css/article.css?v=20261027a" />
+  <link rel="stylesheet" href="/assets/css/motion.css?v=20260929a" />
+  <script defer data-domain="matthewvisher.com" src="https://plausible.io/js/script.js"></script>
+  <script src="/assets/js/motion.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__name" href="/"><svg class="mark" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="2" width="22" height="22" rx="7" fill="currentColor"/><circle class="mark__dot" cx="13" cy="16.6" r="4.6"/></svg><span>Matthew Visher</span></a>
+      <nav class="site-nav__links" aria-label="Site">
+        <a href="/lab/">Lab</a>
+        <a href="/notes/" aria-current="page">Notes</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/oneshot2001">GitHub</a>
+      </nav>
+      <a class="btn btn--nav" href="/contact/">Get in touch</a>
+      <details class="site-nav__menu">
+        <summary>Menu</summary>
+        <nav aria-label="Site">
+          <a href="/lab/">Lab</a>
+          <a href="/notes/" aria-current="page">Notes</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+          <a href="https://github.com/oneshot2001">GitHub</a>
+          <a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="article-masthead">
+      <div class="am-row"><span><span class="am-dot"></span>NOTES FROM THE FIELD</span><span class="am-no">NO. 23</span></div>
+      <div class="am-rule-thick"></div><div class="am-rule-hair"></div>
+    </div>
+    <a class="article-back" href="/notes/">&larr; Notes from the Field</a>
+
+    <header class="article-head reveal">
+      <p class="article-kicker">Supply Chain &middot; Provenance</p>
+      <h1 class="article-title">The Label Is Not the Maker</h1>
+      <p class="article-dek">Every copy of a copied dataset passed its hash check. A hash proves the bytes match. It doesn’t tell you who made them, and camera buyers have the same problem in a box with a logo on it.</p>
+      <div class="article-byline"><span>By <strong>Matthew Visher</strong></span><span>&middot;</span><span>November 17, 2026</span><span>&middot;</span><span>6 min read</span></div>
+    </header>
+
+    <article class="article-body">
+      <p class="first reveal">Last week a post went around X announcing "the largest PhD-level cybersecurity dataset." Ninety-five gigabytes, free, ready to train your own AI model on. When I read it, it had about 18,000 views, 572 bookmarks and six replies.</p>
+      <p>So I had Claude Code count it. Two lookups against the site&#x27;s public file list. Add up the files by hash, then read the discussion tab.</p>
+      <p>About 61 of the 95 gigabytes are unique. The biggest file is in there four times at full size, plus a fifth copy that got cut short. And that file isn&#x27;t the uploader&#x27;s work. It is byte for byte the file another person published in May under an open license. Same size, same SHA-256. The credit section was cut out, and the license now says everything belongs to the owner of the repo. The person who built the original posted the proof in October. The uploader hasn&#x27;t answered.</p>
+      <p>Every one of those copies passes its hash check.</p>
+      <p>That&#x27;s the line I keep thinking about. The hash did its job. It proved each copy matches the original down to the byte. It was never going to say who made the original.</p>
+      <p>The digital evidence world wrote this down years ago. SWGDE, the working group that writes the best-practice guides for digital evidence, says that if a copy has the same hash value, "that copy can be considered a &#x27;duplicate original&#x27; and is identical to the original."</p>
+      <p>Identical. That&#x27;s the whole claim.</p>
+      <p>When I started, we were issued blank VHS tapes. We were also given spindles of CDs and DVDs, for when you had to capture digital media. Then it was your responsibility to document it. The important parts in the timeline, from the different angles, so people knew where to look. You were finding the needle in the haystack for them, or playing out a timeline, or painting them a picture. All of it went into the chain of custody. Then it was stored in evidence, and disclosed to the defense if charges came out of it.</p>
+      <p>Every piece was documented. The physical media, and then the data on it, mapped out and factually proven by multiple people to be consistent. That was my standard. That was how I was taught to do it.</p>
+      <p>Multiple people meant, at minimum, another officer there with you, or a supervisor, or a task force agent. Somebody was there when you booked evidence, especially on anything critical. A felony, a forcible felony, aggravated crimes, anything with money, anything with bank accounts, federal money. Just like you&#x27;re supposed to have multiple officers on an undercover buy or a confidential informant buy. And when you had a covert asset in the area that caught that same transaction, you knew you had multiple points.</p>
+      <p>On a capital murder or an aggravated murder you have a murder book. It&#x27;s precise on every piece of factual evidence, down to the teeth, and a duplicate book goes to the defense team to walk them through everything. One piece left out, one piece misdocumented, could cost a case. That&#x27;s not acceptable on any case, and especially not where there&#x27;s a victim.</p>
+      <p>So the defense got a duplicate. A matching copy was where it started. What made the book hold was what was captured then and there, verified by multiple people, multiple angles, cross-checked every way.</p>
+      <p>Physical security has had the dataset problem for years. Ours ships in a box with a logo on it.</p>
+      <p>In 2018 a company called Aventura Technologies sold the Air Force 25 body cameras, under a contract that limited where the goods could come from. China wasn&#x27;t on the list. That August a service member noticed Chinese characters on the built-in screen of one of them. A specialist downloaded the camera&#x27;s firmware and, in the Justice Department&#x27;s words, "found numerous indications that the camera was manufactured in the PRC." Saved inside it were three logos: the Air Force&#x27;s, the PRC Ministry of Public Security&#x27;s, and a Chinese manufacturer&#x27;s.</p>
+      <p>Aventura pleaded guilty in March 2024 to fraud conspiracy and illegal importation. The scheme was buying Chinese-made security equipment and reselling it as U.S.-made, to federal agencies and the military among others. Some cameras shipped from China "pre-marked with Aventura&#x27;s logo and the phrase &#x27;Made in USA.&#x27;" In an email prosecutors quoted, the CEO called a supplier&#x27;s initials on the circuit boards "the biggest problem." The supplier agreed to take them off.</p>
+      <p>The label said one thing. The firmware said who made it.</p>
+      <p>It wasn&#x27;t a one-off. In 2021 IPVM and The Intercept went through federal purchase records. After Congress barred agencies from buying from certain Chinese camera makers, the Air Force, Army, Navy, Veterans Affairs and the Office of the Secretary of Defense all bought systems IPVM traced back to those makers, sold under other brand names. In 2024 IPVM put the buyer&#x27;s problem as a question: "how do they know what they are truly buying?"</p>
+      <p>Here&#x27;s where it stands this fall.</p>
+      <p>Aventura is the case that finished, and it was country-of-origin fraud. A New Jersey seller was charged in January 2024, accused of telling police customers his cameras weren&#x27;t banned. At least $35 million in sales. The charges were dropped that June.</p>
+      <p>In August, Nebraska&#x27;s attorney general settled with a national distributor. The AG&#x27;s release says it sold one of those manufacturers&#x27; products under its own house brand, and that the cameras were marketed as safe "with misleading labeling."</p>
+      <p>The FCC has moved twice. Since July 16, older equipment from the covered Chinese camera makers, gear that was already authorized, can&#x27;t be imported or marketed for public safety, government facilities or national security use. Since October 13 that covers surveillance of critical infrastructure too.</p>
+      <p>And in August the FCC asked for public comment on how to stop "undisclosed white-labeling or rebranding arrangements," including whether to require disclosure of every brand and model name tied to one FCC ID. That&#x27;s a proposal. It isn&#x27;t a rule.</p>
+      <p>The rules are catching up to the label. They haven&#x27;t caught it yet.</p>
+      <p>Which leaves the buyer, with the same two questions the dataset raised.</p>
+      <p>A checksum on a download page tells you that you got the file the page meant to hand you. Worth having. That&#x27;s the first question.</p>
+      <p>A signature is the second. Some camera makers sign their firmware with a key only they hold, and build the camera to refuse anything that isn&#x27;t signed. Secure boot runs that check every time the camera powers on. The device checks for itself, and you aren&#x27;t taking a web page&#x27;s word for it.</p>
+      <p>Two cautions, so I don&#x27;t oversell it. I found no documented case of tampered camera firmware being passed around through download mirrors. That&#x27;s the risk the signature exists for, and I can&#x27;t show you one in the wild. And a signature tells you who signed the firmware. It doesn&#x27;t tell you who built the board. That one is my inference, and it&#x27;s why the first ask is a name.</p>
+      <p>Three things I&#x27;d get in writing before the purchase order.</p>
+      <p>Who made it. Every producer of the device and its major components, by name. The maker, whatever the label says.</p>
+      <p>How it proves it. Is the firmware signed, does the device check that signature before it installs an update and every time it boots, and will you show me.</p>
+      <p>How I find out later. If the maker behind this model number changes after delivery, who tells me, and when.</p>
+      <p>Has a seller ever named the actual maker in writing for you? Yes, no, or never asked.</p>
+      <p>My day job is selling AI to police at a company that builds on Axis cameras, and before that I worked for Axis. Read that as a bias if you like.</p>
+      <p>Lab: Dataset file list and hashes read November 10 and counted again November 17, 2026. Primary sources read November 10 and checked again November 17. Claude Code ran the hash count, pulled and checked the sources, and drafted from my outline and my own dictated account of how I was taught to handle evidence. Built and checked with Claude Code.</p>
+    </article>
+
+    <div class="article-sources">
+      <p>Sources, so you can check my numbers:</p>
+      <p><a href="https://huggingface.co/datasets/Voidreaper2026/cybersec-master-dataset">The original dataset, by Voidreaper2026, Apache-2.0, published May 6, 2026</a></p>
+      <p><a href="https://huggingface.co/datasets/Vyber07/cyber-security/discussions/8">Voidreaper2026&#x27;s copy report on the 95 GB repo, opened October 16, 2026 (read the report, skip the download: the uploader says some archives hold live malware samples)</a></p>
+      <p><a href="https://www.swgde.org/wp-content/uploads/2023/11/2017-07-18-SWGDE-Collection-of-Digital-and-Multimedia-Evidence-Myths-vs-Facts_v1-2.pdf">SWGDE, Collection of Digital and Multimedia Evidence Myths vs Facts, v1.2, July 18, 2017</a></p>
+      <p><a href="https://www.justice.gov/usao-edny/pr/aventura-technologies-inc-pleads-guilty-wire-fraud-and-illegal-importation-reselling">U.S. Attorney&#x27;s Office, Eastern District of New York, Aventura guilty plea, March 19, 2024</a></p>
+      <p><a href="https://theintercept.com/2021/07/20/video-surveillance-cameras-us-military-china-sanctions/">The Intercept, July 20, 2021</a></p>
+      <p><a href="https://ipvm.com/reports/feds-buy-banned-gsa">IPVM, federal purchases of relabeled equipment, July 20, 2021</a></p>
+      <p><a href="https://ipvm.com/reports/adi-hikuanell">IPVM, Problems of OEMing, January 9, 2024</a></p>
+      <p><a href="https://www.securityinfowatch.com/video-surveillance/article/53081970/new-jersey-man-indicted-for-selling-banned-chinese-cameras">SecurityInfoWatch, New Jersey indictment, January 8, 2024</a></p>
+      <p><a href="https://ipvm.com/reports/nj-charges-dropped">IPVM, New Jersey charges dropped, June 12, 2024</a></p>
+      <p><a href="https://ago.nebraska.gov/attorney-general-hilgers-secures-commitment-resideo-and-adi-cease-all-sales-dahua-and-hikvision">Nebraska Attorney General, settlement release, August 21, 2026</a></p>
+      <p><a href="https://docs.fcc.gov/public/attachments/DA-26-635A1.pdf">FCC, DA 26-635, June 26, 2026 (effective July 16)</a></p>
+      <p><a href="https://www.federalregister.gov/documents/2026/09/11/2026-18535/protecting-against-national-security-threats-to-the-communications-supply-chain-through-the">Federal Register 2026-18535, FCC final rule, September 11, 2026 (effective October 13)</a></p>
+      <p><a href="https://www.federalregister.gov/documents/2026/08/07/2026-16197/protecting-against-national-security-threats-to-the-communications-supply-chain-through-the">Federal Register 2026-16197, FCC proposed rule, August 7, 2026</a></p>
+      <p><a href="https://www.axis.com/dam/public/a1/bd/d9/cybersecurity-features-in-axis-products-en-US-400269.pdf">Signed firmware and secure boot, two makers&#x27; own documents. Axis</a></p>
+      <p><a href="https://downloadstore.boschsecurity.com/FILES/Bosch_Releaseletter_CPP7.3_FW_7.94.0012.pdf">Bosch</a></p>
+      <p>Checked November 17, 2026. If I have any of this wrong, tell me and I will correct it in place.</p>
+      <p>Also on <a href="https://www.linkedin.com/pulse/label-maker-matthew-visher-ebkfc/">LinkedIn</a>.</p>
+    </div>
+
+    <nav class="article-nav" aria-label="Series">
+      <a rel="prev" href="/notes/no-22/"><small>Previous</small>NO. 22 &middot; The First Hour: ARTEX and Our Open Doors</a>
+    </nav>
+    <div class="article-signoff reveal"><span class="tick" aria-hidden="true"></span>Matthew Visher · <a href="mailto:hello@matthewvisher.com">hello@matthewvisher.com</a> · <a href="/">matthewvisher.com</a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h">Work</p>
+          <ul>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="https://github.com/oneshot2001/onvif-mcp">onvif-mcp</a></li>
+            <li><a href="https://github.com/oneshot2001/aar">Agent Action Receipts</a></li>
+            <li><a href="/lab/edgeproof/">EdgeProof</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Writing</p>
+          <ul>
+            <li><a href="/notes/">Notes from the Field</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-visher-6b4692a8/">LinkedIn</a></li>
+            <li><a href="https://github.com/oneshot2001">GitHub</a></li>
+            <li><a href="https://x.com/MatthewVisher">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__legal">© 2026 Matthew Visher. Views and projects are my own and do not represent my employer.</p>
+    </div>
+  </footer>
+</body>
+</html>
